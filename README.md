@@ -1,5 +1,4 @@
 # MyBooking
+Christos Balaktsis (3865) & Neron-Panagiotopoulos (3990)
 
-ℹ Work in groups (two students)  
-ℹ Please insert here your names and IDs (AEM)  
-⚠ Please keep the submission deadline
+
