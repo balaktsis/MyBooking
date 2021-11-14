@@ -1,3 +1,5 @@
 public enum LodgeType {
-    Apartment, Room, Trailer
+    Apartment,
+    Room,
+    Trailer
 }
