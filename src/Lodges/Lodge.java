@@ -7,6 +7,8 @@ import java.util.Date;
 import Users.Landlord;
 import Users.Administrator;
 
+import static Misc.UniqueIDGenerator.getUniqueId;
+
 /**
  * This is a Lodge class that represents a lodge for booking. It's defined by details such as
  * its owner, location, size and amenities that it offers. Depending on how many people have
@@ -19,12 +21,13 @@ public class Lodge {
     private Landlord landlord;
     private String location;
     private String description;
+    private final String lodgeId;
     private LodgeType type;
     private int rating;
     private int size;
+    private int numOfBookings;
     private double price;
     private LodgeAvailability availability;
-    private int numOfBookings;
     private ArrayList<Image> photos;
     private ArrayList<Amenities> amenities;
 
@@ -48,6 +51,7 @@ public class Lodge {
         this.rating = 0;
         this.numOfBookings = 0;
         this.description = null;
+        this.lodgeId = getUniqueId();
     }
 
     /**
@@ -245,6 +249,13 @@ public class Lodge {
      */
     public ArrayList<Amenities> getAmenities() {
         return this.amenities;
+    }
+
+    /**
+     * @return the ID of the current lodge.
+     */
+    public String getLodgeId() {
+        return this.lodgeId;
     }
 
     /**
