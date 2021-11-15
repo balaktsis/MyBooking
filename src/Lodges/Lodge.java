@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Users.User;
+import Users.Landlord;
 import Users.Administrator;
 
 /**
@@ -16,7 +16,7 @@ import Users.Administrator;
  */
 
 public class Lodge {
-    private User landlord;
+    private Landlord landlord;
     private String location;
     private String description;
     private LodgeType type;
@@ -33,11 +33,11 @@ public class Lodge {
      * @param landlord The user owner of the lodge.
      * @param location The place the lodge is located.
      * @param type The type of lodge.
-     * @param size Depends: the number of beds if type.ROOM, the square meters if type.APARTMENT.
+     * @param size Depends: the number of beds.
      * @param price The cost (in euros) of accommodation per night.
      * @param amenities The different amenities offered in the lodge.
      */
-    public Lodge(User landlord, String location, LodgeType type, int size, double price, ArrayList<Amenities> amenities) {
+    public Lodge(Landlord landlord, String location, LodgeType type, int size, double price, ArrayList<Amenities> amenities) {
         this.landlord = landlord;
         this.location = location;
         this.type = type;
@@ -54,7 +54,7 @@ public class Lodge {
      * Update the user owner of the current lodge.
      * @param landlord New user landlord of the lodge.
      */
-    public void setLandlord(User landlord) {
+    public void setLandlord(Landlord landlord) {
         this.landlord = landlord;
     }
 
@@ -83,7 +83,7 @@ public class Lodge {
     }
 
     /**
-     * Update the size (or number of beds) of the current lodge.
+     * Update the number of beds of the current lodge.
      * @param size New size of the lodge.
      */
     public void setSize(int size) {
@@ -177,7 +177,75 @@ public class Lodge {
         return this.numOfBookings;
     }
 
-    //TODO: getters for all the class fields
+    /**
+     * @return the landlord user of the current lodge.
+     */
+    public Landlord getLandlord() {
+        return this.landlord;
+    }
+
+    /**
+     * @return the location of the current lodge.
+     */
+    public String getLocation() {
+        return this.location;
+    }
+
+    /**
+     * @return the description of the current lodge.
+     */
+    public String getDescription() {
+        return this.description;
+    }
+
+    /**
+     * @return the lodge type of the current lodge.
+     */
+    public LodgeType getType() {
+        return this.type;
+    }
+
+    /**
+     * @return the rating status of the current lodge.
+     */
+    public int getRating() {
+        return this.rating;
+    }
+
+    /**
+     * @return the number of beds of the current lodge.
+     */
+    public int getSize() {
+        return this.size;
+    }
+
+    /**
+     * @return the accommodation cost per night of the current lodge.
+     */
+    public double getPrice() {
+        return this.price;
+    }
+
+    /**
+     * @return the availability calendar (object) of the current lodge.
+     */
+    public LodgeAvailability getAvailability() {
+        return this.availability;
+    }
+
+    /**
+     * @return the list of photographs of the current lodge.
+     */
+    public ArrayList<Image> getPhotos() {
+        return this.photos;
+    }
+
+    /**
+     * @return the list of provided amenities of the current lodge.
+     */
+    public ArrayList<Amenities> getAmenities() {
+        return this.amenities;
+    }
 
     /**
      * Signals the booking status of the current lodge after being asked to get booked.
@@ -193,7 +261,5 @@ public class Lodge {
         }
         return false;
     }
-
-
 
 }
