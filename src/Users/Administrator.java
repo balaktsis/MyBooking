@@ -6,6 +6,7 @@ package Users;
  * @author
  */
 public class Administrator extends User{
+    private static int totalBookings;
 
     /**
      * Primary constructor of an Administrator User object, takes in credentials,
@@ -18,4 +19,9 @@ public class Administrator extends User{
         super(username, password);
         this.approved = true;
     }
+
+    public static int getTotalBookings() {
+        return totalBookings;
+    }
+
 }
