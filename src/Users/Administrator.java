@@ -17,7 +17,6 @@ public class Administrator extends User{
      */
     public Administrator(String username, String password) {
         super(username, password);
-        this.approved = true;
     }
 
     public static int getTotalBookings() {

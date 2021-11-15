@@ -13,6 +13,7 @@ public class User {
     protected final String uid;
     protected boolean approved;
     protected String username, password;
+    protected String fullName;
     protected Message[] messages;
 
 
@@ -50,6 +51,22 @@ public class User {
      */
     public void setPassword(String password){
         this.password = password;
+    }
+
+    /**
+     * Set the full name of a user
+     * @param fullName Setting the full name of a user
+     */
+    public void setFullName(String fullName){
+        this.fullName = fullName;
+    }
+
+    /**
+     * Approve or revoke approval of a user
+     * @param approvalStatus Setting the approval status of a user
+     */
+    public void setApprovalStatus(boolean approvalStatus){
+        this.approved = approvalStatus;
     }
 
     private void updateMessages(){
