@@ -267,7 +267,7 @@ public class Lodge {
      */
     public boolean bookLodge(Date[] dates) {
         if(this.availability.markDates(dates)) {
-            this.rating = ((int) (1.0 * (this.numOfBookings++) / Administrator.getTotalBookings() * 100) % 6);
+  //          this.rating = ((int) (1.0 * (this.numOfBookings++) / Administrator.getTotalBookings() * 100) % 6);
             return true;
         }
         return false;
