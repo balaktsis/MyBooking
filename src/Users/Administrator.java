@@ -6,8 +6,6 @@ package Users;
  * @author
  */
 public class Administrator extends User{
-    private static int totalBookings;
-
     /**
      * Primary constructor of an Administrator User object, takes in credentials,
      * initializes the class fields and assigns a unique ID to the object
@@ -17,10 +15,6 @@ public class Administrator extends User{
      */
     public Administrator(String username, String password) {
         super(username, password);
-    }
-
-    public static int getTotalBookings() {
-        return totalBookings;
     }
 
 }
