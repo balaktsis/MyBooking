@@ -77,4 +77,24 @@ public class User {
         return messages;
     }
 
+    /**
+     * Get the user interface from the perspective of a user.
+     * @param graphical Boolean toggle between graphical interface and command line interface.\n(CLI - False, GUI - True)
+     */
+    public void showInterface(boolean graphical){
+        if (graphical){
+            showGraphicalInterface();
+        }
+        showCommandlineInterface();
+    }
+
+    protected void showGraphicalInterface(){
+        //TODO
+    }
+
+    protected void showCommandlineInterface(){
+
+    }
+
+
 }

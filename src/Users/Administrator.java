@@ -23,4 +23,8 @@ public class Administrator extends User{
         return totalBookings;
     }
 
+    @Override
+    protected void showCommandlineInterface() {
+        System.out.println("This is the Administrator interface!");
+    }
 }

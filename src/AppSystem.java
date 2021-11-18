@@ -30,6 +30,8 @@ public class AppSystem {
         users.add(tempCustomer);
         users.add(tempLandlord);
 
+        tempAdmin.showInterface(false);
+
         //TODO: Add a list/Database thing for the users
 
     }
