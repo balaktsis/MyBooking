@@ -12,10 +12,11 @@ public class AppSystem {
         initializeApp();
     }
 
+
+
     private void initializeApp(){
 
         ArrayList<User> users = new ArrayList<>();
-
         var tempAdmin = new Administrator("admin", "password");
         var tempCustomer = new Customer("customer", "password");
         var tempLandlord = new Landlord("landlord", "password");
