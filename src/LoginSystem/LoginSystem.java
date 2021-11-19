@@ -19,7 +19,7 @@ import java.util.Scanner;
  */
 
 public class LoginSystem {
-    private static final String frame = "===============================";
+    private final String frame = "===============================";
     private final boolean graphical;
 
     public LoginSystem(boolean graphical) {
@@ -31,7 +31,7 @@ public class LoginSystem {
         else consoleLoginScreen();
     }
 
-    private static int welcomeMessageConsole() {
+    private int welcomeMessageConsole() {
         System.out.println(frame);
         System.out.println("Welcome to MyBooking!");
         System.out.println(frame);
@@ -39,11 +39,11 @@ public class LoginSystem {
         return getChoice();
     }
 
-    private static void invalidInput() {
+    private void invalidInput() {
         System.out.println("****\nInvalid input! Please, try again.\n****");
     }
 
-    private static User signUpUserConsole() {
+    private User signUpUserConsole() {
         Scanner input = new Scanner(System.in);
         String username, password, reqRole;
         User user;
@@ -75,17 +75,17 @@ public class LoginSystem {
         System.out.println("Password\t" + password);
         System.out.println(frame);
         System.out.println("Press [1] for \"yes\" or [2] for \"canceling\".");
-        if(LoginSystem.getChoice()==1)
+        if(getChoice()==1)
             return user;
         return null;
     }
 
-    private static User checkUser(String name, String pass) {
+    private User checkUser(String name, String pass) {
         User tempUser = new User(name, pass);
         return Storage.regUsers.contains(tempUser) ? tempUser : null;
     }
 
-    private static User signInUserConsole() {
+    private User signInUserConsole() {
         Scanner input = new Scanner(System.in);
         String username, password, reqRole;
         User user;
@@ -103,7 +103,7 @@ public class LoginSystem {
         return user;
     }
 
-    private static int getChoice() {
+    private int getChoice() {
         Scanner input = new Scanner(System.in);
         String in = input.nextLine();
         while(!Objects.equals(in, "1") && !Objects.equals(in, "2") && !Objects.equals(in, "3")) {
