@@ -3,15 +3,21 @@ package Misc;
 import Users.*;
 
 import java.util.ArrayList;
+//import java.util.HashMap;
 import java.util.HashSet;
 
-public class Storage <Type> {
-
-
-    private ArrayList<Type> runtimeArray = null;
+public class Storage {
+    //private ArrayList<> runtimeArray = null;
     //TODO I have no idea what I'm doing :/
 
-    public static HashSet<User> regUsers = new HashSet<>();
+    private HashSet<User> regUsers;
 
+    public Storage() {
+        regUsers = new HashSet<>();
+    }
+
+    public HashSet<User> getRegUsers() {
+        return regUsers;
+    }
 
 }
