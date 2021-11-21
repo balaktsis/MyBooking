@@ -106,7 +106,7 @@ public class User {
 
     
     /**
-     *  Begin a command-line user interface session
+     *  Begin a command-line user interface session and run the appropriate method for each command input by the user.
      */
     protected void showCommandlineInterface(){
         //Initialize a Session for the user interface.

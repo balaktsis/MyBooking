@@ -16,4 +16,26 @@ public class Landlord extends User{
     public Landlord(String username, String password) {
         super(username, password);
     }
+
+    @Override
+    protected String getInterfaceString(String command, String parameters){
+        StringBuilder str = new StringBuilder();
+
+        switch (command) {
+            case "list" -> str.append(listLodge(parameters));
+            case "search" -> {}
+            default -> str.append("Unknown command, please try again!");
+        }
+
+        return str.toString();
+    }
+
+    private String listLodge(String LodgeID){
+        if (LodgeID.equals("")){
+            return "Missing parameters";
+        }
+        //TODO
+        return "TODO";
+    }
+
 }

@@ -16,4 +16,26 @@ public class Customer extends User{
     public Customer(String username, String password) {
         super(username, password);
     }
+
+    @Override
+    protected String getInterfaceString(String command, String parameters){
+        StringBuilder str = new StringBuilder();
+
+        switch (command) {
+            case "book" -> str.append(bookLodge(parameters));
+            case "search" -> {}
+            default -> str.append("Unknown command, please try again!");
+        }
+
+        return str.toString();
+    }
+
+    private String bookLodge(String LodgeID){
+        if (LodgeID.equals("")){
+            return "Missing parameter: LodgeID";
+        }
+        //TODO
+        return "TODO";
+    }
+
 }

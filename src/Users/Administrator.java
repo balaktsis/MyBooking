@@ -23,6 +23,7 @@ public class Administrator extends User{
         return totalBookings;
     }
 
+
     @Override
     protected String getInterfaceString(String command, String parameters){
         StringBuilder str = new StringBuilder();
@@ -37,6 +38,9 @@ public class Administrator extends User{
     }
 
     private String approveUser(String username){
+        if (username.equals("")){
+            return "Missing parameter: Username";
+        }
         //TODO
         return "TODO";
     }
