@@ -107,7 +107,7 @@ public class User {
 
     /**
      * In order to check if a user is already registered in the system, it's necessary to override equals and hashCode
-     * methods, so as to define when two users are "equal".
+     * methods, to define when two users are "equal".
      * @param user A user (parent or child) object.
      * @return Boolean value of equality check.
      */
