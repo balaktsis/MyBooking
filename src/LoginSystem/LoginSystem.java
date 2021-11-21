@@ -109,7 +109,9 @@ public class LoginSystem {
      * @return if the username is in use.
      */
     private boolean checkUsername(String name) {
-        return this.storage.getRegUsers().containsKey(name);
+        for(User user : this.storage.getRegUsers())
+            if(Objects.equals(user.getUsername(), name)) return true;
+        return false;
     }
 
     /**
@@ -127,7 +129,9 @@ public class LoginSystem {
      */
     private User checkUser(String name, String pass) {
         User tempUser = new User(name, pass);
-        return this.storage.getRegUsers().containsValue(tempUser) ? tempUser : null;
+        for(User user : this.storage.getRegUsers())
+            if(user.equals(tempUser)) return user;
+        return null;
     }
 
     /**
@@ -179,7 +183,7 @@ public class LoginSystem {
                     if (user == null) continue;
                     System.out.println("Hello " + user.getUsername() + ".");
                     System.out.println("Please, wait until one of our administrators activate your account!\n");
-                    storage.getRegUsers().put(user.getUsername(), user);
+                    storage.getRegUsers().add(user);
                 }
                 case 2 -> {                                                                                             //Log-in to an existing account.
                     user = signInUserConsole();

@@ -34,7 +34,7 @@ public class AppSystem {
 
         tempAdmin.showInterface(false);
 
-        for(User user : users) storage.getRegUsers().put(user.getUsername(), user);
+        for(User user : users) storage.getRegUsers().add(user);
 
         //TODO: Add a list/Database thing for the users
 
