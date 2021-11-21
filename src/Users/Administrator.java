@@ -24,7 +24,21 @@ public class Administrator extends User{
     }
 
     @Override
-    protected void showCommandlineInterface() {
-        System.out.println("Welcome " + this.fullName + "!\nYou're viewing the Administrator interface.");
+    protected String getInterfaceString(String command, String parameters){
+        StringBuilder str = new StringBuilder();
+
+        switch (command) {
+            case "approve" -> str.append(approveUser(parameters));
+            case "get" -> {}
+            default -> str.append("Unknown command, please try again!");
+        }
+
+        return str.toString();
     }
+
+    private String approveUser(String username){
+        //TODO
+        return "TODO";
+    }
+
 }

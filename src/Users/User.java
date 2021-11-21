@@ -2,6 +2,9 @@ package Users;
 import Misc.Message;
 import Misc.UniqueIDGenerator;
 
+import java.util.Locale;
+import java.util.Scanner;
+
 /**
  * This is a parent User class, which contains core functionality that will be
  * present in all types of users of the project
@@ -98,12 +101,46 @@ public class User {
     }
 
     protected void showGraphicalInterface(){
-        //TODO
+        //TODO 2nd part of the assignment
     }
 
+    
+    /**
+     *  Begin a command-line user interface session
+     */
     protected void showCommandlineInterface(){
+        //Initialize a Session for the user interface.
+        System.out.println(welcomeString());
+        System.out.println(commandsString());
+        Scanner inputStream = new Scanner(System.in);
+        String input = inputStream.nextLine().toLowerCase(Locale.ROOT);
+
+        //Split input into a command keyword (Leading word) and it's parameters (as a String).
+        String command = input.split(" ")[0];
+        String parameters = input.substring(command.length()).trim();
+
+        //While logout hasn't been called by the user, we're in a session, so we're exchanging output and user input.
+        while (!command.equals("logout")){
+            String output = getInterfaceString(command, parameters);
+            System.out.println(output);
+            System.out.println("Commands: " + commandsString());
+            command = inputStream.nextLine().toLowerCase(Locale.ROOT);
+        }
 
     }
+
+    protected String getInterfaceString(String Command, String Parameters){
+        return null;
+    }
+
+    protected String welcomeString(){
+        return String.format("Welcome %s!", this.fullName);
+    }
+
+    protected String commandsString(){
+        return String.format("Welcome %s!", this.fullName);
+    }
+
 
     /**
      * In order to check if a user is already registered in the system, it's necessary to override equals and hashCode
