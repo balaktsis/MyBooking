@@ -3,7 +3,7 @@ package Users;
 /**
  * This is a child of the User class, which contains functionality unique
  * to the Administrator User Type
- * @author
+ * @author Neron Panagiotopoulos
  */
 public class Administrator extends User{
     private static int totalBookings;
@@ -25,6 +25,6 @@ public class Administrator extends User{
 
     @Override
     protected void showCommandlineInterface() {
-        System.out.println("This is the Administrator interface!");
+        System.out.println("Welcome " + this.fullName + "!\nYou're viewing the Administrator interface.");
     }
 }
