@@ -90,4 +90,17 @@ public class BookingEntry {
         return this.valid ? this.period : null;
     }
 
+    /**
+     * Method that cancels the booking entry, updating the availability dates of the current lodge.
+     * @return If the cancellation is completed. Else the booking was invalid.
+     */
+    public boolean cancelBooking() {
+        if(this.valid) {
+            this.lodge.setAvailableDates(this.period);
+            this.valid = false;
+            return true;
+        }
+        return false;
+    }
+
 }
