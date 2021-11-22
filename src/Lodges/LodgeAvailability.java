@@ -1,7 +1,7 @@
 package Lodges;
 
+import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashSet;
 
 /**
@@ -11,7 +11,7 @@ import java.util.HashSet;
  */
 
 public class LodgeAvailability {
-    HashSet<Date> bookCalendar;
+    HashSet<LocalDate> bookCalendar;
 
     /**
      * Default constructor that initializes the HashSet collection of booked-days.
@@ -23,7 +23,7 @@ public class LodgeAvailability {
     /**
      * @return the HashSet of booked dates of a lodge.
      */
-    public HashSet<Date> getBookCalendar() {
+    public HashSet<LocalDate> getBookCalendar() {
         return this.bookCalendar;
     }
 
@@ -31,20 +31,20 @@ public class LodgeAvailability {
      * Updates the booking calendar of a lodge.
      * @param bookCalendar The HashSet of Dates marked as booked for a lodge.
      */
-    public void setBookCalendar(HashSet<Date> bookCalendar) {
+    public void setBookCalendar(HashSet<LocalDate> bookCalendar) {
         this.bookCalendar = bookCalendar;
     }
 
     /**
      * Method that checks if some dates are available for booking or not (so, already rented).
-     * @param dates A list of dates requested for booking.
+     * @param dates A set of dates requested for booking.
      * @return if all the dates are available for booking.
      */
-    public boolean markDates(Date[] dates) {
+    public boolean markDates(HashSet<LocalDate> dates) {
         if(dates == null) return false;
-        for (Date date : dates)
+        for (LocalDate date : dates)
             if (bookCalendar.contains(date)) return false;
-        bookCalendar.addAll(Arrays.asList(dates));
+        bookCalendar.addAll(dates);
         return true;
     }
 
@@ -52,9 +52,9 @@ public class LodgeAvailability {
      * Method that sets some dates available again for booking (abolishing them from the calendar).
      * @param dates A list of dates asked for abolition.
      */
-    public void freeDates(Date[] dates) {
+    public void freeDates(HashSet<LocalDate> dates) {
         if(dates != null)
-            for (Date date : dates)
+            for (LocalDate date : dates)
                 bookCalendar.remove(date);
     }
 

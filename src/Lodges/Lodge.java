@@ -1,11 +1,11 @@
 package Lodges;
 
 import java.awt.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashSet;
 
 import Users.Landlord;
-import Users.Administrator;
 
 import static Misc.UniqueIDGenerator.getUniqueId;
 
@@ -106,7 +106,7 @@ public class Lodge {
      * Update the availability of the current lodge.
      * @param dates Dates the lodge will be available.
      */
-    public void setAvailableDates(Date[] dates) {
+    public void setAvailableDates(HashSet<LocalDate> dates) {
         this.availability.freeDates(dates);
     }
 
@@ -265,7 +265,7 @@ public class Lodge {
      * @param dates A list of following days, the period of booking the current lodge.
      * @return if the current lodge is available for booking for the dates in "dates".
      */
-    public boolean bookLodge(Date[] dates) {
+    public boolean bookLodge(HashSet<LocalDate> dates) {
         if(this.availability.markDates(dates)) {
   //          this.rating = ((int) (1.0 * (this.numOfBookings++) / Administrator.getTotalBookings() * 100) % 6);
             return true;
