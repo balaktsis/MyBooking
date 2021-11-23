@@ -72,8 +72,7 @@ public class BookingEntry {
      * @return The total cost for accommodation at the booked lodge.
      */
     public double getTotalCost() {
-        if(this.valid) return this.totalCost;
-        return 0;
+        return this.valid ? this.totalCost : 0;
     }
 
     /**

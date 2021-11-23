@@ -27,26 +27,20 @@ public class Lodge {
     private int size;
     private int numOfBookings;
     private double price;
-    private LodgeAvailability availability;
-    private ArrayList<Image> photos;
+    private final LodgeAvailability availability;
     private ArrayList<Amenities> amenities;
 
     /**
      * Primary constructor of a Lodge object, initializing the class fields, according to the parameters.
      * @param landlord The user owner of the lodge.
-     * @param location The place the lodge is located.
-     * @param type The type of lodge.
-     * @param size Depends: the number of beds.
-     * @param price The cost (in euros) of accommodation per night.
-     * @param amenities The different amenities offered in the lodge.
      */
-    public Lodge(Landlord landlord, String location, LodgeType type, int size, double price, ArrayList<Amenities> amenities) {
+    public Lodge(Landlord landlord) {
         this.landlord = landlord;
-        this.location = location;
-        this.type = type;
-        this.size = size;
-        this.price = price;
-        this.amenities = amenities;
+        this.location = null;
+        this.type = null;
+        this.size = 0;
+        this.price = 0;
+        this.amenities = null;
         this.availability = new LodgeAvailability();
         this.rating = 0;
         this.numOfBookings = 0;
@@ -143,30 +137,6 @@ public class Lodge {
     }
 
     /**
-     * Update the photograph list of the current lodge.
-     * @param photos New photograph list of the lodge.
-     */
-    public void setPhotos(ArrayList<Image> photos) {
-        this.photos = photos;
-    }
-
-    /**
-     * Add a new image of the current lodge.
-     * @param photo New photograph added in the list of photos of the lodge.
-     */
-    public void addPhoto(Image photo) {
-        this.photos.add(photo);
-    }
-
-    /**
-     * Delete an image of the current lodge.
-     * @param photo Image asked to be removed of the photos list of the lodge.
-     */
-    public void removePhoto(Image photo) {
-        this.photos.remove(photo);
-    }
-
-    /**
      * Update the number of rents of the current lodge.
      * @param numOfBookings New number of total Bookings of the current lodge.
      */
@@ -235,13 +205,6 @@ public class Lodge {
      */
     public LodgeAvailability getAvailability() {
         return this.availability;
-    }
-
-    /**
-     * @return the list of photographs of the current lodge.
-     */
-    public ArrayList<Image> getPhotos() {
-        return this.photos;
     }
 
     /**
