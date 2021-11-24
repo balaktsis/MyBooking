@@ -20,6 +20,7 @@ public class Lodge {
     private Landlord landlord;
     private final String location;
     private String description;
+    private String title;
     private final String lodgeId;
     private final LodgeType type;
     private int rating;
@@ -47,6 +48,15 @@ public class Lodge {
         this.numOfBookings = 0;
         this.description = null;
         this.lodgeId = getUniqueId();
+        this.title = "Untitled Lodge";
+    }
+
+    /**
+     * Update the title of the current lodge.
+     * @param title New title for the lodge.
+     */
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**
@@ -142,6 +152,13 @@ public class Lodge {
      */
     public int getNumOfBookings() {
         return this.numOfBookings;
+    }
+
+    /**
+     * @return the title of the current lodge.
+     */
+    public String getTitle() {
+        return this.title;
     }
 
     /**

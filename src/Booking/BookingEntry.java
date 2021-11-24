@@ -3,6 +3,8 @@ package Booking;
 import Lodges.Lodge;
 import Users.Customer;
 
+import static Misc.UniqueIDGenerator.getUniqueId;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 
@@ -12,12 +14,15 @@ import java.util.HashSet;
  */
 
 public class BookingEntry {
+    private final String bookingId;
     private double totalCost;
     private final Lodge lodge;
     private final Customer tenant;
     private final HashSet<LocalDate> period;
     private boolean valid;
     private final LocalDate entryDate;
+    private LocalDate arrivalDate;
+    private LocalDate departureDate;
 
     /**
      * Default constructor of class. Sets the user (type Customer) that asks for booking a specific lodge.
@@ -31,6 +36,7 @@ public class BookingEntry {
         this.period = new HashSet<>();
         this.valid = false;
         this.entryDate = LocalDate.now();
+        this.bookingId = getUniqueId();
     }
 
     /**
@@ -54,6 +60,8 @@ public class BookingEntry {
      * @return If the lodge is available on that period and the requested booking got approved.
      */
     public boolean bookLodge(LocalDate arrival, LocalDate departure) {
+        this.arrivalDate = arrival;
+        this.departureDate = departure;
         if(arrival.isAfter(departure) || arrival.isEqual(departure)) return false;
         if(lodge.bookLodge(getPeriod(arrival,departure))) {
             this.totalCost = this.lodge.getPrice() * this.period.size();
@@ -127,6 +135,26 @@ public class BookingEntry {
         hash = 31 * hash + (this.tenant != null ? this.tenant.hashCode() : 0);
         hash = 31 * hash + (this.period != null ? this.period.hashCode() : 0);
         return hash;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append("Booking Entry #");
+        str.append(this.bookingId);
+        str.append("\n");
+        str.append("Booked lodge:\t");
+        str.append(this.lodge.getTitle());
+        str.append("\tTenant:\t");
+        str.append(this.tenant.getUsername());
+        str.append("\nPeriod of reservation:\t");
+        str.append(this.arrivalDate.toString());
+        str.append("-");
+        str.append(this.departureDate.toString());
+        str.append("\tTotal Cost for accommodation:\t");
+        str.append(this.totalCost);
+        str.append("\n");
+        return valid ? str.toString() : "Invalid Booking Entry\n";
     }
 
 }
