@@ -142,13 +142,6 @@ public class User {
         //TODO
     }
 
-
-    /**
-     * In order to check if a user is already registered in the system, it's necessary to override equals and hashCode
-     * methods, to define when two users are "equal".
-     * @param user A user (parent or child) object.
-     * @return Boolean value of equality check.
-     */
     @Override
     public boolean equals(Object user) {
 
@@ -161,11 +154,10 @@ public class User {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + (this.username != null ? this.username.hashCode() : 0);
-        hash = 37 * hash + (this.password != null ? this.password.hashCode() : 0);
+        int hash = 17;
+        hash = 31 * hash + (this.username != null ? this.username.hashCode() : 0);
+        hash = 31 * hash + (this.password != null ? this.password.hashCode() : 0);
         return hash;
     }
-
 
 }

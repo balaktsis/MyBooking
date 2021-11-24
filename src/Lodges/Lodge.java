@@ -1,6 +1,5 @@
 package Lodges;
 
-import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,11 +18,12 @@ import static Misc.UniqueIDGenerator.getUniqueId;
 
 public class Lodge {
     private Landlord landlord;
-    private String location;
+    private final String location;
     private String description;
     private final String lodgeId;
-    private LodgeType type;
+    private final LodgeType type;
     private int rating;
+    private int beds;
     private int size;
     private int numOfBookings;
     private double price;
@@ -34,10 +34,11 @@ public class Lodge {
      * Primary constructor of a Lodge object, initializing the class fields, according to the parameters.
      * @param landlord The user owner of the lodge.
      */
-    public Lodge(Landlord landlord) {
+    public Lodge(Landlord landlord, String location, LodgeType type) {
         this.landlord = landlord;
-        this.location = null;
-        this.type = null;
+        this.location = location;
+        this.type = type;
+        this.beds = 0;
         this.size = 0;
         this.price = 0;
         this.amenities = null;
@@ -57,22 +58,6 @@ public class Lodge {
     }
 
     /**
-     * Update the location of the current lodge.
-     * @param location New location of the lodge.
-     */
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    /**
-     * Update the type of the current lodge.
-     * @param type New type of the lodge.
-     */
-    public void setType(LodgeType type) {
-        this.type = type;
-    }
-
-    /**
      * Update the rating score of the current lodge.
      * @param rating New rating for the lodge.
      */
@@ -82,10 +67,10 @@ public class Lodge {
 
     /**
      * Update the number of beds of the current lodge.
-     * @param size New size of the lodge.
+     * @param beds New size of the lodge.
      */
-    public void setSize(int size) {
-        this.size = size;
+    public void setBeds(int beds) {
+        this.beds = beds;
     }
 
     /**
@@ -110,6 +95,14 @@ public class Lodge {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * Update the size in m^2 of the current lodge.
+     * @param size New size in m^2
+     */
+    public void setSize(int size) {
+        this.size = size;
     }
 
     /**
@@ -189,8 +182,8 @@ public class Lodge {
     /**
      * @return the number of beds of the current lodge.
      */
-    public int getSize() {
-        return this.size;
+    public int getBeds() {
+        return this.beds;
     }
 
     /**
@@ -222,6 +215,13 @@ public class Lodge {
     }
 
     /**
+     * @return the size in m^2 of the current lodge.
+     */
+    public int getSize() {
+        return this.size;
+    }
+
+    /**
      * Signals the booking status of the current lodge after being asked to get booked.
      * In case of new booking, it updates the availability status for the requested period
      * and rating of the lodge.
@@ -234,6 +234,24 @@ public class Lodge {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!(obj instanceof Lodge lodge))
+            return false;
+        return this.landlord == lodge.landlord && this.location.equals(lodge.location) && this.type.equals(lodge.type);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 17;
+        hash = 31 * hash + (this.landlord != null ? this.landlord.hashCode() : 0);
+        hash = 31 * hash + (this.location != null ? this.location.hashCode() : 0);
+        hash = 31 * hash + (this.type != null ? this.type.hashCode() : 0);
+        return hash;
     }
 
 }
