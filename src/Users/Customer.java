@@ -6,6 +6,9 @@ package Users;
  * @author
  */
 public class Customer extends User{
+
+    private String address;
+
     /**
      * Primary constructor of a Customer User object, takes in credentials,
      * initializes the class fields and assigns a unique ID to the object
@@ -15,6 +18,22 @@ public class Customer extends User{
      */
     public Customer(String username, String password) {
         super(username, password);
+        this.commands = new String[]{"approve_user", "show_bookings", "lookup_booking", "show_users", "lookup_user"};
+    }
+
+    /**
+     * Set the user's address
+     * @param address String containing a user's address
+     */
+    public void setAddress(String address){
+        this.address = address;
+    }
+
+    /**
+     * @return String containing a user's address
+     */
+    public String getAddress(){
+        return this.address;
     }
 
     @Override
@@ -36,6 +55,16 @@ public class Customer extends User{
         }
         //TODO
         return "TODO";
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder str = new StringBuilder();
+        str.append("Customer\n");
+        str.append(super.toString());
+        str.append("\nAddress: ");
+        str.append(this.address);
+        return str.toString();
     }
 
 }

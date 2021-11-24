@@ -6,6 +6,9 @@ package Users;
  * @author
  */
 public class Landlord extends User{
+
+    private String base;
+
     /**
      * Primary constructor of a Landlord User object, takes in credentials,
      * initializes the class fields and assigns a unique ID to the object
@@ -15,6 +18,22 @@ public class Landlord extends User{
      */
     public Landlord(String username, String password) {
         super(username, password);
+        this.commands = new String[]{"approve_user", "show_bookings", "lookup_booking", "show_users", "lookup_user"};
+    }
+
+    /**
+     * Set the user's address
+     * @param base String containing a landlord's base
+     */
+    public void setBase(String base){
+        this.base = base;
+    }
+
+    /**
+     * @return String containing a landlord's base
+     */
+    public String getBase(){
+        return this.base;
     }
 
     @Override
@@ -36,6 +55,16 @@ public class Landlord extends User{
         }
         //TODO
         return "TODO";
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder str = new StringBuilder();
+        str.append("Landlord\n");
+        str.append(super.toString());
+        str.append("\nBase: ");
+        str.append(this.base);
+        return str.toString();
     }
 
 }

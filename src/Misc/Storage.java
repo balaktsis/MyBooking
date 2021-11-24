@@ -9,14 +9,14 @@ import java.util.HashSet;
 public class Storage {
     //TODO I have somewhat of an idea what I'm doing :/
 
-    private static final HashSet<User> regUsers = new HashSet<>();
+    private static final HashSet<User> users = new HashSet<>();
     private static final HashSet<Lodge> lodges = new HashSet<>();
 
     private static final HashSet<BookingEntry> bookings = new HashSet<>();
 
 
-    public static HashSet<User> getRegUsers() {
-        return regUsers;
+    public static HashSet<User> getUsers() {
+        return users;
     }
 
     public static HashSet<Lodge> getLodges() {

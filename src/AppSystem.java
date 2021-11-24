@@ -33,7 +33,7 @@ public class AppSystem {
 
 //        tempAdmin.showInterface(false);
 
-        for(User user : users) Storage.getRegUsers().add(user);
+        for(User user : users) Storage.getUsers().add(user);
 
         LoginSystem loginSystem = new LoginSystem(false);
         loginSystem.showLoginScreen();

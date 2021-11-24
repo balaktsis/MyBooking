@@ -106,7 +106,7 @@ public class LoginSystem {
      * @return if the username is in use.
      */
     private boolean checkUsername(String name) {
-        for(User user : Storage.getRegUsers())
+        for(User user : Storage.getUsers())
             if(Objects.equals(user.getUsername(), name)) return true;
         return false;
     }
@@ -126,7 +126,7 @@ public class LoginSystem {
      */
     private User checkUser(String name, String pass) {
         User tempUser = new User(name, pass);
-        for(User user : Storage.getRegUsers())
+        for(User user : Storage.getUsers())
             if(user.equals(tempUser)) return user;
         return null;
     }
@@ -180,7 +180,7 @@ public class LoginSystem {
                     if (user == null) continue;
                     System.out.println("Hello " + user.getUsername() + ".");
                     System.out.println("Please, wait until one of our administrators activate your account!\n");
-                    Storage.getRegUsers().add(user);
+                    Storage.getUsers().add(user);
                 }
                 case 2 -> {                                                                                             //Log-in to an existing account.
                     user = signInUserConsole();
