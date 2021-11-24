@@ -17,6 +17,7 @@ public class BookingEntry {
     private final Customer tenant;
     private final HashSet<LocalDate> period;
     private boolean valid;
+    private final LocalDate entryDate;
 
     /**
      * Default constructor of class. Sets the user (type Customer) that asks for booking a specific lodge.
@@ -29,6 +30,7 @@ public class BookingEntry {
         this.totalCost = 0;
         this.period = new HashSet<>();
         this.valid = false;
+        this.entryDate = LocalDate.now();
     }
 
     /**
@@ -59,6 +61,13 @@ public class BookingEntry {
             return true;
         }
         return false;
+    }
+
+    /**
+     * @return The date the booking entry was created.
+     */
+    public LocalDate getEntryDate() {
+        return this.entryDate;
     }
 
     /**
@@ -100,6 +109,24 @@ public class BookingEntry {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!(obj instanceof BookingEntry bookingEntry))
+            return false;
+        return this.lodge == bookingEntry.lodge && this.tenant.equals(bookingEntry.tenant) && this.period.equals(bookingEntry.period);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 17;
+        hash = 31 * hash + (this.lodge != null ? this.lodge.hashCode() : 0);
+        hash = 31 * hash + (this.tenant != null ? this.tenant.hashCode() : 0);
+        hash = 31 * hash + (this.period != null ? this.period.hashCode() : 0);
+        return hash;
     }
 
 }
