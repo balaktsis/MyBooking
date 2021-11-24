@@ -185,8 +185,8 @@ public class User {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + (this.username != null ? this.username.hashCode() : 0);
+        int hash = 17;
+        hash = 31 * hash + (this.username != null ? this.username.hashCode() : 0);
         hash = 37 * hash + (this.password != null ? this.password.hashCode() : 0);
         return hash;
     }

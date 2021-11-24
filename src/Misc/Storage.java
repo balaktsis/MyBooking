@@ -7,7 +7,6 @@ import Users.*;
 import java.util.HashSet;
 
 public class Storage {
-    //TODO I have somewhat of an idea what I'm doing :/
 
     private static final HashSet<User> users = new HashSet<>();
     private static final HashSet<Lodge> lodges = new HashSet<>();
