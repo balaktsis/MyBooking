@@ -1,3 +1,4 @@
+import LoginSystem.LoginSystem;
 import Users.Administrator;
 import Users.Customer;
 import Users.Landlord;
@@ -8,10 +9,8 @@ import Misc.Storage;
 import java.util.ArrayList;
 
 public class AppSystem {
-    private Storage storage;
 
-    public AppSystem(Storage storage){
-        this.storage = storage;
+    public AppSystem(){
         initializeApp();
     }
 
@@ -32,9 +31,12 @@ public class AppSystem {
         users.add(tempCustomer);
         users.add(tempLandlord);
 
-        tempAdmin.showInterface(false);
+//        tempAdmin.showInterface(false);
 
-        for(User user : users) storage.getRegUsers().add(user);
+        for(User user : users) Storage.getRegUsers().add(user);
+
+        LoginSystem loginSystem = new LoginSystem(false);
+        loginSystem.showLoginScreen();
 
         //TODO: Add a list/Database thing for the users
 

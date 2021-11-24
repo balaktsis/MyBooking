@@ -1,23 +1,30 @@
 package Misc;
 
+import Booking.BookingEntry;
+import Lodges.Lodge;
 import Users.*;
 
-import java.util.ArrayList;
-//import java.util.HashMap;
 import java.util.HashSet;
 
 public class Storage {
-    //private ArrayList<> runtimeArray = null;
-    //TODO I have no idea what I'm doing :/
+    //TODO I have somewhat of an idea what I'm doing :/
 
-    private HashSet<User> regUsers;
+    private static final HashSet<User> regUsers = new HashSet<>();
+    private static final HashSet<Lodge> lodges = new HashSet<>();
 
-    public Storage() {
-        regUsers = new HashSet<>();
+    private static final HashSet<BookingEntry> bookings = new HashSet<>();
+
+
+    public static HashSet<User> getRegUsers() {
+        return regUsers;
     }
 
-    public HashSet<User> getRegUsers() {
-        return regUsers;
+    public static HashSet<Lodge> getLodges() {
+        return lodges;
+    }
+
+    public static HashSet<BookingEntry> getBookings() {
+        return bookings;
     }
 
 }

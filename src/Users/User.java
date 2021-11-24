@@ -138,7 +138,8 @@ public class User {
     }
 
     protected String commandsString(){
-        return String.format("Welcome %s!", this.fullName);
+        return String.format("this.commandList");
+        //TODO
     }
 
 
@@ -162,6 +163,7 @@ public class User {
     public int hashCode() {
         int hash = 7;
         hash = 17 * hash + (this.username != null ? this.username.hashCode() : 0);
+        hash = 37 * hash + (this.password != null ? this.password.hashCode() : 0);
         return hash;
     }
 

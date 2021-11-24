@@ -22,16 +22,13 @@ import java.util.Scanner;
 public class LoginSystem {
     private final String frame = "===============================";
     private final boolean graphical;
-    private final Storage storage;
 
     /**
      * Default constructor of class.
      * @param graphical Specifies if the MyBooking system operates in GUI or CommandLine (console).
-     * @param storage   The storage system of the app.
      */
-    public LoginSystem(boolean graphical, Storage storage) {
+    public LoginSystem(boolean graphical) {
         this.graphical = graphical;
-        this.storage = storage;
     }
 
     /**
@@ -109,7 +106,7 @@ public class LoginSystem {
      * @return if the username is in use.
      */
     private boolean checkUsername(String name) {
-        for(User user : this.storage.getRegUsers())
+        for(User user : Storage.getRegUsers())
             if(Objects.equals(user.getUsername(), name)) return true;
         return false;
     }
@@ -129,7 +126,7 @@ public class LoginSystem {
      */
     private User checkUser(String name, String pass) {
         User tempUser = new User(name, pass);
-        for(User user : this.storage.getRegUsers())
+        for(User user : Storage.getRegUsers())
             if(user.equals(tempUser)) return user;
         return null;
     }
@@ -183,7 +180,7 @@ public class LoginSystem {
                     if (user == null) continue;
                     System.out.println("Hello " + user.getUsername() + ".");
                     System.out.println("Please, wait until one of our administrators activate your account!\n");
-                    storage.getRegUsers().add(user);
+                    Storage.getRegUsers().add(user);
                 }
                 case 2 -> {                                                                                             //Log-in to an existing account.
                     user = signInUserConsole();
