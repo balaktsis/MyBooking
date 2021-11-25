@@ -27,18 +27,19 @@ public class AppSystem {
         tempCustomer.setFullName("Karen Managerhunter");
         tempLandlord.setFullName("Rick James");
 
+        tempAdmin.setApprovalStatus(true);
+        tempCustomer.setApprovalStatus(true);
+        tempLandlord.setApprovalStatus(true);
+
         users.add(tempAdmin);
         users.add(tempCustomer);
         users.add(tempLandlord);
-
-//        tempAdmin.showInterface(false);
 
         for(User user : users) Storage.getUsers().add(user);
 
         LoginSystem loginSystem = new LoginSystem(false);
         loginSystem.showLoginScreen();
 
-        //TODO: Add a list/Database thing for the users
 
     }
 

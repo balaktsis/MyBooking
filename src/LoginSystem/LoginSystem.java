@@ -61,7 +61,7 @@ public class LoginSystem {
      */
     private User signUpUserConsole() {
         Scanner input = new Scanner(System.in);
-        String username, password, reqRole;
+        String username, password, reqRole, fullName;
         User user;
         System.out.println("\nPlease, provide the following information and your account will be activated soon!");
         do {
@@ -73,7 +73,9 @@ public class LoginSystem {
             if (checkPassword(password))
                 System.out.println("Password should contain at least one digit and has length between 6 and 20 characters. Please choose another one.");
         } while (checkUsername(username) || checkPassword(password));
-      /*  System.out.print("Address: ");
+        System.out.println("Full name: ");
+        fullName = input.nextLine();
+        /*  System.out.print("Address: ");
         user.setAddress(input.nextLine());
         System.out.print("Telephone: +");
         user.setTelephone(input.nextInt());
@@ -90,6 +92,7 @@ public class LoginSystem {
             case "CUSTOMER" -> user = new Customer(username, password);
             default -> user = new User(username, password);
         }
+        user.setFullName(fullName);
         System.out.println("Are you sure you want to create a new account with the following credentials?");
         System.out.println(frame);
         System.out.println("Username\t" + username);
@@ -149,7 +152,6 @@ public class LoginSystem {
             password = input.nextLine();
             checks++;
         } while ((user = checkUser(username, password)) == null && checks <= 3);
-        if (checks > 3) System.out.println("Access denied. Contact administrator!");
         return user;
     }
 
@@ -179,13 +181,19 @@ public class LoginSystem {
                     user = signUpUserConsole();
                     if (user == null) continue;
                     System.out.println("Hello " + user.getUsername() + ".");
-                    System.out.println("Please, wait until one of our administrators activate your account!\n");
+                    System.out.println("Please, wait until one of our administrators activates your account!\n");
                     Storage.getUsers().add(user);
                 }
                 case 2 -> {                                                                                             //Log-in to an existing account.
                     user = signInUserConsole();
-                    if (user == null) return;
-                    System.out.println("Hello " + user.getUsername() + ".");
+                    if (user == null) {
+                        System.out.println("Access denied. Contact administrator!");
+                        return;
+                    }
+                    if (!user.getApprovalStatus()) {
+                        System.out.println("Your account is not approved by the administrators. Please, try again later!");
+                        continue;
+                    }
                     user.showInterface(false);
                 }
             }
