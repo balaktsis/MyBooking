@@ -143,9 +143,9 @@ public class LoginSystem {
         String username, password, reqRole;
         User user;
         int checks = 0;
-        System.out.println("\nPlease, log-in with your personal account credentials.");
+        System.out.println("\nPlease log-in with your account credentials.");
         do {
-            if (checks != 0) System.out.println("Wrong Details. " + (4 - checks) + " times remaining. Try again.\n");
+            if (checks != 0) System.out.println("Incorrect credentials, " + (4 - checks) + " attempts remaining. Please try again.\n");
             System.out.print("Username: ");
             username = input.nextLine();
             System.out.print("Password: ");

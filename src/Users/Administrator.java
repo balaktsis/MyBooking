@@ -1,5 +1,6 @@
 package Users;
 import Booking.BookingEntry;
+import Lodges.Lodge;
 import Misc.Storage;
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class Administrator extends User{
      */
     public Administrator(String username, String password) {
         super(username, password);
-        this.commands = new String[]{"approve_user", "show_bookings", "lookup_booking", "show_users", "lookup_user"};
+        this.commands = new String[]{"approve_user", "show_bookings", "lookup_booking", "show_users", "lookup_user", "show_lodges"};
     }
 
 
@@ -34,6 +35,7 @@ public class Administrator extends User{
             case "lookup_booking" -> str.append(approveUser(parameters)); //TODO
             case "show_users" -> str.append(showUsers());
             case "lookup_user" -> str.append(lookupUser(parameters));
+            case "show_lodges" -> str.append(showLodges());
             default -> str.append("Unknown command, please try again!");
         }
 
@@ -113,6 +115,15 @@ public class Administrator extends User{
             }
         }
         return "No user found under the name " + username;
+    }
+
+    private String showLodges(){
+        StringBuilder returnStr = new StringBuilder();
+        for (Lodge lodge : Storage.getLodges()) {
+            returnStr.append(lodge.toString());
+            returnStr.append("\n");
+        }
+        return returnStr.toString();
     }
 
     @Override

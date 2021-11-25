@@ -20,6 +20,13 @@ public class AppSystem {
 
     private void initializeApp(){
 
+        initializeWithTempFields();
+        LoginSystem loginSystem = new LoginSystem(false);
+        loginSystem.showLoginScreen();
+
+    }
+
+    private void initializeWithTempFields(){
         ArrayList<User> users = new ArrayList<>();
         var tempAdmin = new Administrator("admin", "password0");
         var tempCustomer = new Customer("customer", "password0");
@@ -39,6 +46,10 @@ public class AppSystem {
         users.add(tempCustomer);
         users.add(tempLandlord);
 
+        for(User user : users) {
+            Storage.getUsers().add(user);
+        }
+
         Lodge tempLodge = new Lodge(tempLandlord, "Ethnikis Aminis 41, Thessaloniki 546 35, Greece", LodgeType.APARTMENT);
         tempLodge.setTitle("Feels-like-home");
         HashSet<Amenities> amenities = new HashSet<>();
@@ -49,12 +60,7 @@ public class AppSystem {
         tempLodge.setDescription("The best place to live!");
         tempLodge.setSize(80);
 
-        for(User user : users) Storage.getUsers().add(user);
         Storage.getLodges().add(tempLodge);
-
-        LoginSystem loginSystem = new LoginSystem(false);
-        loginSystem.showLoginScreen();
-
 
     }
 

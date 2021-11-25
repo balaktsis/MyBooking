@@ -280,7 +280,7 @@ public class Lodge {
         str.append(this.getTitle());
         str.append("\"");
         str.append("\nLandlord: ");
-        str.append(this.getLandlord());
+        str.append(this.getLandlord().getFullName());
         str.append("\nLocation: ");
         str.append(this.getLocation());
         str.append("\nDescription: ");
