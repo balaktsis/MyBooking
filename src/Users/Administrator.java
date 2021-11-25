@@ -32,7 +32,7 @@ public class Administrator extends User{
         switch (command) {
             case "approve_user" -> str.append(approveUser(parameters));
             case "show_bookings" -> str.append(showBookings());
-            case "lookup_booking" -> str.append(approveUser(parameters)); //TODO
+            case "lookup_booking" -> str.append(lookupBookings(parameters));
             case "show_users" -> str.append(showUsers());
             case "lookup_user" -> str.append(lookupUser(parameters));
             case "show_lodges" -> str.append(showLodges());
@@ -117,11 +117,36 @@ public class Administrator extends User{
         return "No user found under the name " + username;
     }
 
+    /**
+     * Get a string containing all registered Lodges
+     * @return String
+     */
     private String showLodges(){
         StringBuilder returnStr = new StringBuilder();
         for (Lodge lodge : Storage.getLodges()) {
             returnStr.append(lodge.toString());
             returnStr.append("\n");
+        }
+        return returnStr.toString();
+    }
+
+    /**
+     * Look up all bookings that were made on a given date
+     * @param bookingDate String of the booking date in iso 8086 format (YYYY-MM-DD)
+     * @return String containing all bookings made on the given date
+     */
+    private String lookupBookings(String bookingDate){
+        if(bookingDate.equals("")) return "Missing parameter: Booking Date (YYYY-MM-DD)";
+
+        StringBuilder returnStr = new StringBuilder();
+
+        for (BookingEntry booking: Storage.getBookings()){
+            if (booking.getEntryDate().toString().equals(bookingDate)){
+                returnStr.append(booking.toString()).append("\n");
+            }
+        }
+        if (returnStr.length() == 0){
+            returnStr.append("No bookings found for date ").append(bookingDate);
         }
         return returnStr.toString();
     }
