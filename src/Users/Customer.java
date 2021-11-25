@@ -1,11 +1,14 @@
 package Users;
 
 import Booking.BookingEntry;
+import Lodges.Amenities;
 import Lodges.Lodge;
 import Misc.Storage;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Locale;
 
 /**
  * This is a child of the User class, which contains functionality unique
@@ -48,15 +51,87 @@ public class Customer extends User{
         StringBuilder str = new StringBuilder();
 
         switch (command) {
-            case "lookup_lodges" -> {}
+            case "lookup_lodges" -> str.append(lookupLodges(parameters));
             case "book_lodge" -> str.append(bookLodge(parameters));
-            case "show_bookings" -> {}
-            case "cancel_booking" -> {}
-            case "my_profile" -> {}
+            case "show_bookings" -> str.append(showBookings());
+            case "cancel_booking" -> str.append(cancelBooking(parameters));
+            case "my_profile" -> str.append(this);
             default -> str.append("Unknown command, please try again!");
         }
 
         return str.toString();
+    }
+
+    /**
+     * Cancel a booking
+     * @param bookingID String, ID of the booking to be canceled
+     * @return Result of the operation
+     */
+    private String cancelBooking(String bookingID){
+
+        if(bookingID.trim().equals("")){
+            return "Missing Booking ID!";
+        }
+
+        for (BookingEntry booking : Storage.getBookings()){
+            if (booking.getBookingId().equals(bookingID)){
+                booking.cancelBooking();
+                return "Canceled booking with ID: " + bookingID;
+            }
+        }
+        return "No bookings were found for ID: " + bookingID;
+    }
+
+    /**
+     * Show all bookings made by the user
+     * @return String containing the details of every booking.
+     */
+    private String showBookings(){
+        StringBuilder returnStr = new StringBuilder();
+
+        for (BookingEntry booking : Storage.getBookings()){
+            if (booking.getTenant().equals(this)){
+                returnStr.append(booking).append("\n");
+            }
+        }
+
+        return returnStr.isEmpty() ? "You have made no bookings yet!" : returnStr.toString();
+    }
+
+    /**
+     * Parameter Search through lodge options, based on criteria on offered amenities.
+     * @param amenities String input by the user containing all necessary amenities
+     * @return String , resulting lodges that fit the criteria
+     */
+    private String lookupLodges(String amenities){
+
+        //Splitting the amenities required by the user into separate strings
+        String[] splitParameters = amenities.toLowerCase().split(" +");
+        ArrayList<String> required_amenities = new ArrayList<>(Arrays.asList(splitParameters));
+        required_amenities.remove("");
+
+
+        StringBuilder returnStr = new StringBuilder();
+
+        //Looping through the registered lodges to get the ones matching the criteria.
+        //If no criteria set, it returns all lodges
+        for (Lodge lodge : Storage.getLodges()){
+
+            //For every lodge, get all it's amenities
+            ArrayList<String> available_amenities = new ArrayList<>();
+            for (Amenities amenity : lodge.getAmenities()) {
+                available_amenities.add(amenity.toString().toLowerCase(Locale.ROOT));
+            }
+
+            //If the required amenities are a subset of the available amenities, the lodge is displayed.
+            if(available_amenities.containsAll(required_amenities)){
+                returnStr.append(lodge).append("\n");
+            }
+        }
+
+        if (returnStr.isEmpty()) returnStr.append("No lodges were found that satisfy your criteria.");
+
+        return returnStr.toString();
     }
 
     /**

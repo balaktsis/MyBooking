@@ -14,6 +14,7 @@ import java.util.HashSet;
  */
 
 public class BookingEntry {
+
     private final String bookingId;
     private double totalCost;
     private final Lodge lodge;
@@ -97,6 +98,13 @@ public class BookingEntry {
      */
     public Customer getTenant() {
         return this.tenant;
+    }
+
+    /**
+     * @return The unique ID of the booking
+     */
+    public String getBookingId() {
+        return bookingId;
     }
 
     /**
