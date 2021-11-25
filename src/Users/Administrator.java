@@ -125,7 +125,7 @@ public class Administrator extends User{
         StringBuilder returnStr = new StringBuilder();
         for (Lodge lodge : Storage.getLodges()) {
             returnStr.append(lodge.toString());
-            returnStr.append("\n");
+            returnStr.append("\n\n");
         }
         return returnStr.toString();
     }
@@ -142,7 +142,7 @@ public class Administrator extends User{
 
         for (BookingEntry booking: Storage.getBookings()){
             if (booking.getEntryDate().toString().equals(bookingDate)){
-                returnStr.append(booking.toString()).append("\n");
+                returnStr.append(booking).append("\n");
             }
         }
         if (returnStr.length() == 0){

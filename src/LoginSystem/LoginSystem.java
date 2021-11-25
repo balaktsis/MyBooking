@@ -75,12 +75,6 @@ public class LoginSystem {
         } while (checkUsername(username) || checkPassword(password));
         System.out.println("Full name: ");
         fullName = input.nextLine();
-        /*  System.out.print("Address: ");
-        user.setAddress(input.nextLine());
-        System.out.print("Telephone: +");
-        user.setTelephone(input.nextInt());
-        System.out.print("Email: ");
-        user.setEmail(input.nextLine()); */
         do {
             System.out.print("Role (Administrator | Customer | Landlord): ");
             reqRole = input.nextLine().toUpperCase(Locale.ROOT);
@@ -93,6 +87,10 @@ public class LoginSystem {
             default -> user = new User(username, password);
         }
         user.setFullName(fullName);
+        if(user instanceof Landlord) {
+            System.out.println("Base: ");
+            ((Landlord) user).setBase(input.nextLine());
+        }
         System.out.println("Are you sure you want to create a new account with the following credentials?");
         System.out.println(frame);
         System.out.println("Username\t" + username);

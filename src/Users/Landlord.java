@@ -1,10 +1,16 @@
 package Users;
 
 import Booking.BookingEntry;
+import Lodges.Amenities;
 import Lodges.Lodge;
+import Lodges.LodgeType;
+import LoginSystem.Roles;
 import Misc.Storage;
 
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.Scanner;
 
 /**
  * This is a child of the User class, which contains functionality unique
@@ -84,7 +90,7 @@ public class Landlord extends User{
         StringBuilder str = new StringBuilder();
 
         switch (command) {
-            case "my_details" -> str.append(getDetails());
+            case "my_details" -> str.append(this);
             case "my_lodges" -> str.append(getLodges());
             case "add_lodge" -> str.append(addLodge());
             case "edit_lodge" -> str.append(editLodge(parameters));
@@ -114,7 +120,62 @@ public class Landlord extends User{
     }
 
     private String addLodge() {
-        return null;
+        Scanner input = new Scanner(System.in);
+        String location, type, answer;
+        LodgeType lodgeType;
+        System.out.println("In order to add a new Lodge for bookings, please, complete the following fields...");
+        System.out.print("Location: ");
+        location = input.nextLine();
+        do {
+            System.out.print("Type (" + LodgeType.getLodgeTypes() + "): ");
+            type = input.nextLine().toUpperCase(Locale.ROOT);
+            if (!LodgeType.isLodgeType(type)) System.out.println("Unknown type of Lodge. Try something else.");
+        } while (!LodgeType.isLodgeType(type));
+        switch (type) {
+            case "APARTMENT" -> lodgeType = LodgeType.APARTMENT;
+            case "ROOM" -> lodgeType = LodgeType.ROOM;
+            case "TRAILER" -> lodgeType = LodgeType.TRAILER;
+            case "HOTEL" -> lodgeType = LodgeType.HOTEL;
+            default -> lodgeType = null;
+        }
+        Lodge newLodge = new Lodge(this, location, lodgeType);
+        System.out.print("Title: ");
+        newLodge.setTitle(input.nextLine());
+        System.out.print("Price (per night): € ");
+        newLodge.setPrice(input.nextDouble());
+        System.out.print("Size: (m2) ");
+        newLodge.setSize(input.nextInt());
+        System.out.print("Beds: ");
+        newLodge.setBeds(input.nextInt());
+        System.out.print("Description: ");
+        answer = input.nextLine();
+        answer = input.nextLine();
+        newLodge.setDescription(answer);
+        System.out.println("Amenities: (type \"yes\" or \"no\" for each one)");
+        for(Amenities amenity : Amenities.values()) {
+           do {
+               System.out.print(amenity.toString() + ": ");
+               answer = input.nextLine().toLowerCase(Locale.ROOT);
+               if (answer.equals("yes")) {
+                   newLodge.addAmenity(amenity);
+                   break;
+               } else if (answer.equals("no"))
+                   break;
+               System.out.println("Unknown answer. Type \"yes\" or \"no\".");
+           } while(true);
+        }
+        System.out.println("Are you sure you want to add the following lodge to your lodges list?");
+        System.out.println("|||||||||||| " + newLodge);
+        do {
+            System.out.println("Type \"yes\" or \"no\".");
+            answer = input.nextLine().toLowerCase(Locale.ROOT);
+            if (answer.equals("yes")) {
+                Storage.getLodges().add(newLodge);
+                return "Lodge #" + newLodge.getLodgeId() + " is added to your lodges!";
+            } else if (answer.equals("no"))
+                return "Lodge addition cancelled!";
+            System.out.println("Unknown answer. Type \"yes\" or \"no\".");
+        } while(true);
     }
 
     /**
@@ -125,16 +186,14 @@ public class Landlord extends User{
         for (Lodge lodge : Storage.getLodges()) {
             if(lodge.getLandlord() == this) {
                 lodges.append(lodge);
-                lodges.append("\n");
+                lodges.append("\n\n");
             }
         }
         return lodges.toString();
     }
 
-    /**
-     * @return List of personal details, number of lodges, bookings, profits, cancellations.
-     */
-    private String getDetails() {
+    @Override
+    public String toString(){
         StringBuilder returnStr = new StringBuilder();
         returnStr.append(super.toString());
         returnStr.append("Base: ");
@@ -149,16 +208,6 @@ public class Landlord extends User{
         returnStr.append(this.getTotalProfit());
         returnStr.append("\n");
         return returnStr.toString();
-    }
-
-    @Override
-    public String toString(){
-        StringBuilder str = new StringBuilder();
-        str.append("Landlord\n");
-        str.append(super.toString());
-        str.append("\nBase: ");
-        str.append(this.base);
-        return str.toString();
     }
 
 }

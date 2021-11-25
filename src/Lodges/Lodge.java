@@ -42,7 +42,7 @@ public class Lodge {
         this.beds = 0;
         this.size = 0;
         this.price = 0;
-        this.amenities = null;
+        this.amenities = new HashSet<>();
         this.availability = new LodgeAvailability();
         this.rating = 0;
         this.numOfBookings = 0;
