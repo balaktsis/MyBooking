@@ -148,7 +148,7 @@ public class Landlord extends User{
         System.out.print("Beds: ");
         newLodge.setBeds(input.nextInt());
         System.out.print("Description: ");
-        answer = input.nextLine();
+        answer = input.nextLine();          //takes "\n"
         answer = input.nextLine();
         newLodge.setDescription(answer);
         System.out.println("Amenities: (type \"yes\" or \"no\" for each one)");
