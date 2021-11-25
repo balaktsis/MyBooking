@@ -81,6 +81,8 @@ public class User {
         this.fullName = fullName;
     }
 
+    public String getFullName() { return this.fullName;}
+
     /**
      * Approve or revoke approval of a user
      *

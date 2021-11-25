@@ -107,6 +107,13 @@ public class BookingEntry {
     }
 
     /**
+     * @return The booked lodge.
+     */
+    public Lodge getLodge() {
+        return this.lodge;
+    }
+
+    /**
      * Method that cancels the booking entry, updating the availability dates of the current lodge.
      * @return If the cancellation is completed. Else the booking was invalid.
      */

@@ -1,3 +1,6 @@
+import Lodges.Amenities;
+import Lodges.Lodge;
+import Lodges.LodgeType;
 import LoginSystem.LoginSystem;
 import Users.Administrator;
 import Users.Customer;
@@ -7,6 +10,7 @@ import Users.User;
 import Misc.Storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class AppSystem {
 
@@ -35,7 +39,18 @@ public class AppSystem {
         users.add(tempCustomer);
         users.add(tempLandlord);
 
+        Lodge tempLodge = new Lodge(tempLandlord, "Ethnikis Aminis 41, Thessaloniki 546 35, Greece", LodgeType.APARTMENT);
+        tempLodge.setTitle("Feels-like-home");
+        HashSet<Amenities> amenities = new HashSet<>();
+        amenities.add(Amenities.WIFI); amenities.add(Amenities.PARKING);
+        tempLodge.setAmenities(amenities);
+        tempLodge.setPrice(20.0);
+        tempLodge.setBeds(5);
+        tempLodge.setDescription("The best place to live!");
+        tempLodge.setSize(80);
+
         for(User user : users) Storage.getUsers().add(user);
+        Storage.getLodges().add(tempLodge);
 
         LoginSystem loginSystem = new LoginSystem(false);
         loginSystem.showLoginScreen();

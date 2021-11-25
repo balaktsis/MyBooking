@@ -29,7 +29,7 @@ public class Lodge {
     private int numOfBookings;
     private double price;
     private final LodgeAvailability availability;
-    private ArrayList<Amenities> amenities;
+    private HashSet<Amenities> amenities;
 
     /**
      * Primary constructor of a Lodge object, initializing the class fields, according to the parameters.
@@ -119,7 +119,7 @@ public class Lodge {
      * Update the amenities list of the current lodge.
      * @param amenities New amenities list of the lodge.
      */
-    public void setAmenities(ArrayList<Amenities> amenities) {
+    public void setAmenities(HashSet<Amenities> amenities) {
         this.amenities = amenities;
     }
 
@@ -220,7 +220,7 @@ public class Lodge {
     /**
      * @return the list of provided amenities of the current lodge.
      */
-    public ArrayList<Amenities> getAmenities() {
+    public HashSet<Amenities> getAmenities() {
         return this.amenities;
     }
 
@@ -269,6 +269,33 @@ public class Lodge {
         hash = 31 * hash + (this.location != null ? this.location.hashCode() : 0);
         hash = 31 * hash + (this.type != null ? this.type.hashCode() : 0);
         return hash;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append("Lodge #");
+        str.append(this.lodgeId);
+        str.append("\t\"");
+        str.append(this.getTitle());
+        str.append("\"");
+        str.append("\nLandlord: ");
+        str.append(this.getLandlord());
+        str.append("\nLocation: ");
+        str.append(this.getLocation());
+        str.append("\nDescription: ");
+        str.append(this.getDescription());
+        str.append("\nType of lodge: ");
+        str.append(this.getType().toString());
+        str.append("\nSize: ");
+        str.append(this.getSize());
+        str.append("\nCost per night: € ");
+        str.append(this.getPrice());
+        str.append("\nAmenities: ");
+        str.append(this.getAmenities().toString());
+        str.append("\nBooked dates: ");
+        str.append(this.getAvailability().getBookCalendar().toString());
+        return str.toString();
     }
 
 }
