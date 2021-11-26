@@ -73,6 +73,20 @@ public class BookingEntry {
     }
 
     /**
+     * @return The check-in date of the accommodation (arrival date).
+     */
+    public LocalDate getArrivalDate() {
+        return this.arrivalDate;
+    }
+
+    /**
+     * @return The check-out date of the accommodation (departure date).
+     */
+    public LocalDate getDepartureDate() {
+        return this.departureDate;
+    }
+
+    /**
      * @return The date the booking entry was created.
      */
     public LocalDate getEntryDate() {
@@ -157,16 +171,16 @@ public class BookingEntry {
         StringBuilder str = new StringBuilder();
         str.append("Booking Entry #");
         str.append(this.bookingId);
-        str.append("\n");
-        str.append("Booked lodge:\t");
+        str.append("\t\t");
+        str.append("Booked lodge: ");
         str.append(this.lodge.getTitle());
-        str.append("\tTenant:\t");
-        str.append(this.tenant.getUsername());
-        str.append("\nPeriod of reservation:\t");
+        str.append("\nTenant: ");
+        str.append(this.tenant.getFullName());
+        str.append("\nPeriod of reservation: ");
         str.append(this.arrivalDate.toString());
-        str.append("-");
+        str.append(" to ");
         str.append(this.departureDate.toString());
-        str.append("\tTotal Cost for accommodation:\t");
+        str.append("\nTotal Cost for accommodation: ");
         str.append(this.totalCost);
         str.append("\n");
         return valid ? str.toString() : "Invalid Booking Entry\n";

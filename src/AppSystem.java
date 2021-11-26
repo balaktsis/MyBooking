@@ -1,3 +1,4 @@
+import Booking.BookingEntry;
 import Lodges.Amenities;
 import Lodges.Lodge;
 import Lodges.LodgeType;
@@ -9,6 +10,7 @@ import Users.User;
 
 import Misc.Storage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -42,6 +44,8 @@ public class AppSystem {
         tempCustomer.setApprovalStatus(true);
         tempLandlord.setApprovalStatus(true);
 
+        tempLandlord.setBase("Thessaloniki, Greece");
+
         users.add(tempAdmin);
         users.add(tempCustomer);
         users.add(tempLandlord);
@@ -59,9 +63,12 @@ public class AppSystem {
         tempLodge.setBeds(5);
         tempLodge.setDescription("The best place to live!");
         tempLodge.setSize(80);
-
         Storage.getLodges().add(tempLodge);
 
+
+        BookingEntry tempBooking = new BookingEntry(tempCustomer, tempLodge);
+        tempBooking.bookLodge(LocalDate.now(), LocalDate.now().plusDays(10));
+        Storage.getBookings().add(tempBooking);
     }
 
 }

@@ -202,6 +202,7 @@ public class User {
         str.append("Full Name: ");
         str.append(this.fullName);
         str.append("\n");
+        str.append("Account status: ");
         if (!approved) str.append("Not ");
         str.append("Approved");
         return str.toString();
