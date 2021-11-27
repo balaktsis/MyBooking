@@ -247,7 +247,7 @@ public class Lodge {
      */
     public boolean bookLodge(HashSet<LocalDate> dates) {
         if(this.availability.markDates(dates)) {
-  //          this.rating = ((int) (1.0 * (this.numOfBookings++) / Administrator.getTotalBookings() * 100) % 6);
+  //TODO          this.rating = ((int) (1.0 * (this.numOfBookings++) / Administrator.getTotalBookings() * 100) % 6); <--Use Storage
             return true;
         }
         return false;
