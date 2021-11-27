@@ -107,6 +107,9 @@ public class Landlord extends User{
         return str.toString();
     }
 
+    /**
+     * @return Hashset of booking entries that affect Landlord's property.
+     */
     private HashSet<BookingEntry> myBookings() {
         HashSet<BookingEntry> bookingEntries = new HashSet<>();
         for(BookingEntry bookingEntry : Storage.getBookings()) {
