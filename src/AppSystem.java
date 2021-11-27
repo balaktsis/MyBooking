@@ -16,18 +16,34 @@ import java.util.HashSet;
 
 public class AppSystem {
 
+    LoginSystem loginSystem;
+
+    /**
+     * Default constructor for the AppSystem class
+     */
     public AppSystem(){
         initializeApp();
     }
 
+    /**
+     * Initialize constant and temporary fields
+     */
     private void initializeApp(){
-
+        loginSystem = new LoginSystem(false);
         initializeWithTempFields();
-        LoginSystem loginSystem = new LoginSystem(false);
-        loginSystem.showLoginScreen();
-
     }
 
+    /**
+     * Begin app execution by running the loginScreen
+     */
+    public void run(){
+        loginSystem.showLoginScreen();
+    }
+
+    /**
+     * Initialize some temporary fields (Users of all types, one lodge and a booking)
+     * to demonstrate the app's functionality.
+     */
     private void initializeWithTempFields(){
         ArrayList<User> users = new ArrayList<>();
         var tempAdmin = new Administrator("admin", "password0");
