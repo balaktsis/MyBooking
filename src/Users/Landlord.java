@@ -26,7 +26,8 @@ public class Landlord extends User{
      */
     public Landlord(String username, String password) {
         super(username, password);
-        this.commands = new String[]{"my_details", "my_lodges", "add_lodge", "edit_lodge", "delete_lodge", "show_bookings", "show_lodge_bookings", "lookup_booking", "cancel_booking"};
+        this.commands = new String[]{"my_details", "my_lodges", "add_lodge", "edit_lodge", "delete_lodge",
+                                "show_bookings", "show_lodge_bookings", "lookup_booking", "cancel_booking"};
     }
 
     /**
@@ -50,7 +51,8 @@ public class Landlord extends User{
     protected double getTotalProfit() {
         double profit = 0;
         for(BookingEntry bookingEntry : Storage.getBookings())
-            if(bookingEntry.getLodge().getLandlord() == this) profit += bookingEntry.getTotalCost();
+            if(bookingEntry.getLodge().getLandlord().equals(this))
+                profit += bookingEntry.getTotalCost();
         return profit;
     }
 
@@ -60,7 +62,8 @@ public class Landlord extends User{
     protected int getNumOfBookings() {
         int num = 0;
         for(BookingEntry bookingEntry : Storage.getBookings())
-            if(bookingEntry.getLodge().getLandlord() == this && bookingEntry.isValid()) num++;
+            if(bookingEntry.getLodge().getLandlord().equals(this) && bookingEntry.isValid())
+                num++;
         return num;
     }
 
@@ -70,7 +73,7 @@ public class Landlord extends User{
     protected int getNumOfLodges() {
         int num = 0;
         for(Lodge lodge : Storage.getLodges())
-            if(lodge.getLandlord() == this) num++;
+            if(lodge.getLandlord().equals(this)) num++;
         return num;
     }
 
@@ -80,7 +83,7 @@ public class Landlord extends User{
     protected int getNumOfCancellations() {
         int num = 0;
         for(BookingEntry bookingEntry : Storage.getBookings())
-            if(bookingEntry.getLodge().getLandlord() == this && !bookingEntry.isValid()) num++;
+            if(bookingEntry.getLodge().getLandlord().equals(this) && !bookingEntry.isValid()) num++;
         return num;
     }
 
@@ -109,14 +112,17 @@ public class Landlord extends User{
      * @return Message string about the cancellation process (successful/unsuccessful).
      */
     private String cancelBooking(String bookingId) {
-        if(bookingId.equals("")) return "Missing parameter: Booking id.\nExample: cancel_booking 15";
+        if(bookingId.equals(""))
+            return "Missing parameter: Booking id.\nExample: cancel_booking 15";
 
         StringBuilder returnStr = new StringBuilder();
         for(BookingEntry bookingEntry : Storage.getBookings())
             if(bookingEntry.getBookingId().equals(bookingId)) {
-                if(bookingEntry.getLodge().getLandlord() == this) {
+                if(bookingEntry.getLodge().getLandlord().equals(this)) {
                     if(bookingEntry.cancelBooking())
-                        returnStr.append("Cancellation completed. Your lodge is now available on period ").append(bookingEntry.getArrivalDate()).append(" - ").append(bookingEntry.getDepartureDate()).append(".");
+                        returnStr.append("Cancellation completed. Your lodge is now available on period ")
+                                .append(bookingEntry.getArrivalDate()).append(" - ")
+                                .append(bookingEntry.getDepartureDate()).append(".");
                     else
                         returnStr.append("Invalid booking entry. Cancellation failed.");
                     break;
@@ -135,9 +141,8 @@ public class Landlord extends User{
     private String getBookings() {
         StringBuilder returnStr = new StringBuilder();
         for(BookingEntry bookingEntry : Storage.getBookings())
-            if(bookingEntry.getLodge().getLandlord() == this) {
-                returnStr.append(bookingEntry);
-                returnStr.append("\n");
+            if(bookingEntry.getLodge().getLandlord().equals(this)) {
+                returnStr.append(bookingEntry).append("\n");
             }
         return returnStr.toString().equals("") ? "There are no booking entries over your properties." : returnStr.toString();
     }
@@ -152,9 +157,8 @@ public class Landlord extends User{
         StringBuilder returnStr = new StringBuilder();
         for(BookingEntry bookingEntry : Storage.getBookings())
             if(bookingEntry.getBookingId().equals(bookingId)) {
-                if(bookingEntry.getLodge().getLandlord() == this) {
-                    returnStr.append(bookingEntry);
-                    returnStr.append("\n");
+                if(bookingEntry.getLodge().getLandlord().equals(this)) {
+                    returnStr.append(bookingEntry).append("\n");
                     break;
                 }
                 else
@@ -174,7 +178,7 @@ public class Landlord extends User{
         StringBuilder returnStr = new StringBuilder();
         for(BookingEntry bookingEntry : Storage.getBookings())
             if(bookingEntry.getLodge().getLodgeId().equals(lodgeId)) {
-                if(bookingEntry.getLodge().getLandlord() == this) {
+                if(bookingEntry.getLodge().getLandlord().equals(this)) {
                     returnStr.append(bookingEntry);
                     returnStr.append("\n");
                 }
@@ -196,7 +200,7 @@ public class Landlord extends User{
         Lodge lodge = null;
         boolean lodgeExists = false;
         for(Lodge tempLodge : Storage.getLodges())
-            if(Objects.equals(tempLodge.getLodgeId(), lodgeId) && tempLodge.getLandlord() == this) {
+            if(Objects.equals(tempLodge.getLodgeId(), lodgeId) && tempLodge.getLandlord().equals(this)) {
                 lodge = tempLodge;
                 lodgeExists = true;
                 break;
@@ -218,7 +222,7 @@ public class Landlord extends User{
         Lodge lodge = null;
         boolean lodgeExists = false, doneExists = false;
         for(Lodge tempLodge : Storage.getLodges())
-            if(Objects.equals(tempLodge.getLodgeId(), lodgeId) && tempLodge.getLandlord() == this) {
+            if(Objects.equals(tempLodge.getLodgeId(), lodgeId) && tempLodge.getLandlord().equals(this)) {
                 lodge = tempLodge;
                 lodgeExists = true;
                 break;
@@ -382,7 +386,7 @@ public class Landlord extends User{
     private String getLodges() {
        StringBuilder returnStr = new StringBuilder();
         for (Lodge lodge : Storage.getLodges()) {
-            if(lodge.getLandlord() == this) {
+            if(lodge.getLandlord().equals(this)) {
                 returnStr.append(lodge);
                 returnStr.append("\n\n");
             }
