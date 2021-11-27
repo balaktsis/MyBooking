@@ -14,6 +14,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+/**
+ *
+ * @author Neron Panagiotopoulos
+ * @author Christos Balaktsis
+ */
+
 public class AppSystem {
 
     LoginSystem loginSystem;

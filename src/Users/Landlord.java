@@ -107,6 +107,15 @@ public class Landlord extends User{
         return str.toString();
     }
 
+    private HashSet<BookingEntry> myBookings() {
+        HashSet<BookingEntry> bookingEntries = new HashSet<>();
+        for(BookingEntry bookingEntry : Storage.getBookings()) {
+            if (bookingEntry.getLodge().getLandlord().equals(this))
+                bookingEntries.add(bookingEntry);
+        }
+        return bookingEntries;
+    }
+
     /**
      * @param bookingId The ID of a booking entry.
      * @return Message string about the cancellation process (successful/unsuccessful).
@@ -140,10 +149,8 @@ public class Landlord extends User{
      */
     private String getBookings() {
         StringBuilder returnStr = new StringBuilder();
-        for(BookingEntry bookingEntry : Storage.getBookings())
-            if(bookingEntry.getLodge().getLandlord().equals(this)) {
-                returnStr.append(bookingEntry).append("\n");
-            }
+        for(BookingEntry bookingEntry : myBookings())
+            returnStr.append(bookingEntry).append("\n");
         return returnStr.toString().equals("") ? "There are no booking entries over your properties." : returnStr.toString();
     }
 
@@ -155,38 +162,27 @@ public class Landlord extends User{
         if(bookingId.equals("")) return "Missing parameter: Booking id.\nExample: lookup_booking 15";
 
         StringBuilder returnStr = new StringBuilder();
-        for(BookingEntry bookingEntry : Storage.getBookings())
+        for(BookingEntry bookingEntry : myBookings())
             if(bookingEntry.getBookingId().equals(bookingId)) {
-                if(bookingEntry.getLodge().getLandlord().equals(this)) {
-                    returnStr.append(bookingEntry).append("\n");
-                    break;
-                }
-                else
-                    return "The requested booking entry does not apply to any of your properties.";
-            }
-
-        return returnStr.toString().equals("") ? "The requested booking entry does not exist." : returnStr.toString();
+                returnStr.append(bookingEntry).append("\n");
+                break;
+        }
+        return returnStr.toString().equals("") ? "The requested booking entry does not exist or does not apply to any of your properties." : returnStr.toString();
     }
 
     /**
      * @param lodgeId The ID of a lodge.
-     * @return A list of bookings of a Lodge.
+     * @return A list of bookings of a lodge.
      */
     private String getLodgeBookings(String lodgeId) {
         if(lodgeId.equals("")) return "Missing parameter: Lodge id.\nExample: show_bookings 15";
 
         StringBuilder returnStr = new StringBuilder();
-        for(BookingEntry bookingEntry : Storage.getBookings())
-            if(bookingEntry.getLodge().getLodgeId().equals(lodgeId)) {
-                if(bookingEntry.getLodge().getLandlord().equals(this)) {
-                    returnStr.append(bookingEntry);
-                    returnStr.append("\n");
-                }
-                else
-                    return "The requested lodge does not belong to you.";
-            }
+        for(BookingEntry bookingEntry : myBookings())
+            if(bookingEntry.getLodge().getLodgeId().equals(lodgeId))
+                returnStr.append(bookingEntry).append("\n");
 
-        return returnStr.toString().equals("") ? "The requested lodge does not exist or is bookings-free." : returnStr.toString();
+        return returnStr.toString().equals("") ? "The requested lodge does not belong to your lodges or is bookings-free." : returnStr.toString();
     }
 
     /**
