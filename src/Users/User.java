@@ -6,6 +6,7 @@ import Misc.UniqueIDGenerator;
 import java.util.Locale;
 import java.util.Scanner;
 
+
 /**
  * This is a parent User class, which contains core functionality that will be
  * present in all types of users of the project
