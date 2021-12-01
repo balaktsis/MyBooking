@@ -48,21 +48,21 @@ public class Customer extends User{
         return this.address;
     }
 
-    @Override
-    protected String getInterfaceString(String command, String parameters){
-        StringBuilder str = new StringBuilder();
-
-        switch (command) {
-            case "lookup_lodges" -> str.append(lookupLodges(parameters));
-            case "book_lodge" -> str.append(bookLodge(parameters));
-            case "show_bookings" -> str.append(showBookings());
-            case "cancel_booking" -> str.append(cancelBooking(parameters));
-            case "my_profile" -> str.append(this);
-            default -> str.append("Unknown command, please try again!");
-        }
-
-        return str.toString();
-    }
+//    @Override
+//    protected String getInterfaceString(String command, String parameters){
+//        StringBuilder str = new StringBuilder();
+//
+//        switch (command) {
+//            case "lookup_lodges" -> str.append(lookupLodges(parameters));
+//            case "book_lodge" -> str.append(bookLodge(parameters));
+//            case "show_bookings" -> str.append(showBookings());
+//            case "cancel_booking" -> str.append(cancelBooking(parameters));
+//            case "my_profile" -> str.append(this);
+//            default -> str.append("Unknown command, please try again!");
+//        }
+//
+//        return str.toString();
+//    }
 
     /**
      * Cancel a booking

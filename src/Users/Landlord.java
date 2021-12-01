@@ -88,25 +88,25 @@ public class Landlord extends User{
         return num;
     }
 
-    @Override
-    protected String getInterfaceString(String command, String parameters){
-        StringBuilder str = new StringBuilder();
-
-        switch (command) {
-            case "my_details" -> str.append(this);
-            case "my_lodges" -> str.append(getLodges());
-            case "add_lodge" -> str.append(addLodge());
-            case "edit_lodge" -> str.append(editLodge(parameters));
-            case "delete_lodge" -> str.append(removeLodge(parameters));
-            case "show_bookings" -> str.append(getBookings());
-            case "show_lodge_bookings" -> str.append(getLodgeBookings(parameters));
-            case "lookup_booking" -> str.append(getBookingDetails(parameters));
-            case "cancel_booking" -> str.append(cancelBooking(parameters));
-            default -> str.append("Unknown command, please try again!");
-        }
-
-        return str.toString();
-    }
+//    @Override
+//    protected String getInterfaceString(String command, String parameters){
+//        StringBuilder str = new StringBuilder();
+//
+//        switch (command) {
+//            case "my_details" -> str.append(this);
+//            case "my_lodges" -> str.append(getLodges());
+//            case "add_lodge" -> str.append(addLodge());
+//            case "edit_lodge" -> str.append(editLodge(parameters));
+//            case "delete_lodge" -> str.append(removeLodge(parameters));
+//            case "show_bookings" -> str.append(getBookings());
+//            case "show_lodge_bookings" -> str.append(getLodgeBookings(parameters));
+//            case "lookup_booking" -> str.append(getBookingDetails(parameters));
+//            case "cancel_booking" -> str.append(cancelBooking(parameters));
+//            default -> str.append("Unknown command, please try again!");
+//        }
+//
+//        return str.toString();
+//    }
 
     private HashSet<BookingEntry> myBookings() {
         HashSet<BookingEntry> bookingEntries = new HashSet<>();
