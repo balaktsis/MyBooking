@@ -5,6 +5,8 @@ import Lodges.Amenities;
 import Lodges.Lodge;
 import Lodges.LodgeType;
 import Misc.Storage;
+import Users.Actions.AdminCommandLineManager;
+import Users.Actions.LandlordCommandLineManager;
 
 import java.util.*;
 
@@ -26,8 +28,7 @@ public class Landlord extends User{
      */
     public Landlord(String username, String password) {
         super(username, password);
-        this.commands = new String[]{"my_details", "my_lodges", "add_lodge", "edit_lodge", "delete_lodge",
-                                "show_bookings", "show_lodge_bookings", "lookup_booking", "cancel_booking"};
+        this.commandLineManager = new LandlordCommandLineManager(this);
     }
 
     /**

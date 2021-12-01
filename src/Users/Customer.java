@@ -4,6 +4,8 @@ import Booking.BookingEntry;
 import Lodges.Amenities;
 import Lodges.Lodge;
 import Misc.Storage;
+import Users.Actions.AdminCommandLineManager;
+import Users.Actions.CustomerCommandLineManager;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class Customer extends User{
      */
     public Customer(String username, String password) {
         super(username, password);
-        this.commands = new String[]{"lookup_lodges", "book_lodge", "cancel_booking", "show_bookings", "my_profile"};
+        this.commandLineManager = new CustomerCommandLineManager(this);
     }
 
     /**

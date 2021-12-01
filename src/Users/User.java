@@ -1,8 +1,12 @@
 package Users;
 
 import Misc.Message;
+import Misc.Storage;
 import Misc.UniqueIDGenerator;
+import Users.Actions.CommandLineManager;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -21,8 +25,7 @@ public class User {
     protected String username, password;
     protected String fullName;
     protected Message[] messages;
-
-    protected String[] commands;
+    protected CommandLineManager commandLineManager;
 
 
     /**
@@ -120,52 +123,11 @@ public class User {
         if (graphical) {
             showGraphicalInterface();
         }
-        showCommandlineInterface();
+        commandLineManager.showCommandlineInterface();
     }
 
     protected void showGraphicalInterface() {
         //TODO 2nd part of the assignment
-    }
-
-
-    /**
-     * Begin a command-line user interface session and run the appropriate method for each command input by the user.
-     */
-    protected void showCommandlineInterface() {
-        //Initialize a Session for the user interface.
-        System.out.println(welcomeString());
-        System.out.println(commandsString());
-        Scanner inputStream = new Scanner(System.in);
-        String input = inputStream.nextLine().toLowerCase(Locale.ROOT);
-
-        //Split input into a command keyword (Leading word) and it's parameters (as a String).
-        String command = input.split(" ")[0];
-        String parameters = input.substring(command.length()).trim();
-
-
-        //While logout hasn't been called by the user, we're in a session, so we're exchanging output and user input.
-        while (!command.equals("logout")) {
-            String output = getInterfaceString(command, parameters);
-            System.out.println(output);
-            System.out.println(commandsString());
-
-            input = inputStream.nextLine().toLowerCase(Locale.ROOT);
-            command = input.split(" ")[0];
-            parameters = input.substring(command.length()).trim();
-        }
-
-    }
-
-    protected String getInterfaceString(String Command, String Parameters) {
-        return null;
-    }
-
-    protected String welcomeString() {
-        return String.format("Welcome %s!", this.fullName);
-    }
-
-    protected String commandsString() {
-        return "Commands: " + String.join(" ", this.commands) + " logout";
     }
 
 
@@ -209,5 +171,24 @@ public class User {
         return str.toString();
     }
 
+
+    static public List<User> getUsersWithApproval(boolean approval_status){
+        List<User> users = new ArrayList<>();
+        for (User user : Storage.getUsers()){
+            if (user.getApprovalStatus() == approval_status){
+                users.add(user);
+            }
+        }
+        return users;
+    }
+
+    static public User getUserFromUsername(String username){
+        for (User user : Storage.getUsers()){
+            if (user.getUsername().equals(username)){
+                return user;
+            }
+        }
+        return null;
+    }
 
 }
