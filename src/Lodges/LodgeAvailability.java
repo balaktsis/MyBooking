@@ -36,7 +36,7 @@ public class LodgeAvailability {
     }
 
     /**
-     * Method that checks if some dates are available for booking or not (so, already rented).
+     * Method that checks if some dates are available for booking or not (so, already booked).
      * @param dates A set of dates requested for booking.
      * @return if all the dates are available for booking.
      */
