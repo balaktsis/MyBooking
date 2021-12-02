@@ -1,4 +1,4 @@
-package Users.Actions.Landlord;
+package Users.Actions.Customer;
 
 import Users.Actions.Command;
 import Users.User;
@@ -27,7 +27,7 @@ public class ShowDetails implements Command {
     }
 
     /**
-     * @return The Landlord-user's details.
+     * @return The Customer-user's details.
      */
     @Override
     public String run(User user, List<String> args) {

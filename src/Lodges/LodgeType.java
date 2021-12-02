@@ -17,8 +17,7 @@ public enum LodgeType {
         StringBuilder str = new StringBuilder();
         for(LodgeType type : LodgeType.values())
             str.append(type.toString()).append(" ");
-        str.deleteCharAt(str.length()-1);
-        return str.toString();
+        return str.toString().trim();
     }
 
     public static boolean isLodgeType(String value) {
