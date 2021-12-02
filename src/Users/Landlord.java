@@ -86,6 +86,7 @@ public class Landlord extends User{
     @Override
     public String toString(){
         StringBuilder returnStr = new StringBuilder();
+        returnStr.append("Landlord\n");
         returnStr.append(super.toString()).append("\n");
         returnStr.append("Base: ");
         returnStr.append(this.getBase());
@@ -97,7 +98,6 @@ public class Landlord extends User{
         returnStr.append(this.getNumOfCancellations());
         returnStr.append("\nTotal Profit: € ");
         returnStr.append(this.getTotalProfit());
-        returnStr.append("\n");
         return returnStr.toString();
     }
 

@@ -43,7 +43,16 @@ public abstract class CommandLineManager {
     private String parse(String input){
         //Split input into a command keyword (Leading word) and it's parameters (as a String).
         String commandName = input.split(" ")[0];
-        List<String> arguments = List.of(input.substring(commandName.length()).trim().split(" +"));
+        List<String> arguments = new ArrayList<>(List.of(input.substring(commandName.length()).trim().split(" +")));
+
+        //If the list just contains an empty string, remove it
+        if (arguments.get(0).equals("")){
+            arguments.remove(0);
+        }
+
+        if (commandName.equals("logout")) {
+            return "logout";
+        }
 
         Command command = null;
         for (Command commandCandidate : commandsList){

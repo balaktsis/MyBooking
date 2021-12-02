@@ -35,9 +35,9 @@ public class ShowUsers implements Command {
     @Override
     public String run(User user, List<String> args) {
         StringBuilder returnStr = new StringBuilder();
-        for (BookingEntry booking : Storage.getBookings()) {
-            returnStr.append(booking.toString());
-            returnStr.append("\n");
+        for (User user1 : Storage.getUsers()) {
+            returnStr.append(user1.toString());
+            returnStr.append("\n\n");
         }
         return returnStr.toString();
     }
