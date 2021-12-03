@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class EditLodge implements Command {
     @Override
     public String getCommandName() {
-        return " edit_lodge";
+        return "edit_lodge";
     }
 
     @Override

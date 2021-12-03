@@ -25,7 +25,7 @@ public class CancelBooking implements Command {
 
     @Override
     public int getMinParams() {
-        return 0;
+        return 1;
     }
 
     /**

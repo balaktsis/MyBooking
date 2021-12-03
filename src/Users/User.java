@@ -184,7 +184,7 @@ public class User {
 
     static public User getUserFromUsername(String username){
         for (User user : Storage.getUsers()){
-            if (user.getUsername().equals(username)){
+            if (user.getUsername().toLowerCase().equals(username)){
                 return user;
             }
         }
