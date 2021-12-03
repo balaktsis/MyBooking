@@ -1,12 +1,16 @@
 package Booking;
 
 import Lodges.Lodge;
+import Misc.Storage;
 import Users.Customer;
 
 import static Misc.UniqueIDGenerator.getUniqueId;
 
+import java.awt.print.Book;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * This is a Booking Entry class that builds a reservation of a customer to a specific lodge.
@@ -184,6 +188,23 @@ public class BookingEntry {
         str.append(this.totalCost);
         str.append("\n");
         return valid ? str.toString() : "Invalid Booking Entry\n";
+    }
+
+    static public List<BookingEntry> getBookingsOnDate(String date){
+        List<BookingEntry> results = new ArrayList<>();
+
+        if (date == null){
+            results.addAll(Storage.getBookings());
+            return results;
+        }
+
+        for (BookingEntry booking: Storage.getBookings()){
+            if (booking.getEntryDate().toString().equals(date)){
+                results.add(booking);
+            }
+        }
+
+        return results;
     }
 
 }
