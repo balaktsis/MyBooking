@@ -77,14 +77,14 @@ public class AppSystem {
         }
 
         Lodge tempLodge = new Lodge(tempLandlord, "Ethnikis Aminis 41, Thessaloniki 546 35, Greece", LodgeType.APARTMENT);
-        tempLodge.setTitle("Feels-like-home");
+        tempLodge.getDetails().setTitle("Feels-like-home");
         HashSet<Amenities> amenities = new HashSet<>();
         amenities.add(Amenities.WIFI); amenities.add(Amenities.PARKING);
         tempLodge.setAmenities(amenities);
-        tempLodge.setPrice(20.0);
-        tempLodge.setBeds(5);
-        tempLodge.setDescription("The best place to live!");
-        tempLodge.setSize(80);
+        tempLodge.getDetails().setPrice(20.0);
+        tempLodge.getDetails().setBeds(5);
+        tempLodge.getDetails().setDescription("The best place to live!");
+        tempLodge.getDetails().setSize(80);
         Storage.getLodges().add(tempLodge);
 
 

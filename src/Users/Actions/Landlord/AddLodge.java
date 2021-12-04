@@ -58,21 +58,21 @@ public class AddLodge implements Command {
         Lodge newLodge = new Lodge((Landlord) user, location, lodgeType);
 
         System.out.print("Title: ");
-        newLodge.setTitle(input.nextLine());
+        newLodge.getDetails().setTitle(input.nextLine());
 
         System.out.print("Price (per night): € ");
-        newLodge.setPrice(input.nextDouble());
+        newLodge.getDetails().setPrice(input.nextDouble());
 
         System.out.print("Size: (m2) ");
-        newLodge.setSize(input.nextInt());
+        newLodge.getDetails().setSize(input.nextInt());
 
         System.out.print("Beds: ");
-        newLodge.setBeds(input.nextInt());
+        newLodge.getDetails().setBeds(input.nextInt());
 
         System.out.print("Description: ");
         String dummy = input.nextLine();
         answer = input.nextLine();
-        newLodge.setDescription(answer);
+        newLodge.getDetails().setDescription(answer);
 
         System.out.println("Amenities: (type \"yes\" or \"no\" for each one)");
         for(Amenities amenity : Amenities.values()) {

@@ -1,7 +1,6 @@
 package Lodges;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
 
 import Users.Landlord;
@@ -17,18 +16,11 @@ import static Misc.UniqueIDGenerator.getUniqueId;
  */
 
 public class Lodge {
-    private Landlord landlord;
-    private final String location;
-    private String description;
-    private String title;
+    private final LodgeDetails details;
     private final String lodgeId;
     private final LodgeType type;
-    private int rating;
-    private int beds;
-    private int size;
-    private int numOfBookings;
-    private double price;
     private final LodgeAvailability availability;
+    private Landlord landlord;
     private HashSet<Amenities> amenities;
 
     /**
@@ -36,27 +28,27 @@ public class Lodge {
      * @param landlord The user owner of the lodge.
      */
     public Lodge(Landlord landlord, String location, LodgeType type) {
+        this.details = new LodgeDetails();
         this.landlord = landlord;
-        this.location = location;
+        this.details.location = location;
         this.type = type;
-        this.beds = 0;
-        this.size = 0;
-        this.price = 0;
+        this.details.beds = 0;
+        this.details.size = 0;
+        this.details.price = 0;
         this.amenities = new HashSet<>();
         this.availability = new LodgeAvailability();
-        this.rating = 0;
-        this.numOfBookings = 0;
-        this.description = null;
+        this.details.rating = 0;
+        this.details.numOfBookings = 0;
+        this.details.description = null;
         this.lodgeId = getUniqueId();
-        this.title = "Untitled Lodge";
+        this.details.title = "Untitled Lodge";
     }
 
     /**
-     * Update the title of the current lodge.
-     * @param title New title for the lodge.
+     * @return Access to the different detail-fields of the current lodge.
      */
-    public void setTitle(String title) {
-        this.title = title;
+    public LodgeDetails getDetails() {
+        return this.details;
     }
 
     /**
@@ -68,51 +60,11 @@ public class Lodge {
     }
 
     /**
-     * Update the rating score of the current lodge.
-     * @param rating New rating for the lodge.
-     */
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    /**
-     * Update the number of beds of the current lodge.
-     * @param beds New size of the lodge.
-     */
-    public void setBeds(int beds) {
-        this.beds = beds;
-    }
-
-    /**
-     * Update the cost of accommodation per night of the current lodge.
-     * @param price New price of the lodge.
-     */
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    /**
      * Update the availability of the current lodge.
      * @param dates Dates the lodge will be available.
      */
     public void setAvailableDates(HashSet<LocalDate> dates) {
         this.availability.freeDates(dates);
-    }
-
-    /**
-     * Update the description of the current lodge.
-     * @param description New description of the lodge.
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * Update the size in m^2 of the current lodge.
-     * @param size New size in m^2
-     */
-    public void setSize(int size) {
-        this.size = size;
     }
 
     /**
@@ -140,28 +92,6 @@ public class Lodge {
     }
 
     /**
-     * Update the number of rents of the current lodge.
-     * @param numOfBookings New number of total Bookings of the current lodge.
-     */
-    public void setNumOfBookings(int numOfBookings) {
-        this.numOfBookings = numOfBookings;
-    }
-
-    /**
-     * @return the number of planned bookings of the current lodge.
-     */
-    public int getNumOfBookings() {
-        return this.numOfBookings;
-    }
-
-    /**
-     * @return the title of the current lodge.
-     */
-    public String getTitle() {
-        return this.title;
-    }
-
-    /**
      * @return the landlord user of the current lodge.
      */
     public Landlord getLandlord() {
@@ -169,45 +99,10 @@ public class Lodge {
     }
 
     /**
-     * @return the location of the current lodge.
-     */
-    public String getLocation() {
-        return this.location;
-    }
-
-    /**
-     * @return the description of the current lodge.
-     */
-    public String getDescription() {
-        return this.description;
-    }
-
-    /**
      * @return the lodge type of the current lodge.
      */
     public LodgeType getType() {
         return this.type;
-    }
-
-    /**
-     * @return the rating status of the current lodge.
-     */
-    public int getRating() {
-        return this.rating;
-    }
-
-    /**
-     * @return the number of beds of the current lodge.
-     */
-    public int getBeds() {
-        return this.beds;
-    }
-
-    /**
-     * @return the accommodation cost per night of the current lodge.
-     */
-    public double getPrice() {
-        return this.price;
     }
 
     /**
@@ -232,13 +127,6 @@ public class Lodge {
     }
 
     /**
-     * @return the size in m^2 of the current lodge.
-     */
-    public int getSize() {
-        return this.size;
-    }
-
-    /**
      * Signals the booking status of the current lodge after being asked to get booked.
      * In case of new booking, it updates the availability status for the requested period
      * and rating of the lodge.
@@ -259,14 +147,14 @@ public class Lodge {
             return true;
         if (!(obj instanceof Lodge lodge))
             return false;
-        return this.landlord == lodge.landlord && this.location.equals(lodge.location) && this.type.equals(lodge.type);
+        return this.landlord == lodge.landlord && this.details.location.equals(lodge.details.location) && this.type.equals(lodge.type);
     }
 
     @Override
     public int hashCode() {
         int hash = 17;
         hash = 31 * hash + (this.landlord != null ? this.landlord.hashCode() : 0);
-        hash = 31 * hash + (this.location != null ? this.location.hashCode() : 0);
+        hash = 31 * hash + (this.details.location != null ? this.details.location.hashCode() : 0);
         hash = 31 * hash + (this.type != null ? this.type.hashCode() : 0);
         return hash;
     }
@@ -277,20 +165,20 @@ public class Lodge {
         str.append("Lodge #");
         str.append(this.lodgeId);
         str.append("\t\"");
-        str.append(this.getTitle());
+        str.append(this.details.getTitle());
         str.append("\"");
         str.append("\nLandlord: ");
         str.append(this.getLandlord().getFullName());
         str.append("\nLocation: ");
-        str.append(this.getLocation());
+        str.append(this.details.getLocation());
         str.append("\nDescription: ");
-        str.append(this.getDescription());
+        str.append(this.details.getDescription());
         str.append("\nType of lodge: ");
         str.append(this.getType().toString());
         str.append("\nSize: ");
-        str.append(this.getSize());
+        str.append(this.details.getSize());
         str.append("\nCost per night: € ");
-        str.append(this.getPrice());
+        str.append(this.details.getPrice());
         str.append("\nAmenities: ");
         str.append(this.getAmenities().toString());
         str.append("\nBooked dates: ");
