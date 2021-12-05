@@ -183,6 +183,7 @@ public class Lodge {
         str.append(this.getAmenities().toString());
         str.append("\nBooked dates: ");
         str.append(this.getAvailability().getBookCalendar().toString());
+
         return str.toString();
     }
 
