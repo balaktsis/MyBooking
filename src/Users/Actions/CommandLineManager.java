@@ -2,10 +2,7 @@ package Users.Actions;
 
 import Users.User;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  *  Command Line manager class, takes the available commands for the corresponding user and runs them with the correct
@@ -91,6 +88,7 @@ public abstract class CommandLineManager {
         for (Command command : this.commandsList){
             commands.add(command.getCommandName());
         }
+        Collections.sort(commands);
         return "Commands: " + String.join(" ", commands) + " logout";
     }
 
