@@ -68,7 +68,7 @@ public class AddLodge implements Command {
             }
             if (requestedHotel == null) return "No hotel with Id " + hotelId + " was found.";
 
-            newLodge = new Lodge((Landlord) user, requestedHotel.getLocation(), LodgeType.ROOM);
+            newLodge = new Lodge((Landlord) user, requestedHotel.getDetails().getLocation(), LodgeType.ROOM);
         } else {
             System.out.print("Location: ");
             String location = input.nextLine();
@@ -83,19 +83,18 @@ public class AddLodge implements Command {
         newLodge.getDetails().setTitle(input.nextLine());
 
         System.out.print("Description: ");
-        String dummy = input.nextLine();
         answer = input.nextLine();
         newLodge.getDetails().setDescription(answer);
 
         if(!newLodge.getType().equals(LodgeType.HOTEL)) {
             System.out.print("Price (per night): € ");
-            newLodge.setPrice(input.nextDouble());
+            newLodge.getDetails().setPrice(input.nextDouble());
 
             System.out.print("Size: (m2) ");
-            newLodge.setSize(input.nextInt());
+            newLodge.getDetails().setSize(input.nextInt());
 
             System.out.print("Beds: ");
-            newLodge.setBeds(input.nextInt());
+            newLodge.getDetails().setBeds(input.nextInt());
 
             System.out.println("Amenities: (type \"yes\" or \"no\" for each one)");
             for (Amenities amenity : Amenities.values()) {
