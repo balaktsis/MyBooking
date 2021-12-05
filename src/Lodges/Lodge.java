@@ -287,14 +287,16 @@ public class Lodge {
         str.append(this.getDescription());
         str.append("\nType of lodge: ");
         str.append(this.getType().toString());
-        str.append("\nSize: ");
-        str.append(this.getSize());
-        str.append("\nCost per night: € ");
-        str.append(this.getPrice());
-        str.append("\nAmenities: ");
-        str.append(this.getAmenities().toString());
-        str.append("\nBooked dates: ");
-        str.append(this.getAvailability().getBookCalendar().toString());
+        if(!this.getType().equals(LodgeType.HOTEL)) {
+            str.append("\nSize: ");
+            str.append(this.getSize());
+            str.append("\nCost per night: € ");
+            str.append(this.getPrice());
+            str.append("\nAmenities: ");
+            str.append(this.getAmenities().toString());
+            str.append("\nBooked dates: ");
+            str.append(this.getAvailability().getBookCalendar().toString());
+        }
         return str.toString();
     }
 
