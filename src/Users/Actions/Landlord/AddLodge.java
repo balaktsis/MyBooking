@@ -80,12 +80,12 @@ public class AddLodge implements Command {
         }
 
         System.out.print("Title: ");
-        newLodge.setTitle(input.nextLine());
+        newLodge.getDetails().setTitle(input.nextLine());
 
         System.out.print("Description: ");
         String dummy = input.nextLine();
         answer = input.nextLine();
-        newLodge.setDescription(answer);
+        newLodge.getDetails().setDescription(answer);
 
         if(!newLodge.getType().equals(LodgeType.HOTEL)) {
             System.out.print("Price (per night): € ");

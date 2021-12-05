@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ *  Command Line manager class, takes the available commands for the corresponding user and runs them with the correct
+ *  parameters, while also doing general checks on the input
+ */
 public abstract class CommandLineManager {
 
     protected User parentUser;

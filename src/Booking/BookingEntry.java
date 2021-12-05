@@ -69,7 +69,7 @@ public class BookingEntry {
         this.departureDate = departure;
         if(arrival.isAfter(departure) || arrival.isEqual(departure)) return false;
         if(lodge.bookLodge(getPeriod(arrival,departure))) {
-            this.totalCost = this.lodge.getPrice() * this.period.size();
+            this.totalCost = this.lodge.getDetails().getPrice() * this.period.size();
             this.valid = true;
             return true;
         }
@@ -177,7 +177,7 @@ public class BookingEntry {
         str.append(this.bookingId);
         str.append("\t\t");
         str.append("Booked lodge: ");
-        str.append(this.lodge.getTitle());
+        str.append(this.lodge.getDetails().getTitle());
         str.append("\nTenant: ");
         str.append(this.tenant.getFullName());
         str.append("\nPeriod of reservation: ");

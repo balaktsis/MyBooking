@@ -86,27 +86,27 @@ public class EditLodge implements Command {
                     case "title" -> {
                         System.out.print("New title: ");
                         newString = inputStream.nextLine();
-                        lodge.setTitle(newString);
+                        lodge.getDetails().setTitle(newString);
                     }
                     case "description" -> {
                         System.out.print("New description: ");
                         newString = inputStream.nextLine();
-                        lodge.setDescription(newString);
+                        lodge.getDetails().setDescription(newString);
                     }
                     case "beds" -> {
                         System.out.print("New number of beds: ");
                         newInt = inputStream.nextInt();
-                        lodge.setBeds(newInt);
+                        lodge.getDetails().setBeds(newInt);
                     }
                     case "size" -> {
                         System.out.print("New size of lodge (in m2): ");
                         newInt = inputStream.nextInt();
-                        lodge.setSize(newInt);
+                        lodge.getDetails().setSize(newInt);
                     }
                     case "price" -> {
                         System.out.print("New price per night: € ");
                         newDouble = inputStream.nextDouble();
-                        lodge.setPrice(newDouble);
+                        lodge.getDetails().setPrice(newDouble);
                     }
                     case "amenities" -> {
                         System.out.println("Choose all amenities offered: (type \"yes\" or \"no\" for each one)");
