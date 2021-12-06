@@ -37,7 +37,6 @@ public class AddLodge implements Command {
 
     /**
      * Creation of a new lodge belonging to the current landlord.
-     *
      * @return Message string about the creation process (successful/unsuccessful).
      */
     @Override
