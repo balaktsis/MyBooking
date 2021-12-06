@@ -58,7 +58,7 @@ public class AddLodge implements Command {
         lodgeType = LodgeType.valueOf(type);
 
         if(lodgeType==LodgeType.ROOM) {
-            System.out.println("Please provide your ID of the your hotel you want to add the room at.");
+            System.out.println("Please provide the ID of  your hotel you want to add the room at.");
             String hotelId = input.nextLine();
             for (Lodge lodge : Storage.getLodges()) {
                 if (lodge.getLodgeId().equals(hotelId) && lodge.getType() == LodgeType.HOTEL) {
@@ -67,8 +67,8 @@ public class AddLodge implements Command {
                 }
             }
             if (requestedHotel == null) return "No hotel with Id " + hotelId + " was found.";
-
             newLodge = new Lodge((Landlord) user, requestedHotel.getDetails().getLocation(), LodgeType.ROOM);
+
         } else {
             System.out.print("Location: ");
             String location = input.nextLine();
