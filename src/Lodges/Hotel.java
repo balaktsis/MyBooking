@@ -12,7 +12,6 @@ import java.util.HashMap;
 
 public class Hotel extends Lodge {
     private final HashMap<String, Lodge> rooms;
-    private static int roomId = 0;
 
     /**
      * Primary constructor of a hotel object, initializing the class fields, according to the parameters.
@@ -29,7 +28,7 @@ public class Hotel extends Lodge {
      * @param room The new room.
      */
     public void addRoom(Lodge room) {
-        rooms.put(this.getLodgeId() + "-" + roomId++, room);
+        rooms.put(this.getLodgeId(), room);
         Storage.getLodges().add(room);
     }
 

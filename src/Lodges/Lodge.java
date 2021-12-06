@@ -39,7 +39,7 @@ public class Lodge {
         this.availability = new LodgeAvailability();
         this.details.rating = 0;
         this.details.numOfBookings = 0;
-        this.details.description = null;
+        this.details.description = "No description has been set";
         this.lodgeId = getUniqueId();
         this.details.title = "Untitled Lodge";
     }
@@ -175,15 +175,16 @@ public class Lodge {
         str.append(this.details.getDescription());
         str.append("\nType of lodge: ");
         str.append(this.getType().toString());
-        str.append("\nSize: ");
-        str.append(this.details.getSize());
-        str.append("\nCost per night: € ");
-        str.append(this.details.getPrice());
-        str.append("\nAmenities: ");
-        str.append(this.getAmenities().toString());
-        str.append("\nBooked dates: ");
-        str.append(this.getAvailability().getBookCalendar().toString());
-
+        if(!this.getType().equals(LodgeType.HOTEL)) {
+            str.append("\nSize: ");
+            str.append(this.details.getSize());
+            str.append("\nCost per night: € ");
+            str.append(this.details.getPrice());
+            str.append("\nAmenities: ");
+            str.append(this.getAmenities().toString());
+            str.append("\nBooked dates: ");
+            str.append(this.getAvailability().getBookCalendar().toString());
+        }
         return str.toString();
     }
 
