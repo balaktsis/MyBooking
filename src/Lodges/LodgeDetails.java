@@ -2,6 +2,7 @@ package Lodges;
 
 
 /**
+ * Class that represents the logistics (details) of a lodge.
  * @author Christos Balaktsis
  */
 public class LodgeDetails {

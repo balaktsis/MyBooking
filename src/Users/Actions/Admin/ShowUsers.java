@@ -1,6 +1,5 @@
 package Users.Actions.Admin;
 
-import Booking.BookingEntry;
 import Misc.Storage;
 import Users.Actions.Command;
 import Users.User;

@@ -13,6 +13,8 @@ public class AdminCommandLineManager extends CommandLineManager {
                 new ShowBookings(),
                 new ShowUsers(),
                 new UserLookup(),
+                new ShowLodges(),
+                new BookingsLookup()
         };
     }
 }
