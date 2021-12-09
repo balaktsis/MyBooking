@@ -76,7 +76,7 @@ public class LoginSystem {
                 System.out.println("Password should contain at least one digit and have a length between 6 and 20 characters. Please try entering another one.");
         } while (checkUsername(username) || checkPassword(password));
 
-        System.out.println("Full name: ");
+        System.out.print("Full name: ");
         fullName = input.nextLine();
 
         //Match the input role with an existing role from the enum type.
@@ -94,10 +94,10 @@ public class LoginSystem {
 
         user.setFullName(fullName);
         if(user instanceof Landlord) {
-            System.out.println("Base: ");
+            System.out.print("Base: ");
             ((Landlord) user).setBase(input.nextLine());
         } else if(user instanceof Customer) {
-            System.out.println("Address: ");
+            System.out.print("Address: ");
             ((Customer) user).setAddress(input.nextLine());
         }
 

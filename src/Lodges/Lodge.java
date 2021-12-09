@@ -1,6 +1,8 @@
 package Lodges;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 
 import Users.Landlord;
@@ -183,7 +185,9 @@ public class Lodge {
             str.append("\nAmenities: ");
             str.append(this.getAmenities().toString());
             str.append("\nBooked dates: ");
-            str.append(this.getAvailability().getBookCalendar().toString());
+            ArrayList<LocalDate> dateArrayList = new ArrayList<>(this.getAvailability().getBookCalendar());
+            Collections.sort(dateArrayList);
+            str.append(dateArrayList);
         }
         return str.toString();
     }
