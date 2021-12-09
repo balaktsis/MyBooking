@@ -63,7 +63,7 @@ public class LoginSystem {
         Scanner input = new Scanner(System.in);
         String username, password, reqRole, fullName;
         User user;
-        System.out.println("\nPlease, provide the following information and your account will be activated soon!");
+        System.out.println("\nPlease, fill in the following information and your account will be activated soon!");
 
         //Configure the username is not in use and the password obeys to specific rules.
         do {
@@ -71,9 +71,9 @@ public class LoginSystem {
             username = input.nextLine();
             System.out.print("Password: ");
             password = input.nextLine();
-            if (checkUsername(username)) System.out.println("Username already taken. Please choose another one.");
+            if (checkUsername(username)) System.out.println("Username already in use. Please enter another one.");
             if (checkPassword(password))
-                System.out.println("Password should contain at least one digit and has length between 6 and 20 characters. Please choose another one.");
+                System.out.println("Password should contain at least one digit and have a length between 6 and 20 characters. Please try entering another one.");
         } while (checkUsername(username) || checkPassword(password));
 
         System.out.println("Full name: ");
@@ -191,14 +191,14 @@ public class LoginSystem {
                     user = signUpUserConsole();
                     if (user == null) continue;
                     System.out.println("Hello " + user.getUsername() + ".");
-                    System.out.println("Please, wait until one of our administrators activates your account!\n");
+                    System.out.println("Please wait until one of our administrators activates your account!\n");
                     Storage.getUsers().add(user);
                 }
                 case 2 -> {
                     //Log-in to an existing account.
                     user = signInUserConsole();
                     if (user == null) {
-                        System.out.println("Access denied. Contact administrator!");
+                        System.out.println("Access denied. Please contact an administrator!");
                         return;
                     }
                     if (!user.getApprovalStatus()) {
