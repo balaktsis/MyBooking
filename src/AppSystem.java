@@ -51,6 +51,7 @@ public class AppSystem {
      * to demonstrate the app's functionality.
      */
     private void initializeWithTempFields(){
+        //Setting up the users
         ArrayList<User> users = new ArrayList<>();
         var tempAdmin = new Administrator("admin", "password0");
         var tempCustomer = new Customer("customer", "password0");
@@ -76,6 +77,7 @@ public class AppSystem {
             Storage.getUsers().add(user);
         }
 
+        //Setting up a preset lodge
         Lodge tempLodge = new Lodge(tempLandlord, "Ethnikis Aminis 41, Thessaloniki 546 35, Greece", LodgeType.APARTMENT);
         tempLodge.getDetails().setTitle("Feels-like-home");
         HashSet<Amenities> amenities = new HashSet<>();
