@@ -10,12 +10,12 @@ import java.util.List;
 public class BookingsLookup implements Command {
     @Override
     public String getCommandName() {
-        return null;
+        return "lookup_bookings";
     }
 
     @Override
     public String getUsage() {
-        return null;
+        return getCommandName() + " date\neg: " + getCommandName() + " 2021-12-03";
     }
 
     @Override
