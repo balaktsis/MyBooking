@@ -7,9 +7,6 @@ import Users.Actions.CommandLineManager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
-
 
 /**
  * This is a parent User class, which contains core functionality that will be
@@ -26,7 +23,6 @@ public class User {
     protected String fullName;
     protected Message[] messages;
     protected CommandLineManager commandLineManager;
-
 
     /**
      * Primary constructor of a User object, takes in credentials,

@@ -3,8 +3,8 @@ package Users.Actions;
 import Users.Actions.Landlord.*;
 import Users.User;
 
-public class LandlordCommandLineManager extends CommandLineManager{
 
+public class LandlordCommandLineManager extends CommandLineManager{
 
     public LandlordCommandLineManager(User parentUser) {
         super(parentUser);

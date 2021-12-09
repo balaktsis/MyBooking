@@ -56,7 +56,7 @@ public class LoginSystem {
     }
 
     /**
-     * Signing-un method for a new user.
+     * Signing-in method for a new user.
      * @return the user object or null, if the credentials do not match to any registered user.
      */
     private User signUpUserConsole() {
@@ -64,6 +64,8 @@ public class LoginSystem {
         String username, password, reqRole, fullName;
         User user;
         System.out.println("\nPlease, provide the following information and your account will be activated soon!");
+
+        //Configure the username is not in use and the password obeys to specific rules.
         do {
             System.out.print("Username: ");
             username = input.nextLine();
@@ -73,8 +75,11 @@ public class LoginSystem {
             if (checkPassword(password))
                 System.out.println("Password should contain at least one digit and has length between 6 and 20 characters. Please choose another one.");
         } while (checkUsername(username) || checkPassword(password));
+
         System.out.println("Full name: ");
         fullName = input.nextLine();
+
+        //Match the input role with an existing role from the enum type.
         do {
             System.out.print("Role (Administrator | Customer | Landlord): ");
             reqRole = input.nextLine().toUpperCase(Locale.ROOT);
@@ -86,11 +91,16 @@ public class LoginSystem {
             case "CUSTOMER" -> user = new Customer(username, password);
             default -> user = new User(username, password);
         }
+
         user.setFullName(fullName);
         if(user instanceof Landlord) {
             System.out.println("Base: ");
             ((Landlord) user).setBase(input.nextLine());
+        } else if(user instanceof Customer) {
+            System.out.println("Address: ");
+            ((Customer) user).setAddress(input.nextLine());
         }
+
         System.out.println("Are you sure you want to create a new account with the following credentials?");
         System.out.println(frame);
         System.out.println("Username\t" + username);
@@ -133,7 +143,8 @@ public class LoginSystem {
     }
 
     /**
-     * Signing-in method for an existing user.
+     * Signing-in method for an existing user. If there is none user with the provided credentials (3 tries), system
+     * gets locked and the application has to be rebooted.
      * @return the user object or null, if the credentials do not match to any registered user.
      */
     private User signInUserConsole() {
@@ -175,14 +186,16 @@ public class LoginSystem {
         int choice;
         while ((choice = welcomeMessageConsole()) != 3) {
             switch (choice) {
-                case 1 -> {                                                                                             //Create a new account.
+                case 1 -> {
+                    //Create a new account.
                     user = signUpUserConsole();
                     if (user == null) continue;
                     System.out.println("Hello " + user.getUsername() + ".");
                     System.out.println("Please, wait until one of our administrators activates your account!\n");
                     Storage.getUsers().add(user);
                 }
-                case 2 -> {                                                                                             //Log-in to an existing account.
+                case 2 -> {
+                    //Log-in to an existing account.
                     user = signInUserConsole();
                     if (user == null) {
                         System.out.println("Access denied. Contact administrator!");
@@ -200,6 +213,7 @@ public class LoginSystem {
     }
 
     private void graphicalLoginScreen() {
+        //TODO: implement in the second part of the assignment
     }
 
 }

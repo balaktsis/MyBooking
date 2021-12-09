@@ -49,6 +49,7 @@ public class AddLodge implements Command {
 
         System.out.println("In order to add a new lodge for bookings, please complete the following fields...");
 
+        //Match the input LodgeType with an existing type from the enum.
         do {
             System.out.print("Type (" + LodgeType.getLodgeTypes() + "): ");
             type = input.nextLine().toUpperCase(Locale.ROOT);
@@ -56,15 +57,20 @@ public class AddLodge implements Command {
         } while (!LodgeType.isLodgeType(type));
         lodgeType = LodgeType.valueOf(type);
 
+        //If the new lodge is a room, it has to be part of an existing hotel.
         if(lodgeType==LodgeType.ROOM) {
             System.out.println("Please provide the ID of your hotel you want to add the room at.");
             String hotelId = input.nextLine();
+
+            //Find in which hotel, the room has to be added at.
             for (Lodge lodge : Storage.getLodges()) {
                 if (lodge.getLodgeId().equals(hotelId) && lodge.getType() == LodgeType.HOTEL) {
                     requestedHotel = lodge;
                     break;
                 }
             }
+
+            //If the requested hotel does not exist/belong to them, inform the landlord.
             if (requestedHotel == null) return "No hotel with Id " + hotelId + " was found.";
             newLodge = new Lodge((Landlord) user, requestedHotel.getDetails().getLocation(), LodgeType.ROOM);
 
@@ -85,6 +91,8 @@ public class AddLodge implements Command {
         answer = input.nextLine();
         newLodge.getDetails().setDescription(answer);
 
+        //Even though hotel is a type of lodge, there is no reason to define the following fields, because hotels are not
+        //themselves provided for accommodation, but their rooms do.
         if(!newLodge.getType().equals(LodgeType.HOTEL)) {
             System.out.print("Price (per night): € ");
             newLodge.getDetails().setPrice(input.nextDouble());
@@ -95,6 +103,7 @@ public class AddLodge implements Command {
             System.out.print("Beds: ");
             newLodge.getDetails().setBeds(input.nextInt());
 
+            //Check all the amenities the new lodge offers.
             System.out.println("Amenities: (type \"yes\" or \"no\" for each one)");
             for (Amenities amenity : Amenities.values()) {
                 do {
@@ -116,6 +125,8 @@ public class AddLodge implements Command {
             System.out.println("Type \"yes\" or \"no\".");
             answer = input.nextLine().toLowerCase(Locale.ROOT);
             if (answer.equals("yes")) {
+
+                //If the new lodge is a hotel room it has to get connected (/added to list of rooms) with(/of) it.
                 if(newLodge.getType().equals(LodgeType.ROOM)) {
                     System.out.println("* Do not forget to add rooms to your hotel!");
                     Hotel hotel = (Hotel) requestedHotel;

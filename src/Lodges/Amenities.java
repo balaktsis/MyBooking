@@ -1,9 +1,5 @@
 package Lodges;
 
-import LoginSystem.Roles;
-
-import java.util.ArrayList;
-
 /**
  * This enum consists of a list of different amenities provided in a lodge (property).
  * @author Christos Balaktsis

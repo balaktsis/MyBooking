@@ -43,6 +43,8 @@ public class EditLodge implements Command {
         String lodgeId = args.get(0);
         Lodge lodge = null;
         boolean lodgeExists = false, doneExists = false;
+
+        //Find the requested-for-deletion lodge.
         for(Lodge tempLodge : Storage.getLodges())
             if(Objects.equals(tempLodge.getLodgeId(), lodgeId) && tempLodge.getLandlord().equals(user)) {
                 lodge = tempLodge;
@@ -60,11 +62,13 @@ public class EditLodge implements Command {
         System.out.print("Lodge found. Choose all properties you would like to edit or \"done\" to exit edit mode.\nCommands: ");
         System.out.println(options);
 
+        //Get user input for all the field they want to update.
         Scanner inputStream = new Scanner(System.in);
         String input = inputStream.nextLine().toLowerCase(Locale.ROOT);
 
         String[] fields = input.split(" ");
 
+        //If any of the requested fields is not a recognized option, ask again. (Should type all of them again)
         for(int j = 0; j < fields.length; j++) {
             if(!options.contains(fields[j] + " ")) {
                 System.out.println("Unknown commands (\"" + fields[j] +"\"). Commands: " + options);
@@ -80,6 +84,7 @@ public class EditLodge implements Command {
                 break;
             }
 
+        //For each field/option, let the user update it. If the current option is "done", end updating.
         while (!Objects.equals(fields[0], "done")) {
             for (int i = 0; i < fields.length; i++) {
                 switch (fields[i]) {

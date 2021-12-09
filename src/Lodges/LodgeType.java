@@ -1,9 +1,6 @@
 package Lodges;
 
-import LoginSystem.Roles;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * This enum "class" is a list of different types of lodges (properties).

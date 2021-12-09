@@ -43,6 +43,8 @@ public class DeleteLodge implements Command {
 
         Lodge lodge = null;
         boolean removed = false, lodgeExists = false;
+
+        //Find the requested-for-deletion lodge.
         for (Lodge tempLodge : Storage.getLodges())
             if (Objects.equals(tempLodge.getLodgeId(), lodgeId) && tempLodge.getLandlord().equals(user)) {
                 lodge = tempLodge;
@@ -51,6 +53,7 @@ public class DeleteLodge implements Command {
             }
         if (!lodgeExists) return "Lodge #" + lodgeId + " is not under your property or does not exist.";
 
+        //If the requested lodge is a room, the room list of the hotel, it belongs to, has to be updated.
         if (lodge.getType().equals(LodgeType.ROOM)) {
             for (Lodge tempLodge : Storage.getLodges()) {
                 if (Objects.equals(tempLodge.getType(), LodgeType.HOTEL)) {
@@ -62,6 +65,8 @@ public class DeleteLodge implements Command {
                 }
             }
         } else {
+            //If the requested lodge is a hotel, all the rooms of the hotel have to be removed both from the hotel's
+            //room list and the system's storage.
             if (lodge.getType().equals(LodgeType.HOTEL)) {
                 Hotel hotel = (Hotel) lodge;
                 for (String room : hotel.getRooms().keySet())
