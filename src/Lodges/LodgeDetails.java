@@ -1,5 +1,9 @@
 package Lodges;
 
+
+/**
+ * @author Christos Balaktsis
+ */
 public class LodgeDetails {
     protected String location;
     protected String description;

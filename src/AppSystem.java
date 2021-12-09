@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- *
+ * App System class, initializes the preset fields and controls the visual flow.
  * @author Neron Panagiotopoulos
  * @author Christos Balaktsis
  */

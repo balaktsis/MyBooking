@@ -7,6 +7,7 @@ import java.util.*;
 /**
  *  Command Line manager class, takes the available commands for the corresponding user and runs them with the correct
  *  parameters, while also doing general checks on the input
+ *  @author Neron Panagiotopoulos
  */
 public abstract class CommandLineManager {
 
@@ -51,10 +52,12 @@ public abstract class CommandLineManager {
             arguments.remove(0);
         }
 
+        //If the command is logout, default to logging out, instead of passing through users
         if (commandName.equals("logout")) {
             return "logout";
         }
 
+        //Get command object from input string
         Command command = null;
         for (Command commandCandidate : commandsList){
             if (commandCandidate.getCommandName().equals(commandName)){
@@ -67,6 +70,7 @@ public abstract class CommandLineManager {
             return "Unknown command! Please try again!";
         }
 
+        //Basic syntax check before invoking
         if (arguments.size() > command.getMaxParams()){
             return "Too many arguments!\nExpected: " + command.getUsage();
         }
@@ -75,6 +79,7 @@ public abstract class CommandLineManager {
             return "Too few arguments!\nExpected: " + command.getUsage();
         }
 
+        // Invoke the command
         return command.run(parentUser, arguments);
 
     }
