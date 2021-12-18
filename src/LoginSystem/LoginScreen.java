@@ -50,7 +50,6 @@ public class LoginScreen extends LoginSystem {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Christos Balaktsis
         frame1 = new JFrame();
         logo = new JLabel();
         usernameField = new JTextField();
@@ -165,7 +164,6 @@ public class LoginScreen extends LoginSystem {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Christos Balaktsis
     private JFrame frame1;
     private JLabel logo;
     private JTextField usernameField;
