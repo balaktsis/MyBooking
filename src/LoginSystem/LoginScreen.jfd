@@ -22,6 +22,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "usernameField"
+				addEvent( new FormEvent( "java.awt.event.FocusListener", "focusGained", "usernameFieldFocusGained", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 225
 				"height": 35
@@ -56,29 +57,6 @@ new FormModel {
 				"x": 70
 				"y": 275
 			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "signInButton"
-				"text": "Sign-in"
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "signInButtonMouseClicked", true ) )
-				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "signInButtonKeyPressed", true ) )
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 80
-				"x": 210
-				"y": 370
-				"height": 30
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "signUpButton"
-				"text": "Sign-up"
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "signUUpButtonMouseClicked", true ) )
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "signUUpButtonMouseClicked", true ) )
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "signUpButtonMouseClicked", true ) )
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 80
-				"height": 30
-				"x": 65
-				"y": 370
-			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "forgotPassLabel"
 				"text": "Forgot Password?"
@@ -97,6 +75,21 @@ new FormModel {
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 65
 				"y": 170
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "signInButton"
+				"text": "Sign-In"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "signInButtonMouseClicked", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 210
+				"y": 370
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "signUpButton"
+				"text": "Sign-Up"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 65
+				"y": 370
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 375, 80 )

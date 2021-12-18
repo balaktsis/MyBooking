@@ -1,15 +1,13 @@
 package LoginSystem;
 
-import java.awt.event.*;
 import Users.User;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Objects;
 
 /**
  * @author Christos Balaktsis
@@ -30,14 +28,14 @@ public class LoginScreen extends LoginSystem {
         usernameField.requestFocusInWindow();
     }
 
-    private void signInButtonMouseClicked() {
+    private void signInButtonMouseClicked(MouseEvent e) {
         User user = LoginSystem.checkUser(usernameField.getText(),String.valueOf(passwordField.getPassword()));
         if(user == null) {
             JOptionPane.showMessageDialog(this.frame1, "Username or password does not match to any" +
                     " existing account!\nPlease try again!","Wrong Credentials", JOptionPane.ERROR_MESSAGE);
-
+            resetLoginWindow();
         }
-         else {
+        else {
             frame1.setVisible(false);
             user.showInterface(false);
             resetLoginWindow();
@@ -45,20 +43,8 @@ public class LoginScreen extends LoginSystem {
         }
     }
 
-    private void signInButtonMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void signInButtonKeyPressed(KeyEvent e) {
-        // TODO add your code here
-    }
-
-    private void signUUpButtonMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void signUpButtonMouseClicked(MouseEvent e) {
-        // TODO add your code here
+    private void usernameFieldFocusGained(FocusEvent e) {
+        passwordField.setText("");
     }
 
 
@@ -71,10 +57,10 @@ public class LoginScreen extends LoginSystem {
         usernameLabel = new JLabel();
         passwordField = new JPasswordField();
         passwordLabel = new JLabel();
-        signInButton = new JButton();
-        signUpButton = new JButton();
         forgotPassLabel = new JLabel();
         welcomeLabel = new JLabel();
+        signInButton = new JButton();
+        signUpButton = new JButton();
 
         //======== frame1 ========
         {
@@ -92,6 +78,14 @@ public class LoginScreen extends LoginSystem {
             logo.setHorizontalAlignment(SwingConstants.CENTER);
             frame1ContentPane.add(logo);
             logo.setBounds(new Rectangle(new Point(115, 30), logo.getPreferredSize()));
+
+            //---- usernameField ----
+            usernameField.addFocusListener(new FocusAdapter() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    usernameFieldFocusGained(e);
+                }
+            });
             frame1ContentPane.add(usernameField);
             usernameField.setBounds(65, 240, 225, 35);
 
@@ -108,36 +102,6 @@ public class LoginScreen extends LoginSystem {
             passwordLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
             frame1ContentPane.add(passwordLabel);
             passwordLabel.setBounds(70, 275, 70, 25);
-
-            //---- signInButton ----
-            signInButton.setText("Sign-in");
-            signInButton.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    signInButtonMouseClicked(e);
-                }
-            });
-            signInButton.addKeyListener(new KeyAdapter() {
-                @Override
-                public void keyPressed(KeyEvent e) {
-                    signInButtonKeyPressed(e);
-                }
-            });
-            frame1ContentPane.add(signInButton);
-            signInButton.setBounds(210, 370, 80, 30);
-
-            //---- signUpButton ----
-            signUpButton.setText("Sign-up");
-            signUpButton.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    signUUpButtonMouseClicked(e);
-                    signUUpButtonMouseClicked(e);
-                    signUpButtonMouseClicked(e);
-                }
-            });
-            frame1ContentPane.add(signUpButton);
-            signUpButton.setBounds(65, 370, 80, 30);
 
             //---- forgotPassLabel ----
             forgotPassLabel.setText("Forgot Password?");
@@ -159,6 +123,22 @@ public class LoginScreen extends LoginSystem {
             frame1ContentPane.add(welcomeLabel);
             welcomeLabel.setBounds(new Rectangle(new Point(65, 170), welcomeLabel.getPreferredSize()));
 
+            //---- signInButton ----
+            signInButton.setText("Sign-In");
+            signInButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    signInButtonMouseClicked(e);
+                }
+            });
+            frame1ContentPane.add(signInButton);
+            signInButton.setBounds(new Rectangle(new Point(210, 370), signInButton.getPreferredSize()));
+
+            //---- signUpButton ----
+            signUpButton.setText("Sign-Up");
+            frame1ContentPane.add(signUpButton);
+            signUpButton.setBounds(new Rectangle(new Point(65, 370), signUpButton.getPreferredSize()));
+
             {
                 // compute preferred size
                 Dimension preferredSize = new Dimension();
@@ -179,6 +159,9 @@ public class LoginScreen extends LoginSystem {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
         frame1.setVisible(true);
         frame1.setTitle("MyBooking");
+        usernameField.requestFocusInWindow();
+        usernameField.addActionListener(e -> signInButtonMouseClicked(null));
+        passwordField.addActionListener(e -> signInButtonMouseClicked(null));
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
@@ -189,9 +172,9 @@ public class LoginScreen extends LoginSystem {
     private JLabel usernameLabel;
     private JPasswordField passwordField;
     private JLabel passwordLabel;
-    private JButton signInButton;
-    private JButton signUpButton;
     private JLabel forgotPassLabel;
     private JLabel welcomeLabel;
+    private JButton signInButton;
+    private JButton signUpButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

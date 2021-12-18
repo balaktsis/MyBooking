@@ -10,6 +10,7 @@ import Users.User;
 
 import Misc.Storage;
 
+import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -37,6 +38,13 @@ public class AppSystem {
      * Initialize constant and temporary fields
      */
     private void initializeApp(){
+        try {
+            // Set System L&F
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        }
+        catch (UnsupportedLookAndFeelException | ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+            // handle exception
+        }
         loginSystem = new LoginSystem(graphical);
         initializeWithTempFields();
     }
