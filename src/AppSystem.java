@@ -23,11 +23,13 @@ import java.util.HashSet;
 public class AppSystem {
 
     LoginSystem loginSystem;
+    boolean graphical;
 
     /**
      * Default constructor for the AppSystem class
      */
-    public AppSystem(){
+    public AppSystem(boolean graphical){
+        this.graphical = graphical;
         initializeApp();
     }
 
@@ -35,7 +37,7 @@ public class AppSystem {
      * Initialize constant and temporary fields
      */
     private void initializeApp(){
-        loginSystem = new LoginSystem(false);
+        loginSystem = new LoginSystem(graphical);
         initializeWithTempFields();
     }
 

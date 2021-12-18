@@ -135,7 +135,7 @@ public class LoginSystem {
      * @param pass Provided password.
      * @return if user with username=name and password=pass is already registered.
      */
-    private User checkUser(String name, String pass) {
+    protected static User checkUser(String name, String pass) {
         User tempUser = new User(name, pass);
         for(User user : Storage.getUsers())
             if(user.equals(tempUser)) return user;
@@ -213,7 +213,7 @@ public class LoginSystem {
     }
 
     private void graphicalLoginScreen() {
-        //TODO: implement in the second part of the assignment
+       new LoginScreen();
     }
 
 }

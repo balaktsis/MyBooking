@@ -1,0 +1,103 @@
+JFDML JFormDesigner: "7.0.5.0.404" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+			name: "frame1"
+			"defaultCloseOperation": 3
+			"alwaysOnTop": true
+			"background": new java.awt.Color( 255, 255, 255, 255 )
+			"$sizePolicy": 1
+			"title": "MyBooking"
+			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/Misc/images/logoIcon.png" )
+			"resizable": false
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "logo"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/Misc/images/logoIcon.png" )
+				"horizontalAlignment": 0
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 115
+				"y": 30
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "usernameField"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 225
+				"height": 35
+				"x": 65
+				"y": 240
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "usernameLabel"
+				"text": "Username"
+				"font": &Font0 new java.awt.Font( "Segoe UI", 0, 14 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 70
+				"height": 25
+				"x": 70
+				"y": 215
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "passwordField"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 225
+				"height": 35
+				"x": 65
+				"y": 300
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "passwordLabel"
+				"text": "Password"
+				"font": #Font0
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 70
+				"height": 25
+				"x": 70
+				"y": 275
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "signInButton"
+				"text": "Sign-in"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "signInButtonMouseClicked", true ) )
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "signInButtonKeyPressed", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 80
+				"x": 210
+				"y": 370
+				"height": 30
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "signUUpButton"
+				"text": "Sign-up"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 80
+				"height": 30
+				"x": 65
+				"y": 370
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "forgotPassLabel"
+				"text": "Forgot Password?"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, -2, false )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "forgotPassLabelMouseClicked", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 210
+				"y": 340
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "welcomeLabel"
+				"text": "Welcome to MyBooking!"
+				"background": new java.awt.Color( 255, 255, 255, 255 )
+				"font": new java.awt.Font( "Montserrat ExtraBold", 0, 16 )
+				"foreground": new java.awt.Color( 16, 143, 233, 255 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 65
+				"y": 170
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 375, 80 )
+			"size": new java.awt.Dimension( 355, 485 )
+		} )
+	}
+}
