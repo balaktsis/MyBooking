@@ -1,5 +1,6 @@
 package LoginSystem;
 
+import java.awt.event.*;
 import Users.User;
 
 import javax.swing.*;
@@ -44,6 +45,22 @@ public class LoginScreen extends LoginSystem {
         }
     }
 
+    private void signInButtonMouseClicked(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void signInButtonKeyPressed(KeyEvent e) {
+        // TODO add your code here
+    }
+
+    private void signUUpButtonMouseClicked(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void signUpButtonMouseClicked(MouseEvent e) {
+        // TODO add your code here
+    }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -55,7 +72,7 @@ public class LoginScreen extends LoginSystem {
         passwordField = new JPasswordField();
         passwordLabel = new JLabel();
         signInButton = new JButton();
-        signUUpButton = new JButton();
+        signUpButton = new JButton();
         forgotPassLabel = new JLabel();
         welcomeLabel = new JLabel();
 
@@ -65,40 +82,18 @@ public class LoginScreen extends LoginSystem {
             frame1.setAlwaysOnTop(true);
             frame1.setBackground(Color.white);
             frame1.setTitle("MyBooking");
-            try { frame1.setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Misc/images/logoIcon.png"))).getImage());
-            } catch (NullPointerException ignored) {}
+            frame1.setIconImage(new ImageIcon(getClass().getResource("/Misc/images/logoIcon.png")).getImage());
             frame1.setResizable(false);
             var frame1ContentPane = frame1.getContentPane();
             frame1ContentPane.setLayout(null);
 
             //---- logo ----
-            try {
-                logo.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Misc/images/logoIcon.png"))));
-                logo.setHorizontalAlignment(SwingConstants.CENTER);
-                frame1ContentPane.add(logo);
-                logo.setBounds(new Rectangle(new Point(115, 30), logo.getPreferredSize()));
-            } catch (NullPointerException e) { logo.setText("MyBooking"); }
-
-            //---- usernameField ----
+            logo.setIcon(new ImageIcon(getClass().getResource("/Misc/images/logoIcon.png")));
+            logo.setHorizontalAlignment(SwingConstants.CENTER);
+            frame1ContentPane.add(logo);
+            logo.setBounds(new Rectangle(new Point(115, 30), logo.getPreferredSize()));
             frame1ContentPane.add(usernameField);
             usernameField.setBounds(65, 240, 225, 35);
-            usernameField.addActionListener(e -> signInButtonMouseClicked());
-            usernameField.getDocument().addDocumentListener(new DocumentListener() {
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    passwordField.setText("");
-                }
-
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    passwordField.setText("");
-                }
-
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    passwordField.setText("");
-                }
-            });
 
             //---- usernameLabel ----
             usernameLabel.setText("Username");
@@ -107,7 +102,6 @@ public class LoginScreen extends LoginSystem {
             usernameLabel.setBounds(70, 215, 70, 25);
             frame1ContentPane.add(passwordField);
             passwordField.setBounds(65, 300, 225, 35);
-            passwordField.addActionListener(e -> signInButtonMouseClicked());
 
             //---- passwordLabel ----
             passwordLabel.setText("Password");
@@ -120,16 +114,30 @@ public class LoginScreen extends LoginSystem {
             signInButton.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    signInButtonMouseClicked();
+                    signInButtonMouseClicked(e);
+                }
+            });
+            signInButton.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    signInButtonKeyPressed(e);
                 }
             });
             frame1ContentPane.add(signInButton);
             signInButton.setBounds(210, 370, 80, 30);
 
-            //---- signUUpButton ----
-            signUUpButton.setText("Sign-up");
-            frame1ContentPane.add(signUUpButton);
-            signUUpButton.setBounds(65, 370, 80, 30);
+            //---- signUpButton ----
+            signUpButton.setText("Sign-up");
+            signUpButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    signUUpButtonMouseClicked(e);
+                    signUUpButtonMouseClicked(e);
+                    signUpButtonMouseClicked(e);
+                }
+            });
+            frame1ContentPane.add(signUpButton);
+            signUpButton.setBounds(65, 370, 80, 30);
 
             //---- forgotPassLabel ----
             forgotPassLabel.setText("Forgot Password?");
@@ -173,6 +181,8 @@ public class LoginScreen extends LoginSystem {
         frame1.setTitle("MyBooking");
     }
 
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+    // Generated using JFormDesigner Evaluation license - Christos Balaktsis
     private JFrame frame1;
     private JLabel logo;
     private JTextField usernameField;
@@ -180,7 +190,7 @@ public class LoginScreen extends LoginSystem {
     private JPasswordField passwordField;
     private JLabel passwordLabel;
     private JButton signInButton;
-    private JButton signUUpButton;
+    private JButton signUpButton;
     private JLabel forgotPassLabel;
     private JLabel welcomeLabel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
