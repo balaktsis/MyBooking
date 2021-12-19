@@ -8,6 +8,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * @author Christos Balaktsis
@@ -29,17 +31,21 @@ public class LoginScreen extends LoginSystem {
     }
 
     private void signInButtonMouseClicked(MouseEvent e) {
-        User user = LoginSystem.checkUser(usernameField.getText(),String.valueOf(passwordField.getPassword()));
+        User user = LoginSystem.checkUser(usernameField.getText(), Arrays.toString(passwordField.getPassword()));
         if(user == null) {
             JOptionPane.showMessageDialog(this.frame1, "Username or password does not match to any" +
                     " existing account!\nPlease try again!","Wrong Credentials", JOptionPane.ERROR_MESSAGE);
             resetLoginWindow();
         }
         else {
-            frame1.setVisible(false);
-            user.showInterface(false);
+            if (user.getApprovalStatus()) {
+                frame1.dispose();
+                user.showInterface(false);
+            }
+            else
+                JOptionPane.showMessageDialog(this.frame1, "Your account has not been activated yet." +
+                        "\nTry again later!","Unapproved Account", JOptionPane.INFORMATION_MESSAGE);
             resetLoginWindow();
-            frame1.setVisible(true);
         }
     }
 
@@ -47,9 +53,25 @@ public class LoginScreen extends LoginSystem {
         passwordField.setText("");
     }
 
+    private void signUpButtonMouseClicked(MouseEvent e) {
+        accountType.setVisible(true);
+        frame1.setVisible(false);
+    }
+
+    private void signUpFormButtonMouseClicked(MouseEvent e) {
+        String role = Objects.requireNonNull(reqRole.getSelectedItem()).toString();
+        accountType.setVisible(false);
+        switch (role) {
+            case "ADMINISTRATOR" -> new AdminForm();
+         //   case "CUSTOMER" -> new CustomerForm();
+         //   case "LANDLORD" -> new LandlordForm();
+        }
+
+    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+        // Generated using JFormDesigner Evaluation license - Christos Balaktsis
         frame1 = new JFrame();
         logo = new JLabel();
         usernameField = new JTextField();
@@ -60,6 +82,10 @@ public class LoginScreen extends LoginSystem {
         welcomeLabel = new JLabel();
         signInButton = new JButton();
         signUpButton = new JButton();
+        accountType = new JDialog();
+        reqRole = new JComboBox();
+        chooseRoleLabel = new JLabel();
+        signUpFormButton = new JButton();
 
         //======== frame1 ========
         {
@@ -135,6 +161,12 @@ public class LoginScreen extends LoginSystem {
 
             //---- signUpButton ----
             signUpButton.setText("Sign-Up");
+            signUpButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    signUpButtonMouseClicked(e);
+                }
+            });
             frame1ContentPane.add(signUpButton);
             signUpButton.setBounds(new Rectangle(new Point(65, 370), signUpButton.getPreferredSize()));
 
@@ -155,15 +187,68 @@ public class LoginScreen extends LoginSystem {
             frame1.setSize(355, 485);
             frame1.setLocationRelativeTo(frame1.getOwner());
         }
+
+        //======== accountType ========
+        {
+            accountType.setTitle("Account type");
+            accountType.setBackground(Color.white);
+            accountType.setName("accountType");
+            accountType.setAlwaysOnTop(true);
+            accountType.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            var accountTypeContentPane = accountType.getContentPane();
+            accountTypeContentPane.setLayout(null);
+            accountTypeContentPane.add(reqRole);
+            reqRole.setBounds(35, 40, 124, reqRole.getPreferredSize().height);
+
+            //---- chooseRoleLabel ----
+            chooseRoleLabel.setText("Choose the type of account you want to create:");
+            accountTypeContentPane.add(chooseRoleLabel);
+            chooseRoleLabel.setBounds(new Rectangle(new Point(15, 15), chooseRoleLabel.getPreferredSize()));
+
+            //---- signUpFormButton ----
+            signUpFormButton.setText("Next");
+            signUpFormButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    signUpFormButtonMouseClicked(e);
+                }
+            });
+            accountTypeContentPane.add(signUpFormButton);
+            signUpFormButton.setBounds(new Rectangle(new Point(165, 40), signUpFormButton.getPreferredSize()));
+
+            {
+                // compute preferred size
+                Dimension preferredSize = new Dimension();
+                for(int i = 0; i < accountTypeContentPane.getComponentCount(); i++) {
+                    Rectangle bounds = accountTypeContentPane.getComponent(i).getBounds();
+                    preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+                    preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+                }
+                Insets insets = accountTypeContentPane.getInsets();
+                preferredSize.width += insets.right;
+                preferredSize.height += insets.bottom;
+                accountTypeContentPane.setMinimumSize(preferredSize);
+                accountTypeContentPane.setPreferredSize(preferredSize);
+            }
+            accountType.setSize(280, 120);
+            accountType.setLocationRelativeTo(accountType.getOwner());
+        }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
         frame1.setVisible(true);
         frame1.setTitle("MyBooking");
         usernameField.requestFocusInWindow();
         usernameField.addActionListener(e -> signInButtonMouseClicked(null));
         passwordField.addActionListener(e -> signInButtonMouseClicked(null));
+
+        for(Roles role : Roles.values()) {
+            reqRole.addItem(role.toString());
+        }
+        accountType.setIconImage(frame1.getIconImage());
+        accountType.setVisible(false);
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+    // Generated using JFormDesigner Evaluation license - Christos Balaktsis
     private JFrame frame1;
     private JLabel logo;
     private JTextField usernameField;
@@ -174,5 +259,9 @@ public class LoginScreen extends LoginSystem {
     private JLabel welcomeLabel;
     private JButton signInButton;
     private JButton signUpButton;
+    private JDialog accountType;
+    private JComboBox reqRole;
+    private JLabel chooseRoleLabel;
+    private JButton signUpFormButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

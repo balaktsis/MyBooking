@@ -116,7 +116,7 @@ public class LoginSystem {
      * @param name Provided username for checking.
      * @return if the username is in use.
      */
-    private boolean checkUsername(String name) {
+    protected static boolean checkUsername(String name) {
         for(User user : Storage.getUsers())
             if(Objects.equals(user.getUsername(), name)) return true;
         return false;
@@ -126,7 +126,7 @@ public class LoginSystem {
      * @param pass Provided password for formula checking.
      * @return if the password meets specific conditions: must contain at least one digit and has length between 6 and 20 characters.
      */
-    private boolean checkPassword(String pass) {
+    protected static boolean checkPassword(String pass) {
         return !pass.matches(".*[0-9]+.*") || pass.length() < 6 || pass.length() > 20;
     }
 
