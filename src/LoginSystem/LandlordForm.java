@@ -1,26 +1,24 @@
 /*
- * Created by JFormDesigner on Sat Dec 18 20:59:52 EET 2021
+ * Created by JFormDesigner on Sun Dec 19 23:59:37 EET 2021
  */
 
 package LoginSystem;
 
 import Misc.Storage;
-import Users.Administrator;
+import Users.Landlord;
 
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Arrays;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Arrays;
-
 
 /**
  * @author Christos Balaktsis
  */
-public class AdminForm extends LoginSystem {
-    public AdminForm() {
+public class LandlordForm extends LoginSystem {
+    public LandlordForm() {
         super(true);
         initComponents();
     }
@@ -30,8 +28,9 @@ public class AdminForm extends LoginSystem {
     }
 
     private void createButtonMouseClicked(MouseEvent e) {
-        if(!invalidUsernameLabel.isVisible() && !invalidPasswordLabel.isVisible() && !wrongPasswordLabel.isVisible() && usernameField.getText().length()*passwordField.getPassword().length*fullnameField.getText().length()>0) {
-            Administrator user = new Administrator(usernameField.getText(), new String(passwordField.getPassword()));
+        if(!invalidUsernameLabel.isVisible() && !invalidPasswordLabel.isVisible() && !wrongPasswordLabel.isVisible() && usernameField.getText().length()*passwordField.getPassword().length*fullnameField.getText().length()*baseField.getText().length()>0) {
+            Landlord user = new Landlord(usernameField.getText(), new String(passwordField.getPassword()));
+            user.setBase(baseField.getText());
             user.setFullName(fullnameField.getText());
             Storage.getUsers().add(user);
             JOptionPane.showMessageDialog(frame2,"Thank you for registering in MyBooking!" +
@@ -48,7 +47,6 @@ public class AdminForm extends LoginSystem {
         frame2.dispose();
         new LoginScreen();
     }
-
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Christos Balaktsis
@@ -69,6 +67,8 @@ public class AdminForm extends LoginSystem {
         title = new JLabel();
         invalidPasswordLabel = new JLabel();
         invalidUsernameLabel = new JLabel();
+        baseLabel = new JLabel();
+        baseField = new JTextField();
 
         //======== frame2 ========
         {
@@ -85,7 +85,7 @@ public class AdminForm extends LoginSystem {
             logo.setIcon(new ImageIcon(getClass().getResource("/Misc/images/logoIcon.png")));
             logo.setHorizontalAlignment(SwingConstants.CENTER);
             frame2ContentPane.add(logo);
-            logo.setBounds(130, 345, 125, 110);
+            logo.setBounds(130, 365, 125, 110);
             frame2ContentPane.add(usernameField);
             usernameField.setBounds(150, 95, 175, 30);
 
@@ -134,7 +134,7 @@ public class AdminForm extends LoginSystem {
                 }
             });
             frame2ContentPane.add(createButton);
-            createButton.setBounds(210, 300, 115, 35);
+            createButton.setBounds(210, 335, 115, 35);
 
             //---- cancelButton ----
             cancelButton.setText("Cancel");
@@ -146,7 +146,7 @@ public class AdminForm extends LoginSystem {
                 }
             });
             frame2ContentPane.add(cancelButton);
-            cancelButton.setBounds(50, 300, 95, 35);
+            cancelButton.setBounds(50, 335, 95, 35);
 
             //---- wrongPasswordLabel ----
             wrongPasswordLabel.setText("Passwords are not matching.");
@@ -156,7 +156,7 @@ public class AdminForm extends LoginSystem {
             wrongPasswordLabel.setBounds(155, 225, 180, wrongPasswordLabel.getPreferredSize().height);
 
             //---- title ----
-            title.setText("New Administrator User");
+            title.setText("New Customer User");
             title.setFont(title.getFont().deriveFont(title.getFont().getSize() + 6f));
             frame2ContentPane.add(title);
             title.setBounds(new Rectangle(new Point(15, 25), title.getPreferredSize()));
@@ -175,6 +175,13 @@ public class AdminForm extends LoginSystem {
             frame2ContentPane.add(invalidUsernameLabel);
             invalidUsernameLabel.setBounds(155, 125, 180, 15);
 
+            //---- baseLabel ----
+            baseLabel.setText("Base");
+            frame2ContentPane.add(baseLabel);
+            baseLabel.setBounds(50, 290, 100, 30);
+            frame2ContentPane.add(baseField);
+            baseField.setBounds(150, 290, 175, 30);
+
             {
                 // compute preferred size
                 Dimension preferredSize = new Dimension();
@@ -189,7 +196,7 @@ public class AdminForm extends LoginSystem {
                 frame2ContentPane.setMinimumSize(preferredSize);
                 frame2ContentPane.setPreferredSize(preferredSize);
             }
-            frame2.setSize(380, 510);
+            frame2.setSize(380, 515);
             frame2.setLocationRelativeTo(frame2.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -249,6 +256,7 @@ public class AdminForm extends LoginSystem {
         passwordField.addActionListener(e -> createButtonMouseClicked(null));
         repPasswordField.addActionListener(e -> createButtonMouseClicked(null));
         fullnameField.addActionListener(e -> createButtonMouseClicked(null));
+        baseField.addActionListener(e -> createButtonMouseClicked(null));
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
@@ -270,5 +278,7 @@ public class AdminForm extends LoginSystem {
     private JLabel title;
     private JLabel invalidPasswordLabel;
     private JLabel invalidUsernameLabel;
+    private JLabel baseLabel;
+    private JTextField baseField;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

@@ -63,8 +63,8 @@ public class LoginScreen extends LoginSystem {
         accountType.setVisible(false);
         switch (role) {
             case "ADMINISTRATOR" -> new AdminForm();
-         //   case "CUSTOMER" -> new CustomerForm();
-         //   case "LANDLORD" -> new LandlordForm();
+            case "CUSTOMER" -> new CustomerForm();
+            case "LANDLORD" -> new LandlordForm();
         }
 
     }
@@ -157,7 +157,7 @@ public class LoginScreen extends LoginSystem {
                 }
             });
             frame1ContentPane.add(signInButton);
-            signInButton.setBounds(new Rectangle(new Point(210, 370), signInButton.getPreferredSize()));
+            signInButton.setBounds(new Rectangle(new Point(220, 370), signInButton.getPreferredSize()));
 
             //---- signUpButton ----
             signUpButton.setText("Sign-Up");
