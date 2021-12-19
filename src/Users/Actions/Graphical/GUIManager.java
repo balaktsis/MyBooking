@@ -25,8 +25,15 @@ public class GUIManager {
         userGUI.setSize((int)screensize.getWidth()/sizeFactor, (int)screensize.getHeight()/sizeFactor);
         userGUI.setResizable(true);
 
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/Misc/images/logoIcon.png"));
+        userGUI.setIconImage(imageIcon.getImage());
+
+
+
         userGUI.setLocationRelativeTo(null);
         userGUI.setLayout(new BorderLayout());
+
+
 
         JPanel topArea = new JPanel();
         userGUI.add(topArea, BorderLayout.BEFORE_FIRST_LINE);

@@ -18,6 +18,7 @@ public abstract class GUIAction {
             actionArea.removeAll();
             actionArea.revalidate();
             actionArea.repaint();
+            actionArea.setBorder(BorderFactory.createTitledBorder(getName()));
             invoke();
 //                ((JButton)e.getSource()).setEnabled(false);
         });
