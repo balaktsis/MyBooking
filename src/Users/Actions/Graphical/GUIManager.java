@@ -17,7 +17,7 @@ public class GUIManager {
     }
 
     public void showInterface(){
-        userGUI = new JFrame("Mein Booking");
+        userGUI = new JFrame("My Booking");
         userGUI.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -38,12 +38,6 @@ public class GUIManager {
         buttonArea.setBorder(BorderFactory.createTitledBorder("Actions"));
         buttonArea.setLayout(new BoxLayout(buttonArea, BoxLayout.Y_AXIS));
 
-        for (var action : this.guiActions){
-            buttonArea.add(action.makeButton());
-            buttonArea.add(Box.createRigidArea(new Dimension(0, 5)));
-        }
-
-
         JPanel actionArea = new JPanel();
         userGUI.add(actionArea, BorderLayout.CENTER);
         actionArea.setBorder(BorderFactory.createTitledBorder("Main"));
@@ -52,6 +46,12 @@ public class GUIManager {
         userGUI.add(messageArea, BorderLayout.LINE_END);
         messageArea.setBorder(BorderFactory.createTitledBorder("Messages"));
 
+
+        for (var action : this.guiActions){
+            buttonArea.add(action.makeButton());
+            action.setActionArea(actionArea);
+            buttonArea.add(Box.createRigidArea(new Dimension(0, 5)));
+        }
 
 
         actionArea.add(new Button("Test0"));
