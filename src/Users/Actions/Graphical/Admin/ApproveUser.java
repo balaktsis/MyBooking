@@ -2,15 +2,16 @@ package Users.Actions.Graphical.Admin;
 
 import Users.Actions.Graphical.GUIAction;
 
-public class testAction extends GUIAction {
+import javax.swing.*;
 
+public class ApproveUser extends GUIAction {
     @Override
     protected String getName() {
-        return "TestAction";
+        return "Approve User";
     }
 
     @Override
     protected void invoke() {
-
+        actionArea.add(new JLabel("This is the approve user action area!"));
     }
 }

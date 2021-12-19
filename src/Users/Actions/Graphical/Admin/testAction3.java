@@ -10,4 +10,9 @@ public class testAction3 extends GUIAction {
     protected String getName() {
         return "test123";
     }
+
+    @Override
+    protected void invoke() {
+
+    }
 }
