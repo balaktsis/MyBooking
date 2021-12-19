@@ -14,6 +14,7 @@ import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Locale;
 
 /**
  * App System class, initializes the preset fields and controls the visual flow.

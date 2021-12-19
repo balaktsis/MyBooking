@@ -3,7 +3,9 @@ package Users;
 import Booking.BookingEntry;
 import Lodges.Lodge;
 import Misc.Storage;
-import Users.Actions.LandlordCommandLineManager;
+import Users.Actions.CommandLine.CustomerCommandLineManager;
+import Users.Actions.CommandLine.LandlordCommandLineManager;
+import Users.Actions.Graphical.GUIManager;
 
 
 /**
@@ -23,7 +25,8 @@ public class Landlord extends User{
      */
     public Landlord(String username, String password) {
         super(username, password);
-        this.commandLineManager = new LandlordCommandLineManager(this);
+        this.commandLineManager = new CustomerCommandLineManager(this);
+        this.guiManager = new GUIManager(this);
     }
 
     /**

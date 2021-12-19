@@ -1,5 +1,6 @@
 package Users;
-import Users.Actions.AdminCommandLineManager;
+import Users.Actions.CommandLine.AdminCommandLineManager;
+import Users.Actions.Graphical.AdminGUIManager;
 
 /**
  * This is a child of the User class, which contains functionality unique
@@ -19,6 +20,7 @@ public class Administrator extends User{
     public Administrator(String username, String password) {
         super(username, password);
         this.commandLineManager = new AdminCommandLineManager(this);
+        this.guiManager = new AdminGUIManager(this);
     }
 
 

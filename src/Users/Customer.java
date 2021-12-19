@@ -1,6 +1,7 @@
 package Users;
 
-import Users.Actions.CustomerCommandLineManager;
+import Users.Actions.CommandLine.CustomerCommandLineManager;
+import Users.Actions.Graphical.GUIManager;
 
 
 /**
@@ -22,6 +23,7 @@ public class Customer extends User{
     public Customer(String username, String password) {
         super(username, password);
         this.commandLineManager = new CustomerCommandLineManager(this);
+        this.guiManager = new GUIManager(this);
     }
 
     /**

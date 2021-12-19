@@ -3,7 +3,8 @@ package Users;
 import Misc.Message;
 import Misc.Storage;
 import Misc.UniqueIDGenerator;
-import Users.Actions.CommandLineManager;
+import Users.Actions.CommandLine.CommandLineManager;
+import Users.Actions.Graphical.GUIManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class User {
     protected String fullName;
     protected Message[] messages;
     protected CommandLineManager commandLineManager;
+    protected GUIManager guiManager;
 
     /**
      * Primary constructor of a User object, takes in credentials,
@@ -114,16 +116,13 @@ public class User {
      * Get the user interface from the perspective of a user.
      *
      * @param graphical Boolean toggle between graphical interface and command line interface.\n(CLI - False, GUI - True)
-     */
-    public void showInterface(boolean graphical) {
+     */    public void showInterface(boolean graphical) {
         if (graphical) {
-            showGraphicalInterface();
+            guiManager.showInterface();
+        } else {
+            commandLineManager.showInterface();
         }
-        commandLineManager.showCommandlineInterface();
-    }
 
-    protected void showGraphicalInterface() {
-        //TODO 2nd part of the assignment
     }
 
 
