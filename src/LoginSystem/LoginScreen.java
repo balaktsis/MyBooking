@@ -31,7 +31,7 @@ public class LoginScreen extends LoginSystem {
     }
 
     private void signInButtonMouseClicked(MouseEvent e) {
-        User user = LoginSystem.checkUser(usernameField.getText(), Arrays.toString(passwordField.getPassword()));
+        User user = LoginSystem.checkUser(usernameField.getText(), new String(passwordField.getPassword()));
         if(user == null) {
             JOptionPane.showMessageDialog(this.frame1, "Username or password does not match to any" +
                     " existing account!\nPlease try again!","Wrong Credentials", JOptionPane.ERROR_MESSAGE);

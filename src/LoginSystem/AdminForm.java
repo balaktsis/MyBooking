@@ -32,7 +32,7 @@ public class AdminForm extends LoginSystem {
 
     private void createButtonMouseClicked(MouseEvent e) {
         if(!invalidUsernameLabel.isVisible() && !invalidPasswordLabel.isVisible() && !wrongPasswordLabel.isVisible() && usernameField.getText().length()*passwordField.getPassword().length*fullnameField.getText().length()>0) {
-            User user = new Administrator(usernameField.getText(), Arrays.toString(passwordField.getPassword()));
+            User user = new Administrator(usernameField.getText(), new String(passwordField.getPassword()));
             user.setFullName(fullnameField.getText());
             Storage.getUsers().add(user);
             JOptionPane.showMessageDialog(frame2,"Thank you for registering in MyBooking!" +
