@@ -4,19 +4,14 @@ import Users.User;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Arrays;
+import java.awt.event.*;
 import java.util.Objects;
 
 /**
  * @author Christos Balaktsis
  */
-public class LoginScreen extends LoginSystem {
+public class LoginScreen {
     public LoginScreen() {
-        super(true);
         initComponents();
     }
 
@@ -40,7 +35,7 @@ public class LoginScreen extends LoginSystem {
         else {
             if (user.getApprovalStatus()) {
                 frame1.dispose();
-                user.showInterface(false);
+                user.showInterface(true);
             }
             else
                 JOptionPane.showMessageDialog(this.frame1, "Your account has not been activated yet." +
@@ -195,6 +190,11 @@ public class LoginScreen extends LoginSystem {
             accountType.setName("accountType");
             accountType.setAlwaysOnTop(true);
             accountType.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            accountType.addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e) {
+                    frame1.setVisible(true);
+                }
+            });
             var accountTypeContentPane = accountType.getContentPane();
             accountTypeContentPane.setLayout(null);
             accountTypeContentPane.add(reqRole);
@@ -239,6 +239,9 @@ public class LoginScreen extends LoginSystem {
         usernameField.requestFocusInWindow();
         usernameField.addActionListener(e -> signInButtonMouseClicked(null));
         passwordField.addActionListener(e -> signInButtonMouseClicked(null));
+        signInButton.addActionListener(e -> signInButtonMouseClicked(null));
+        signUpButton.addActionListener(e -> signUpButtonMouseClicked(null));
+        signUpFormButton.addActionListener(e ->signUpFormButtonMouseClicked(null));
 
         for(Roles role : Roles.values()) {
             reqRole.addItem(role.toString());
