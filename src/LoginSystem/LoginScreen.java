@@ -4,10 +4,7 @@ import Users.User;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.Objects;
 
 /**
@@ -197,6 +194,13 @@ public class LoginScreen extends LoginSystem {
             var accountTypeContentPane = accountType.getContentPane();
             accountTypeContentPane.setLayout(null);
             accountTypeContentPane.add(reqRole);
+            accountType.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    super.windowClosed(e);
+                    frame1.setVisible(true);
+                }
+            });
             reqRole.setBounds(35, 40, 124, reqRole.getPreferredSize().height);
 
             //---- chooseRoleLabel ----
