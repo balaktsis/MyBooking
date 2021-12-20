@@ -14,6 +14,7 @@ import java.util.Objects;
 
 /**
  * This is a user sign-up abstract class that represents a new account creation form.
+ *
  * @author Christos Balaktsis
  */
 public abstract class UserForm implements MouseListener, ActionListener {

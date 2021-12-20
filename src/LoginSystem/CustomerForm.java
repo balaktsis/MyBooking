@@ -10,6 +10,7 @@ import javax.swing.*;
 
 /**
  * This a new Customer-type user registration form, extending on UserForm abstract class.
+ *
  * @author Christos Balaktsis
  */
 public class CustomerForm extends UserForm {

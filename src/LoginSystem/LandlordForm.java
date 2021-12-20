@@ -10,6 +10,7 @@ import javax.swing.*;
 
 /**
  * This a new Landlord-type user registration form, extending on UserForm abstract class.
+ *
  * @author Christos Balaktsis
  */
 public class LandlordForm extends UserForm {

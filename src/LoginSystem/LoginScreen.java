@@ -8,6 +8,7 @@ import java.awt.event.*;
 import java.util.Objects;
 
 /**
+ *
  * @author Christos Balaktsis
  */
 public class LoginScreen {

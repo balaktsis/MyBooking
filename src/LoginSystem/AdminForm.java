@@ -1,6 +1,5 @@
 package LoginSystem;
 
-import Misc.Storage;
 import Users.Administrator;
 
 import javax.swing.*;
@@ -9,6 +8,7 @@ import java.awt.event.MouseEvent;
 
 /**
  * This a new Administrator-type user registration form, extending on UserForm abstract class.
+ *
  * @author Christos Balaktsis
  */
 public class AdminForm extends UserForm {
