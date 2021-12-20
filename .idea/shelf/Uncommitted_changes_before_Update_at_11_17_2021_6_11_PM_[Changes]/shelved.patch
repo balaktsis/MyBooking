@@ -1,0 +1,312 @@
+Index: src/Users/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Users;\r\nimport Misc.Message;\r\nimport Misc.UniqueIDGenerator;\r\n\r\n/**\r\n * This is a parent User class, which contains core functionality that will be\r\n * present in all types of users of the project\r\n * @author Neron Panagiotopoulos\r\n */\r\n\r\npublic class User {\r\n\r\n    protected final String uid;\r\n    protected boolean approved;\r\n    protected String username, password;\r\n    protected String fullName;\r\n    protected Message[] messages;\r\n\r\n\r\n    /**\r\n     * Primary constructor of a User object, takes in credentials,\r\n     * initializes the class fields and assigns a unique ID to the object\r\n     * @param username Login username of the new user\r\n     * @param password Login password of the new user\r\n     */\r\n    public User(String username, String password){\r\n        this.uid = UniqueIDGenerator.getUniqueId();\r\n        this.username = username;\r\n        this.password = password;\r\n        this.approved = false;\r\n    }\r\n\r\n    /**\r\n     * @return Unique ID assigned to the User object.\r\n     */\r\n    public String getUserId(){\r\n        return this.uid;\r\n    }\r\n\r\n    /**\r\n     * Update the username of the current user.\r\n     * @param username New username for the user\r\n     */\r\n    public void setUsername(String username){\r\n        this.username = username;\r\n    }\r\n\r\n    /**\r\n     * Update the password of the current user.\r\n     * @param password New password for the user\r\n     */\r\n    public void setPassword(String password){\r\n        this.password = password;\r\n    }\r\n\r\n    /**\r\n     * Set the full name of a user\r\n     * @param fullName Setting the full name of a user\r\n     */\r\n    public void setFullName(String fullName){\r\n        this.fullName = fullName;\r\n    }\r\n\r\n    /**\r\n     * Approve or revoke approval of a user\r\n     * @param approvalStatus Setting the approval status of a user\r\n     */\r\n    public void setApprovalStatus(boolean approvalStatus){\r\n        this.approved = approvalStatus;\r\n    }\r\n\r\n    private void updateMessages(){\r\n        //TODO:get list of messages\r\n    }\r\n\r\n    public Message[] getMessages(){\r\n        return messages;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Users/User.java b/src/Users/User.java
+--- a/src/Users/User.java	(revision d700cc5908e4ec98f6e59670a9d0766269860eb9)
++++ b/src/Users/User.java	(date 1637165481232)
+@@ -77,4 +77,6 @@
+         return messages;
+     }
+ 
++    public void consoleMenu() {}
++
+ }
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class Main {\r\n    public static void main(String[] args) {\r\n        System.out.println(\"This is a test class.\");\r\n        AppSystem system = new AppSystem();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+--- a/src/Main.java	(revision d700cc5908e4ec98f6e59670a9d0766269860eb9)
++++ b/src/Main.java	(date 1637162143366)
+@@ -1,6 +1,8 @@
++import LoginSystem.LoginSystem;
++
+ public class Main {
+     public static void main(String[] args) {
+-        System.out.println("This is a test class.");
+         AppSystem system = new AppSystem();
++        LoginSystem.consoleLoginScreen();
+     }
+ }
+Index: src/LoginSystem/PasswordField.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/LoginSystem/PasswordField.java b/src/LoginSystem/PasswordField.java
+new file mode 100644
+--- /dev/null	(date 1637162143351)
++++ b/src/LoginSystem/PasswordField.java	(date 1637162143351)
+@@ -0,0 +1,31 @@
++package LoginSystem;
++
++import java.io.BufferedReader;
++import java.io.IOException;
++import java.io.InputStreamReader;
++
++public class PasswordField {
++
++    /**
++     *@param prompt The prompt to display to the user
++     *@return The password as entered by the user
++     */
++    public static String readPassword (String prompt) {
++        EraserThread et = new EraserThread(prompt);
++        Thread mask = new Thread(et);
++        mask.start();
++
++        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
++        String password = "";
++
++        try {
++            password = in.readLine();
++        } catch (IOException ioe) {
++            ioe.printStackTrace();
++        }
++        // stop masking
++        et.stopMasking();
++        // return the password entered by the user
++        return password;
++    }
++}
+\ No newline at end of file
+Index: src/Lodges/Lodge.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Lodges;\r\n\r\nimport java.awt.*;\r\nimport java.util.ArrayList;\r\nimport java.util.Date;\r\n\r\nimport Users.Landlord;\r\nimport Users.Administrator;\r\n\r\nimport static Misc.UniqueIDGenerator.getUniqueId;\r\n\r\n/**\r\n * This is a Lodge class that represents a lodge for booking. It's defined by details such as\r\n * its owner, location, size and amenities that it offers. Depending on how many people have\r\n * chosen this lodge, it scores a rating on a scale 0-5, following the rating function:\r\n * rate = (current Lodge bookings)/(total Bookings) * 100 mod 6.\r\n * @author Christos Balaktsis\r\n */\r\n\r\npublic class Lodge {\r\n    private Landlord landlord;\r\n    private String location;\r\n    private String description;\r\n    private final String lodgeId;\r\n    private LodgeType type;\r\n    private int rating;\r\n    private int size;\r\n    private int numOfBookings;\r\n    private double price;\r\n    private LodgeAvailability availability;\r\n    private ArrayList<Image> photos;\r\n    private ArrayList<Amenities> amenities;\r\n\r\n    /**\r\n     * Primary constructor of a Lodge object, initializing the class fields, according to the parameters.\r\n     * @param landlord The user owner of the lodge.\r\n     * @param location The place the lodge is located.\r\n     * @param type The type of lodge.\r\n     * @param size Depends: the number of beds.\r\n     * @param price The cost (in euros) of accommodation per night.\r\n     * @param amenities The different amenities offered in the lodge.\r\n     */\r\n    public Lodge(Landlord landlord, String location, LodgeType type, int size, double price, ArrayList<Amenities> amenities) {\r\n        this.landlord = landlord;\r\n        this.location = location;\r\n        this.type = type;\r\n        this.size = size;\r\n        this.price = price;\r\n        this.amenities = amenities;\r\n        this.availability = new LodgeAvailability();\r\n        this.rating = 0;\r\n        this.numOfBookings = 0;\r\n        this.description = null;\r\n        this.lodgeId = getUniqueId();\r\n    }\r\n\r\n    /**\r\n     * Update the user owner of the current lodge.\r\n     * @param landlord New user landlord of the lodge.\r\n     */\r\n    public void setLandlord(Landlord landlord) {\r\n        this.landlord = landlord;\r\n    }\r\n\r\n    /**\r\n     * Update the location of the current lodge.\r\n     * @param location New location of the lodge.\r\n     */\r\n    public void setLocation(String location) {\r\n        this.location = location;\r\n    }\r\n\r\n    /**\r\n     * Update the type of the current lodge.\r\n     * @param type New type of the lodge.\r\n     */\r\n    public void setType(LodgeType type) {\r\n        this.type = type;\r\n    }\r\n\r\n    /**\r\n     * Update the rating score of the current lodge.\r\n     * @param rating New rating for the lodge.\r\n     */\r\n    public void setRating(int rating) {\r\n        this.rating = rating;\r\n    }\r\n\r\n    /**\r\n     * Update the number of beds of the current lodge.\r\n     * @param size New size of the lodge.\r\n     */\r\n    public void setSize(int size) {\r\n        this.size = size;\r\n    }\r\n\r\n    /**\r\n     * Update the cost of accommodation per night of the current lodge.\r\n     * @param price New price of the lodge.\r\n     */\r\n    public void setPrice(double price) {\r\n        this.price = price;\r\n    }\r\n\r\n    /**\r\n     * Update the availability of the current lodge.\r\n     * @param dates Dates the lodge will be available.\r\n     */\r\n    public void setAvailableDates(Date[] dates) {\r\n        this.availability.freeDates(dates);\r\n    }\r\n\r\n    /**\r\n     * Update the description of the current lodge.\r\n     * @param description New description of the lodge.\r\n     */\r\n    public void setDescription(String description) {\r\n        this.description = description;\r\n    }\r\n\r\n    /**\r\n     * Update the amenities list of the current lodge.\r\n     * @param amenities New amenities list of the lodge.\r\n     */\r\n    public void setAmenities(ArrayList<Amenities> amenities) {\r\n        this.amenities = amenities;\r\n    }\r\n\r\n    /**\r\n     * Add an amenity offered the current lodge.\r\n     * @param amenity New amenity added in the list of amenities of the lodge.\r\n     */\r\n    public void addAmenity(Amenities amenity) {\r\n        this.amenities.add(amenity);\r\n    }\r\n\r\n    /**\r\n     * Delete an amenity offered by the current lodge.\r\n     * @param amenity Amenity asked to be removed of the amenities list of the lodge.\r\n     */\r\n    public void removeAmenity(Amenities amenity) {\r\n        this.amenities.remove(amenity);\r\n    }\r\n\r\n    /**\r\n     * Update the photograph list of the current lodge.\r\n     * @param photos New photograph list of the lodge.\r\n     */\r\n    public void setPhotos(ArrayList<Image> photos) {\r\n        this.photos = photos;\r\n    }\r\n\r\n    /**\r\n     * Add a new image of the current lodge.\r\n     * @param photo New photograph added in the list of photos of the lodge.\r\n     */\r\n    public void addPhoto(Image photo) {\r\n        this.photos.add(photo);\r\n    }\r\n\r\n    /**\r\n     * Delete an image of the current lodge.\r\n     * @param photo Image asked to be removed of the photos list of the lodge.\r\n     */\r\n    public void removePhoto(Image photo) {\r\n        this.photos.remove(photo);\r\n    }\r\n\r\n    /**\r\n     * Update the number of rents of the current lodge.\r\n     * @param numOfBookings New number of total Bookings of the current lodge.\r\n     */\r\n    public void setNumOfBookings(int numOfBookings) {\r\n        this.numOfBookings = numOfBookings;\r\n    }\r\n\r\n    /**\r\n     * @return the number of planned bookings of the current lodge.\r\n     */\r\n    public int getNumOfBookings() {\r\n        return this.numOfBookings;\r\n    }\r\n\r\n    /**\r\n     * @return the landlord user of the current lodge.\r\n     */\r\n    public Landlord getLandlord() {\r\n        return this.landlord;\r\n    }\r\n\r\n    /**\r\n     * @return the location of the current lodge.\r\n     */\r\n    public String getLocation() {\r\n        return this.location;\r\n    }\r\n\r\n    /**\r\n     * @return the description of the current lodge.\r\n     */\r\n    public String getDescription() {\r\n        return this.description;\r\n    }\r\n\r\n    /**\r\n     * @return the lodge type of the current lodge.\r\n     */\r\n    public LodgeType getType() {\r\n        return this.type;\r\n    }\r\n\r\n    /**\r\n     * @return the rating status of the current lodge.\r\n     */\r\n    public int getRating() {\r\n        return this.rating;\r\n    }\r\n\r\n    /**\r\n     * @return the number of beds of the current lodge.\r\n     */\r\n    public int getSize() {\r\n        return this.size;\r\n    }\r\n\r\n    /**\r\n     * @return the accommodation cost per night of the current lodge.\r\n     */\r\n    public double getPrice() {\r\n        return this.price;\r\n    }\r\n\r\n    /**\r\n     * @return the availability calendar (object) of the current lodge.\r\n     */\r\n    public LodgeAvailability getAvailability() {\r\n        return this.availability;\r\n    }\r\n\r\n    /**\r\n     * @return the list of photographs of the current lodge.\r\n     */\r\n    public ArrayList<Image> getPhotos() {\r\n        return this.photos;\r\n    }\r\n\r\n    /**\r\n     * @return the list of provided amenities of the current lodge.\r\n     */\r\n    public ArrayList<Amenities> getAmenities() {\r\n        return this.amenities;\r\n    }\r\n\r\n    /**\r\n     * @return the ID of the current lodge.\r\n     */\r\n    public String getLodgeId() {\r\n        return this.lodgeId;\r\n    }\r\n\r\n    /**\r\n     * Signals the booking status of the current lodge after being asked to get booked.\r\n     * In case of new booking, it updates the availability status for the requested period\r\n     * and rating of the lodge.\r\n     * @param dates A list of following days, the period of booking the current lodge.\r\n     * @return if the current lodge is available for booking for the dates in \"dates\".\r\n     */\r\n    public boolean bookLodge(Date[] dates) {\r\n        if(this.availability.markDates(dates)) {\r\n            this.rating = ((int) (1.0 * (this.numOfBookings++) / Administrator.getTotalBookings() * 100) % 6);\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Lodges/Lodge.java b/src/Lodges/Lodge.java
+--- a/src/Lodges/Lodge.java	(revision d700cc5908e4ec98f6e59670a9d0766269860eb9)
++++ b/src/Lodges/Lodge.java	(date 1637150611530)
+@@ -36,7 +36,7 @@
+      * @param landlord The user owner of the lodge.
+      * @param location The place the lodge is located.
+      * @param type The type of lodge.
+-     * @param size Depends: the number of beds.
++     * @param size The number of beds.
+      * @param price The cost (in euros) of accommodation per night.
+      * @param amenities The different amenities offered in the lodge.
+      */
+@@ -267,7 +267,7 @@
+      */
+     public boolean bookLodge(Date[] dates) {
+         if(this.availability.markDates(dates)) {
+-            this.rating = ((int) (1.0 * (this.numOfBookings++) / Administrator.getTotalBookings() * 100) % 6);
++            this.rating = ((int) (1.0 * (++this.numOfBookings) / Administrator.getTotalBookings() * 100) % 6);
+             return true;
+         }
+         return false;
+Index: src/LoginSystem/Roles.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/LoginSystem/Roles.java b/src/LoginSystem/Roles.java
+new file mode 100644
+--- /dev/null	(date 1637162937448)
++++ b/src/LoginSystem/Roles.java	(date 1637162937448)
+@@ -0,0 +1,16 @@
++package LoginSystem;
++
++import java.util.ArrayList;
++
++public enum Roles {
++    ADMINISTRATOR, LANDLORD, CUSTOMER;
++
++    public static boolean isRole(String value) {
++        ArrayList<String> roles = new ArrayList<>();
++        for(Roles role : Roles.values())
++            roles.add(role.toString());
++        for (String role : roles)
++            if(role.equals(value)) return true;
++        return false;
++    }
++}
+Index: src/LoginSystem/EraserThread.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/LoginSystem/EraserThread.java b/src/LoginSystem/EraserThread.java
+new file mode 100644
+--- /dev/null	(date 1637162143371)
++++ b/src/LoginSystem/EraserThread.java	(date 1637162143371)
+@@ -0,0 +1,34 @@
++package LoginSystem;
++
++public class EraserThread implements Runnable {
++    private boolean stop;
++
++    /**
++     * @param prompt The prompt displayed to the user
++     */
++    public EraserThread(String prompt) {
++        System.out.print(prompt);
++    }
++
++    /**
++     * Begin masking...display asterisks (*)
++     */
++    public void run () {
++        stop = true;
++        while (stop) {
++            System.out.print("\010*");
++            try {
++                Thread.currentThread().sleep(1);
++            } catch(InterruptedException ie) {
++                ie.printStackTrace();
++            }
++        }
++    }
++
++    /**
++     * Instruct the thread to stop masking
++     */
++    public void stopMasking() {
++        this.stop = false;
++    }
++}
+\ No newline at end of file
+Index: src/LoginSystem/LoginSystem.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/LoginSystem/LoginSystem.java b/src/LoginSystem/LoginSystem.java
+new file mode 100644
+--- /dev/null	(date 1637165481232)
++++ b/src/LoginSystem/LoginSystem.java	(date 1637165481232)
+@@ -0,0 +1,124 @@
++package LoginSystem;
++
++
++import Users.Administrator;
++import Users.Customer;
++import Users.Landlord;
++import Users.User;
++
++import java.util.Locale;
++import java.util.Objects;
++import java.util.Scanner;
++
++/**
++ * This class represents a Login-info System, via which the users will create a new account on the system, or log-in to
++ * their one. After setting up a new account, the system pauses until an administrator approves their registration. After
++ * signing-in to their account, the past users have access to the available actions according to their role in the
++ * system (admin, customer, landlord).
++ * @author Christos Balaktsis
++ */
++
++
++public class LoginSystem {
++    private static final String frame = "===============================";
++
++    private static void invalidInput() {
++        System.out.println("****\nInvalid input! Please, try again.****\n");
++    }
++
++    private static int welcomeMessageConsole() {
++        System.out.println(frame);
++        System.out.println("Welcome to MyBooking!");
++        System.out.println(frame);
++        System.out.print("Press [1] to create a new account, [2] to sign in or [3] to exit: ");
++        return getChoice();
++    }
++
++    private static User registerUserConsole() {
++        Scanner input = new Scanner(System.in);
++        String username, password, reqRole;
++        User user = null;
++        System.out.println("\nPlease, provide the following information and your account will be activated soon!");
++
++        System.out.print("Username: ");
++        username = input.nextLine();
++
++        password = PasswordField.readPassword("Password: ");
++
++        System.out.print("Address: ");
++        ///  user.setAddress(input.nextLine());
++
++        System.out.print("Telephone: +");
++        //  user.setTelephone(input.nextInt());
++
++        System.out.print("Email: ");
++        //  user.setEmail(input.nextLine());
++
++        System.out.print("Role (Admin | Customer | Landlord): ");
++        do {
++            reqRole = input.nextLine().toUpperCase(Locale.ROOT);
++            if(!Roles.isRole(reqRole)) invalidInput();
++        } while(!Roles.isRole(reqRole));
++
++        switch (reqRole) {
++            case "ADMIN" -> user = new Administrator(username, password);
++            case "LANDLORD" -> user = new Landlord(username, password);
++            case "CUSTOMER" -> user = new Customer(username, password);
++        }
++
++        System.out.println("Are you sure you want to create a new account with the following credentials?");
++        System.out.println(frame);
++        System.out.println("Username\t" + username);
++        System.out.println("Password\t" + password);
++        System.out.println(frame);
++        System.out.println("Press [1] for \"yes\", [2] for \"canceling\".");
++        if(getChoice() == 1) System.out.println("Welcome to MyBooking " + username + " !\n An administrator will activate your account soon.");
++        return user;
++    }
++
++    private static int getChoice() {
++        Scanner input = new Scanner(System.in);
++        String in = input.nextLine();
++        while(!Objects.equals(in, "1") && !Objects.equals(in, "2") && !Objects.equals(in, "3")) {
++            invalidInput();
++            in = input.nextLine();
++        }
++        return Integer.parseInt(in);
++}
++
++
++    public static void consoleLoginScreen() {
++        User user;
++        int choice;
++        while ((choice = welcomeMessageConsole())!=3) {
++            switch (choice) {
++                case 1:                                                                                                     //Create a new account
++                    user = registerUserConsole();
++                    if(user == null) continue;
++                    user.consoleMenu();
++                    break;
++                case 2:
++               /* System.out.println("Please, log-in with your account details.");
++                int checks = 0;
++                do {
++                    if (checks != 0)
++                        System.out.println("Wrong Details. " + (4-checks) + " times remaining. Try again.\n");
++                    System.out.print("Username: ");
++                    username = input.nextLine();
++                    System.out.print("Password: ");
++                    checks++;
++                } while ((loggedUser = checkUser(username, password)) == null && checks <= 3);
++                if (checks > 3) {
++                    System.out.println("Contact administrator!");
++                    return;
++                }*/
++                break;
++            default:
++                return;
++        }
++
++    }
++
++    public static void graphicalLoginScreen(){}
++
++}
