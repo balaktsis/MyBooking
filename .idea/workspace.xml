@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e16ae03-8dbc-4789-8a8c-97bbcda819ac" name="Changes" comment="LoginSystem GUI bug fixed">
+    <list default="true" id="6e16ae03-8dbc-4789-8a8c-97bbcda819ac" name="Changes" comment="LoginSystem GUI added minor feature.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyBooking/LoginSystem/AdminForm.jfd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyBooking/LoginSystem/CustomerForm.jfd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyBooking/LoginSystem/LandlordForm.jfd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyBooking/LoginSystem/LoginScreen.jfd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LoginSystem/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginSystem/LoginScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LoginSystem/UserForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginSystem/UserForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +55,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/mybooking-christos-neron" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -113,6 +111,8 @@
       <workItem from="1639961917745" duration="16000" />
       <workItem from="1639962020133" duration="9000" />
       <workItem from="1639962431443" duration="124000" />
+      <workItem from="1639963323391" duration="157000" />
+      <workItem from="1640118199855" duration="907000" />
     </task>
     <task id="LOCAL-00001" summary="Creation of Lodge class and formation of its fields. Includes enum-type fields, implemented in separate java files.">
       <created>1636894804982</created>
@@ -387,7 +387,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639961851993</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="LoginSystem GUI added minor feature.">
+      <created>1639963407153</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1639963407153</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -418,7 +425,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Removed Image collection in lodge class." />
     <MESSAGE value="Small changes in Lodge class." />
     <MESSAGE value="Added toString method in BookingEntry class." />
     <MESSAGE value="Small updates in LoginSystem class." />
@@ -443,6 +449,7 @@
     <MESSAGE value="LoginSystem GUI completed (makeshift version)." />
     <MESSAGE value="LoginSystem GUI optimized" />
     <MESSAGE value="LoginSystem GUI bug fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="LoginSystem GUI bug fixed" />
+    <MESSAGE value="LoginSystem GUI added minor feature." />
+    <option name="LAST_COMMIT_MESSAGE" value="LoginSystem GUI added minor feature." />
   </component>
 </project>

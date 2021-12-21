@@ -13,8 +13,8 @@ import java.util.Objects;
 
 
 /**
- * This is a user sign-up abstract class that represents a new account creation form.
- *
+ * This is a user sign-up abstract class that represents a new account creation form. A new account,
+ * after being created, has to get marked as approved by an administrator, otherwise log-in is prohibited.
  * @author Christos Balaktsis
  */
 public abstract class UserForm implements MouseListener, ActionListener {
@@ -60,7 +60,6 @@ public abstract class UserForm implements MouseListener, ActionListener {
 
         //======== formFrame ========
         formFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        formFrame.setAlwaysOnTop(true);
         formFrame.setBackground(Color.white);
         formFrame.setTitle("MyBooking - Sign-Up");
         formFrame.setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Misc/images/logoIcon.png"))).getImage());
@@ -219,6 +218,7 @@ public abstract class UserForm implements MouseListener, ActionListener {
         passwordField.addActionListener(this);
         repPasswordField.addActionListener(this);
         fullnameField.addActionListener(this);
+        cancelButton.addActionListener(e -> cancelButtonMouseClicked(null));
     }
 
     abstract void createButtonMouseClicked(MouseEvent e);
