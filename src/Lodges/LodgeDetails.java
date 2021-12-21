@@ -1,11 +1,13 @@
 package Lodges;
 
 
+import java.io.Serializable;
+
 /**
  * Class that represents the logistics (details) of a lodge.
  * @author Christos Balaktsis
  */
-public class LodgeDetails {
+public class LodgeDetails implements Serializable {
     protected String location;
     protected String description;
     protected String title;

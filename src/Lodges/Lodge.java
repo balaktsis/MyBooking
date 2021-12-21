@@ -1,5 +1,6 @@
 package Lodges;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +18,7 @@ import static Misc.UniqueIDGenerator.getUniqueId;
  * @author Christos Balaktsis
  */
 
-public class Lodge {
+public class Lodge implements Serializable {
     private final LodgeDetails details;
     private final String lodgeId;
     private final LodgeType type;

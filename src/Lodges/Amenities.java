@@ -1,11 +1,13 @@
 package Lodges;
 
+import java.io.Serializable;
+
 /**
  * This enum consists of a list of different amenities provided in a lodge (property).
  * @author Christos Balaktsis
  */
 
-public enum Amenities {
+public enum Amenities implements Serializable {
     WIFI, PARKING, PET_FRIENDLY, AC, TV, REFRIGERATION,
     MOUNT_VIEW, SEA_VIEW, STREET_VIEW, FREE_CANCEL;
 

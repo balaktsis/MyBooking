@@ -7,6 +7,7 @@ import Users.Customer;
 import static Misc.UniqueIDGenerator.getUniqueId;
 
 import java.awt.print.Book;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,7 +18,7 @@ import java.util.List;
  * @author Christos Balaktsis
  */
 
-public class BookingEntry {
+public class BookingEntry implements Serializable {
 
     private final String bookingId;
     private double totalCost;

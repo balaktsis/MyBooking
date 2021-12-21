@@ -14,11 +14,21 @@ import java.util.HashSet;
 
 public class Storage {
 
-    private static final HashSet<User> users = new HashSet<>();
+    private static HashSet<User> users = new HashSet<>();
 
-    private static final HashSet<Lodge> lodges = new HashSet<>();
+    private static HashSet<Lodge> lodges = new HashSet<>();
 
-    private static final HashSet<BookingEntry> bookings = new HashSet<>();
+    private static HashSet<BookingEntry> bookings = new HashSet<>();
+
+    public static void setUsers(HashSet<User> usersFile) {
+        users = usersFile;
+    }
+    public static void setLodges(HashSet<Lodge> lodgesFile) {
+        lodges = lodgesFile;
+    }
+    public static void setBookings(HashSet<BookingEntry> bookingsFile) {
+        bookings = bookingsFile;
+    }
 
     /**
      * @return A HashSet of all the registered users in the system.

@@ -11,6 +11,7 @@ import Users.User;
 import Misc.Storage;
 
 import javax.swing.*;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -47,7 +48,7 @@ public class AppSystem {
             // handle exception
         }
         loginSystem = new LoginSystem(graphical);
-        initializeWithTempFields();
+        initializeFromFile();
     }
 
     /**
@@ -63,7 +64,7 @@ public class AppSystem {
      */
     private void initializeWithTempFields(){
         //Setting up the users
-        ArrayList<User> users = new ArrayList<>();
+        HashSet<User> users = new HashSet<>();
         var tempAdmin = new Administrator("admin", "password0");
         var tempCustomer = new Customer("customer", "password0");
         var tempLandlord = new Landlord("landlord", "password0");
@@ -104,6 +105,55 @@ public class AppSystem {
         BookingEntry tempBooking = new BookingEntry(tempCustomer, tempLodge);
         tempBooking.bookLodge(LocalDate.now(), LocalDate.now().plusDays(10));
         Storage.getBookings().add(tempBooking);
+
+        HashSet<BookingEntry> bookingEntries = new HashSet<>();
+        bookingEntries.add(tempBooking);
+
+        HashSet<Lodge> lodges = new HashSet<>();
+        lodges.add(tempLodge);
+
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("storedUsers.dat"))) {
+            oos.writeObject(users);
+            oos.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("storedLodges.dat"))) {
+            oos.writeObject(lodges);
+            oos.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("storedBookings.dat"))) {
+            oos.writeObject(bookingEntries);
+            oos.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void initializeFromFile() {
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storedUsers.dat"))) {
+            Storage.setUsers((HashSet<User>) ois.readObject());
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            Storage.setUsers(new HashSet<>());
+        }
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storedLodges.dat"))) {
+            Storage.setLodges((HashSet<Lodge>) ois.readObject());
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            Storage.setLodges(new HashSet<>());
+        }
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storedBookings.dat"))) {
+            Storage.setBookings((HashSet<BookingEntry>) ois.readObject());
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            Storage.setBookings(new HashSet<>());
+        }
     }
 
 }

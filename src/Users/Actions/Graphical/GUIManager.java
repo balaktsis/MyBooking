@@ -4,9 +4,11 @@ import Users.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
+import java.util.Objects;
 
 
-public class GUIManager {
+public class GUIManager implements Serializable {
 
     protected User parentUser;
     protected GUIAction[] guiActions;
@@ -25,7 +27,7 @@ public class GUIManager {
         userGUI.setSize((int)screensize.getWidth()/sizeFactor, (int)screensize.getHeight()/sizeFactor);
         userGUI.setResizable(true);
 
-        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/Misc/images/logoIcon.png"));
+        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Misc/images/logoIcon.png")));
         userGUI.setIconImage(imageIcon.getImage());
 
 

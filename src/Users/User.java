@@ -12,6 +12,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ import java.util.List;
  * @author Neron Panagiotopoulos
  */
 
-public class User {
+public class User implements Serializable {
 
     protected final String uid;
     protected boolean approved;

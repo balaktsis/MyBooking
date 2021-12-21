@@ -1,5 +1,6 @@
 package Lodges;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 
@@ -9,7 +10,7 @@ import java.util.HashSet;
  * @author Christos Balaktsis
  */
 
-public class LodgeAvailability {
+public class LodgeAvailability implements Serializable {
     HashSet<LocalDate> bookCalendar;
 
     /**

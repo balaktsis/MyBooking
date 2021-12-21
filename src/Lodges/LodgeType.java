@@ -1,5 +1,6 @@
 package Lodges;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  * @author Christos Balaktsis
  */
 
-public enum LodgeType {
+public enum LodgeType implements Serializable {
     APARTMENT, ROOM, TRAILER, HOTEL;
 
     public static String getLodgeTypes() {

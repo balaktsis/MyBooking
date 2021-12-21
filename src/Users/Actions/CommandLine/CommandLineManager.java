@@ -2,6 +2,7 @@ package Users.Actions.CommandLine;
 
 import Users.User;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -9,7 +10,7 @@ import java.util.*;
  *  parameters, while also doing general checks on the input
  *  @author Neron Panagiotopoulos
  */
-public abstract class CommandLineManager {
+public abstract class CommandLineManager implements Serializable {
 
     protected Command[] commandsList;
     protected User parentUser;
