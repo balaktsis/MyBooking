@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e16ae03-8dbc-4789-8a8c-97bbcda819ac" name="Changes" comment="Connected storage to .dat files.">
-      <change afterPath="$PROJECT_DIR$/storedBookings.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storedLodges.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storedUsers.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Booking/BookingEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Booking/BookingEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lodges/Amenities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lodges/Amenities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lodges/Lodge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lodges/Lodge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lodges/LodgeAvailability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lodges/LodgeAvailability.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lodges/LodgeDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lodges/LodgeDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lodges/LodgeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lodges/LodgeType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Misc/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Misc/Storage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/Actions/CommandLine/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Actions/CommandLine/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/Actions/CommandLine/CommandLineManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Actions/CommandLine/CommandLineManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/Actions/Graphical/GUIAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Actions/Graphical/GUIAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/Actions/Graphical/GUIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Actions/Graphical/GUIManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +112,9 @@
       <workItem from="1639962431443" duration="124000" />
       <workItem from="1639963323391" duration="157000" />
       <workItem from="1640118199855" duration="4223000" />
-      <workItem from="1640123829705" duration="332000" />
+      <workItem from="1640123829705" duration="700000" />
+      <workItem from="1640191009034" duration="538000" />
+      <workItem from="1640201833623" duration="845000" />
     </task>
     <task id="LOCAL-00001" summary="Creation of Lodge class and formation of its fields. Includes enum-type fields, implemented in separate java files.">
       <created>1636894804982</created>
@@ -416,7 +403,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640119274365</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Connected storage to .dat files.">
+      <created>1640124298914</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1640124298914</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -70,6 +70,7 @@ public class BookingEntry implements Serializable {
         this.departureDate = departure;
         if(arrival.isAfter(departure) || arrival.isEqual(departure)) return false;
         if(lodge.bookLodge(getPeriod(arrival,departure))) {
+            Storage.getBookings().add(this);
             this.totalCost = this.lodge.getDetails().getPrice() * this.period.size();
             this.valid = true;
             return true;
