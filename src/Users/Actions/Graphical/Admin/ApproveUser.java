@@ -17,6 +17,7 @@ public class ApproveUser extends GUIAction {
 
         actionArea.add(new JLabel("This is the approve user action area!"));
         for (User user : User.getUsersWithApproval(false)){
+
             actionArea.add(user.toJPanel());
         }
 

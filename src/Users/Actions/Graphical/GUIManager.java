@@ -18,28 +18,14 @@ public class GUIManager implements Serializable {
     }
 
     public void showInterface(){
-        userGUI = new JFrame("My Booking");
-        userGUI.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        userGUI = new UserFrame("My Booking - " + parentUser.getFullName());
 
-        Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
-        int sizeFactor = 2;
-        userGUI.setSize((int)screensize.getWidth()/sizeFactor, (int)screensize.getHeight()/sizeFactor);
-        userGUI.setResizable(true);
-
-        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Misc/images/logoIcon.png")));
-        userGUI.setIconImage(imageIcon.getImage());
-
-
-
-        userGUI.setLocationRelativeTo(null);
+        // Segmenting the JFrame into usable panels
         userGUI.setLayout(new BorderLayout());
-
-
 
         JPanel topArea = new JPanel();
         userGUI.add(topArea, BorderLayout.BEFORE_FIRST_LINE);
-        topArea.setBorder(BorderFactory.createTitledBorder("Top area"));
-
+        topArea.setBorder(BorderFactory.createTitledBorder(parentUser.getFullName()));
 
         JPanel buttonArea = new JPanel();
         userGUI.add(buttonArea, BorderLayout.LINE_START);
@@ -48,7 +34,7 @@ public class GUIManager implements Serializable {
 
         JPanel actionArea = new JPanel();
         userGUI.add(actionArea, BorderLayout.CENTER);
-        actionArea.setBorder(BorderFactory.createTitledBorder("Main"));
+        actionArea.setBorder(BorderFactory.createTitledBorder("Welcome"));
 
         JPanel messageArea = new JPanel();
         userGUI.add(messageArea, BorderLayout.LINE_END);
@@ -57,15 +43,12 @@ public class GUIManager implements Serializable {
 
         for (var action : this.guiActions){
             buttonArea.add(action.makeButton());
-            action.setActionArea(actionArea);
+            action.setActionArea(actionArea, buttonArea);
             buttonArea.add(Box.createRigidArea(new Dimension(0, 5)));
         }
 
 
-        actionArea.add(new Button("Test0"));
-        actionArea.add(new Button("Test1"));
-        actionArea.add(new Button("Test2"));
-        actionArea.add(new Button("Test3"));
+        actionArea.add(new JLabel("Welcome " + parentUser.getFullName() + "!"));
 
         messageArea.add(new Button("Test0"));
         messageArea.add(new Button("Test1"));
