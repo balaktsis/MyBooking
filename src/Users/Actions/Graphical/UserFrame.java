@@ -5,9 +5,10 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class UserFrame extends JFrame {
+public class UserFrame extends JFrame implements Serializable {
 
 
     public UserFrame(String window_title) {
