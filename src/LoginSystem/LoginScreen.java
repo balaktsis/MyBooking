@@ -1,5 +1,6 @@
 package LoginSystem;
 
+import Misc.Storage;
 import Users.User;
 
 import javax.swing.*;
@@ -27,7 +28,7 @@ public class LoginScreen {
     private final JComboBox<String> reqRole;
     private final JLabel chooseRoleLabel;
     private final JButton signUpFormButton;
-    private final Container frame1ContentPane;
+    private final Container loginFormContentPane;
     private final Container accountTypeContentPane;
 
     public LoginScreen() {
@@ -46,20 +47,34 @@ public class LoginScreen {
         chooseRoleLabel = new JLabel();
         signUpFormButton = new JButton();
 
-        //======== frame1 ========
+        //======== loginForm ========
 
         loginForm.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         loginForm.setBackground(Color.white);
         loginForm.setTitle("MyBooking");
         loginForm.setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Misc/images/logoIcon.png"))).getImage());
         loginForm.setResizable(false);
-        frame1ContentPane = loginForm.getContentPane();
-        frame1ContentPane.setLayout(null);
+        loginForm.addWindowListener( new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int confirm = JOptionPane.showOptionDialog(
+                        null, "Are You Sure to Close Application?",
+                        "Exit Confirmation", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null, null, null);
+                if (confirm == 0) {
+                    Storage.storeDataToFiles();
+                    System.exit(0);
+                }
+            }
+        });
+
+        loginFormContentPane = loginForm.getContentPane();
+        loginFormContentPane.setLayout(null);
 
         //---- logo ----
         logo.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Misc/images/logoIcon.png"))));
         logo.setHorizontalAlignment(SwingConstants.CENTER);
-        frame1ContentPane.add(logo);
+        loginFormContentPane.add(logo);
         logo.setBounds(new Rectangle(new Point(115, 30), logo.getPreferredSize()));
 
         //---- usernameField ----
@@ -69,21 +84,21 @@ public class LoginScreen {
                 usernameFieldFocusGained(e);
             }
         });
-        frame1ContentPane.add(usernameField);
+        loginFormContentPane.add(usernameField);
         usernameField.setBounds(65, 240, 225, 35);
 
         //---- usernameLabel ----
         usernameLabel.setText("Username");
         usernameLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        frame1ContentPane.add(usernameLabel);
+        loginFormContentPane.add(usernameLabel);
         usernameLabel.setBounds(70, 215, 70, 25);
-        frame1ContentPane.add(passwordField);
+        loginFormContentPane.add(passwordField);
         passwordField.setBounds(65, 300, 225, 35);
 
         //---- passwordLabel ----
         passwordLabel.setText("Password");
         passwordLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        frame1ContentPane.add(passwordLabel);
+        loginFormContentPane.add(passwordLabel);
         passwordLabel.setBounds(70, 275, 70, 25);
 
         //---- forgotPassLabel ----
@@ -95,7 +110,7 @@ public class LoginScreen {
                 forgotPassLabelMouseClicked(e);
             }
         });
-        frame1ContentPane.add(forgotPassLabel);
+        loginFormContentPane.add(forgotPassLabel);
         forgotPassLabel.setBounds(new Rectangle(new Point(210, 340), forgotPassLabel.getPreferredSize()));
 
         //---- welcomeLabel ----
@@ -103,7 +118,7 @@ public class LoginScreen {
         welcomeLabel.setBackground(Color.white);
         welcomeLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         welcomeLabel.setForeground(new Color(16, 143, 233));
-        frame1ContentPane.add(welcomeLabel);
+        loginFormContentPane.add(welcomeLabel);
         welcomeLabel.setBounds(new Rectangle(new Point(85, 170), welcomeLabel.getPreferredSize()));
 
         //---- signInButton ----
@@ -114,7 +129,7 @@ public class LoginScreen {
                 signInButtonMouseClicked(e);
             }
         });
-        frame1ContentPane.add(signInButton);
+        loginFormContentPane.add(signInButton);
         signInButton.setBounds(new Rectangle(new Point(220, 370), signInButton.getPreferredSize()));
 
         //---- signUpButton ----
@@ -125,22 +140,22 @@ public class LoginScreen {
                 signUpButtonMouseClicked(e);
             }
         });
-        frame1ContentPane.add(signUpButton);
+        loginFormContentPane.add(signUpButton);
         signUpButton.setBounds(new Rectangle(new Point(65, 370), signUpButton.getPreferredSize()));
 
 
         // compute preferred size of loginForm frame
         Dimension loginFormPreferredSize = new Dimension();
-        for(int i = 0; i < frame1ContentPane.getComponentCount(); i++) {
-            Rectangle bounds = frame1ContentPane.getComponent(i).getBounds();
+        for(int i = 0; i < loginFormContentPane.getComponentCount(); i++) {
+            Rectangle bounds = loginFormContentPane.getComponent(i).getBounds();
             loginFormPreferredSize.width = Math.max(bounds.x + bounds.width, loginFormPreferredSize.width);
             loginFormPreferredSize.height = Math.max(bounds.y + bounds.height, loginFormPreferredSize.height);
         }
-        Insets insets = frame1ContentPane.getInsets();
+        Insets insets = loginFormContentPane.getInsets();
         loginFormPreferredSize.width += insets.right;
         loginFormPreferredSize.height += insets.bottom;
-        frame1ContentPane.setMinimumSize(loginFormPreferredSize);
-        frame1ContentPane.setPreferredSize(loginFormPreferredSize);
+        loginFormContentPane.setMinimumSize(loginFormPreferredSize);
+        loginFormContentPane.setPreferredSize(loginFormPreferredSize);
 
         loginForm.setSize(355, 485);
         loginForm.setLocationRelativeTo(loginForm.getOwner());
