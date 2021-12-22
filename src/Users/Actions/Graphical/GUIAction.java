@@ -18,6 +18,7 @@ public abstract class GUIAction implements Serializable {
     JButton makeButton(){
         JButton btn = new JButton(this.getName());
         btn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btn.setFocusable(false);
         btn.addActionListener(e -> {
             actionArea.removeAll();
             actionArea.revalidate();
