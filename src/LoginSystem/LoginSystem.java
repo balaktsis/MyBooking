@@ -209,6 +209,7 @@ public class LoginSystem {
                 }
             }
         }
+        Storage.storeDataToFiles();
         System.out.println("Thank you for using MyBooking! See you!");
     }
 

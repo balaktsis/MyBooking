@@ -54,7 +54,7 @@ public class LoginScreen {
         loginForm.setTitle("MyBooking");
         loginForm.setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Misc/images/logoIcon.png"))).getImage());
         loginForm.setResizable(false);
-        loginForm.addWindowListener( new WindowAdapter() {
+        loginForm.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 int confirm = JOptionPane.showOptionDialog(
@@ -67,7 +67,6 @@ public class LoginScreen {
                 }
             }
         });
-
         loginFormContentPane = loginForm.getContentPane();
         loginFormContentPane.setLayout(null);
 
