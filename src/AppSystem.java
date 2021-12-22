@@ -56,6 +56,11 @@ public class AppSystem {
      */
     public void run(){
         loginSystem.showLoginScreen();
+//        for (User user : Storage.getUsers()) {
+//            if (user.getUsername().toLowerCase(Locale.ROOT).equals("admin")){
+//                user.showInterface(true);
+//            }
+//        }
     }
 
     /**
@@ -76,7 +81,7 @@ public class AppSystem {
         tempLandlord.setFullName("Rick James");
 
         tempAdmin.setApprovalStatus(true);
-        tempCustomer.setApprovalStatus(true);
+        tempCustomer.setApprovalStatus(false);
         tempLandlord.setApprovalStatus(true);
 
         tempLandlord.setBase("Thessaloniki, Greece");
