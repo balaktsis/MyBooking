@@ -7,7 +7,6 @@ import java.awt.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-
 public class GUIManager implements Serializable {
 
     protected User parentUser;

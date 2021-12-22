@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.Serializable;
 
+
 public abstract class GUIAction implements Serializable {
     protected abstract String getName();
     protected JPanel actionArea;

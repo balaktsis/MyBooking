@@ -5,6 +5,7 @@ import Users.User;
 
 import javax.swing.*;
 
+
 public class ApproveUser extends GUIAction {
     @Override
     protected String getName() {
