@@ -81,8 +81,8 @@ public class AppSystem {
         tempLandlord.setFullName("Rick James");
 
         tempAdmin.setApprovalStatus(true);
-        tempCustomer.setApprovalStatus(true);
-        tempLandlord.setApprovalStatus(true);
+        tempCustomer.setApprovalStatus(false);
+        tempLandlord.setApprovalStatus(false);
 
         tempLandlord.setBase("Thessaloniki, Greece");
 
@@ -117,7 +117,6 @@ public class AppSystem {
 
     public static void exit(){
         Storage.storeDataToFiles();
-        System.out.println("Exiting!");
         System.exit(0);
     }
 

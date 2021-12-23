@@ -4,6 +4,10 @@ import Users.Actions.Graphical.GUIAction;
 import Users.User;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class ApproveUser extends GUIAction {
@@ -15,10 +19,30 @@ public class ApproveUser extends GUIAction {
     @Override
     protected void invoke() {
 
-        actionArea.add(new JLabel("This is the approve user action area!"));
-        for (User user : User.getUsersWithApproval(false)){
+        actionArea.setLayout(new BoxLayout(actionArea, BoxLayout.Y_AXIS));
 
-            actionArea.add(user.toJPanel());
+        for (User user : User.getUsersWithApproval(false)){
+            JPanel area = new JPanel();
+            area.setLayout(new GridLayout(0, 2));
+            area.setMaximumSize(new Dimension(1000, 50));
+            area.add(user.toJPanel());
+
+            JButton approveButton = new JButton("Approve");
+            approveButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    user.setApprovalStatus(true);
+                    actionArea.removeAll();
+                    actionArea.revalidate();
+                    actionArea.repaint();
+                    invoke();
+
+                }
+            });
+            area.add(approveButton);
+
+            actionArea.add(area);
+            actionArea.add(Box.createRigidArea(new Dimension(0, 5)));
         }
 
     }
