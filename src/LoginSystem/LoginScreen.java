@@ -1,5 +1,6 @@
 package LoginSystem;
 
+import Misc.AppSystem;
 import Misc.Storage;
 import Users.User;
 
@@ -62,8 +63,7 @@ public class LoginScreen {
                         "Exit Confirmation", JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE, null, null, null);
                 if (confirm == 0) {
-                    Storage.storeDataToFiles();
-                    System.exit(0);
+                    AppSystem.exit();
                 }
             }
         });

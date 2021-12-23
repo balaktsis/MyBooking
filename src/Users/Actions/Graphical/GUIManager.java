@@ -1,5 +1,7 @@
 package Users.Actions.Graphical;
 
+import Misc.AppSystem;
+import Misc.Storage;
 import Users.User;
 
 import javax.swing.*;
@@ -9,6 +11,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.Serializable;
 import java.util.Objects;
+
 
 public class GUIManager implements Serializable {
 
@@ -34,8 +37,7 @@ public class GUIManager implements Serializable {
                         "Exit Confirmation", JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE, null, null, null);
                 if (confirm == 0) {
-                    //TODO run save in AppSystem
-                    System.exit(0);
+                    AppSystem.exit();
                 }
             }
         };

@@ -1,3 +1,5 @@
+package Misc;
+
 import Booking.BookingEntry;
 import Lodges.Amenities;
 import Lodges.Lodge;
@@ -45,7 +47,8 @@ public class AppSystem {
             // handle exception
         }
         loginSystem = new LoginSystem(graphical);
-        initializeFromFile();
+//        initializeFromFile();
+        initializeWithTempFields();
     }
 
     /**
@@ -54,7 +57,7 @@ public class AppSystem {
     public void run(){
         loginSystem.showLoginScreen();
 //        for (User user : Storage.getUsers()) {
-//            if (user.getUsername().toLowerCase(Locale.ROOT).equals("admin")){
+//            if (user.getUsername().equalsIgnoreCase("admin")){
 //                user.showInterface(true);
 //            }
 //        }
@@ -110,6 +113,12 @@ public class AppSystem {
 
     private void initializeFromFile() {
         Storage.drawDataFromFiles();
+    }
+
+    public static void exit(){
+        Storage.storeDataToFiles();
+        System.out.println("Exiting!");
+        System.exit(0);
     }
 
 }
