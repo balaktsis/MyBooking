@@ -81,6 +81,7 @@ public class GUIManager implements Serializable {
 
 
         for (var action : this.guiActions){
+            action.setParentUser(parentUser);
             buttonArea.add(action.makeButton());
             action.setActionArea(actionArea, buttonArea);
             buttonArea.add(Box.createRigidArea(new Dimension(0, 5)));

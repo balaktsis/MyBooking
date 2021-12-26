@@ -1,5 +1,7 @@
 package Users.Actions.Graphical;
 
+import Users.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.Serializable;
@@ -9,10 +11,15 @@ public abstract class GUIAction implements Serializable {
     protected abstract String getName();
     protected JPanel actionArea;
     protected JPanel buttonArea;
+    protected User parentUser;
 
     void setActionArea(JPanel actionArea, JPanel buttonArea){
         this.actionArea = actionArea;
         this.buttonArea = buttonArea;
+    }
+
+    void setParentUser(User user){
+        this.parentUser = user;
     }
 
     JButton makeButton(){
