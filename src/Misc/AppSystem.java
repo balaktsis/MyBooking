@@ -55,12 +55,12 @@ public class AppSystem {
      * Begin app execution by running the loginScreen
      */
     public void run(){
-        loginSystem.showLoginScreen();
-//        for (User user : Storage.getUsers()) {
-//            if (user.getUsername().equalsIgnoreCase("admin")){
-//                user.showInterface(true);
-//            }
-//        }
+//        loginSystem.showLoginScreen();
+        for (User user : Storage.getUsers()) {
+            if (user.getUsername().equalsIgnoreCase("landlord")){
+                user.showInterface(true);
+            }
+        }
     }
 
     /**
@@ -81,8 +81,8 @@ public class AppSystem {
         tempLandlord.setFullName("Rick James");
 
         tempAdmin.setApprovalStatus(true);
-        tempCustomer.setApprovalStatus(false);
-        tempLandlord.setApprovalStatus(false);
+        tempCustomer.setApprovalStatus(true);
+        tempLandlord.setApprovalStatus(true);
 
         tempLandlord.setBase("Thessaloniki, Greece");
 

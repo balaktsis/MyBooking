@@ -6,6 +6,7 @@ import Misc.Storage;
 import Users.Actions.CommandLine.CustomerCommandLineManager;
 import Users.Actions.CommandLine.LandlordCommandLineManager;
 import Users.Actions.Graphical.GUIManager;
+import Users.Actions.Graphical.LandlordGUIManager;
 
 
 /**
@@ -26,7 +27,7 @@ public class Landlord extends User{
     public Landlord(String username, String password) {
         super(username, password);
         this.commandLineManager = new CustomerCommandLineManager(this);
-        this.guiManager = new GUIManager(this);
+        this.guiManager = new LandlordGUIManager(this);
     }
 
     /**
