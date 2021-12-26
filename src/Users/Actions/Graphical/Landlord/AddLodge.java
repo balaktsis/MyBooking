@@ -171,6 +171,7 @@ public class AddLodge extends GUIAction {
         nullBedsLabel.setVisible(false);
         nullSizeLabel.setVisible(false);
         nullPriceLabel.setVisible(false);
+        descriptionField.setText("");
     }
 
 
@@ -556,6 +557,26 @@ public class AddLodge extends GUIAction {
 
         for(Amenities amenity : Amenities.values())
             amenitiesPanel.add(new JCheckBox(amenity.label,false));
+
+        confirmButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                confirmButtonMouseClicked(null);
+            }
+        });
+
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clearButtonMouseClicked(null);
+            }
+        });
+
+        titleField.addActionListener(e -> confirmButtonMouseClicked(null));
+        locationField.addActionListener(e -> confirmButtonMouseClicked(null));
+        sizeField.addActionListener(e -> confirmButtonMouseClicked(null));
+        bedsField.addActionListener(e -> confirmButtonMouseClicked(null));
+        priceField.addActionListener(e -> confirmButtonMouseClicked(null));
 
         actionArea.add(NewLodge);
         actionArea.add(Box.createRigidArea(new Dimension(0, 5)));
