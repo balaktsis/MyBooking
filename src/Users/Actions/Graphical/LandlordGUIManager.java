@@ -1,7 +1,6 @@
 package Users.Actions.Graphical;
 
 import Users.Actions.Graphical.Landlord.AddLodge;
-import Users.Actions.Graphical.Landlord.AddLodge2;
 import Users.User;
 
 
