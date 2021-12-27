@@ -10,6 +10,8 @@ public class AdminGUIManager extends GUIManager{
         super(parentUser);
         this.guiActions = new GUIAction[]{
                 new ApproveUser(),
+                new BookingsLookup(),
+
         };
     }
 

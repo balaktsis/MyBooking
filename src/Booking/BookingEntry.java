@@ -4,8 +4,12 @@ import Lodges.Lodge;
 import Misc.Storage;
 import Users.Customer;
 
+import javax.swing.*;
+import javax.swing.border.SoftBevelBorder;
+
 import static Misc.UniqueIDGenerator.getUniqueId;
 
+import java.awt.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -206,6 +210,25 @@ public class BookingEntry implements Serializable {
         }
 
         return results;
+    }
+
+    public JPanel toJPanel(){
+        JPanel bookingPanel = new JPanel();
+        bookingPanel.setBackground(Color.white);
+        bookingPanel.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
+        bookingPanel.setLayout(new FlowLayout());
+        bookingPanel.add(new JLabel("ID:"));
+        bookingPanel.add(new JLabel(bookingId));
+        bookingPanel.add(new JLabel(", Lodge:"));
+        bookingPanel.add(new JLabel(lodge.getLodgeId()));
+        bookingPanel.add(new JLabel(lodge.getDetails().getTitle()));
+        bookingPanel.add(new JLabel(", Booked from:"));
+        bookingPanel.add(new JLabel(arrivalDate.toString()));
+        bookingPanel.add(new JLabel("to:"));
+        bookingPanel.add(new JLabel(departureDate.toString()));
+        bookingPanel.add(new JLabel(", by"));
+        bookingPanel.add(new JLabel(tenant.getUsername()));
+        return bookingPanel;
     }
 
 }

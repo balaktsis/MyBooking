@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 public class ApproveUser extends GUIAction {
     @Override
     protected String getName() {
-        return "Approve User";
+        return "Approve Users";
     }
 
     @Override
@@ -28,16 +28,13 @@ public class ApproveUser extends GUIAction {
             area.add(user.toJPanel());
 
             JButton approveButton = new JButton("Approve");
-            approveButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    user.setApprovalStatus(true);
-                    actionArea.removeAll();
-                    actionArea.revalidate();
-                    actionArea.repaint();
-                    invoke();
+            approveButton.addActionListener(e -> {
+                user.setApprovalStatus(true);
+                actionArea.removeAll();
+                actionArea.revalidate();
+                actionArea.repaint();
+                invoke();
 
-                }
             });
             area.add(approveButton);
 
