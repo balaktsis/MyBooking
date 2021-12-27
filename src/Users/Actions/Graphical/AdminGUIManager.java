@@ -11,6 +11,7 @@ public class AdminGUIManager extends GUIManager{
         this.guiActions = new GUIAction[]{
                 new ApproveUser(),
                 new BookingsLookup(),
+                new LookupLodges(),
 
         };
     }

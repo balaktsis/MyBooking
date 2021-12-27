@@ -42,6 +42,12 @@ public abstract class GUIAction implements Serializable {
         return btn;
     }
 
+    protected JLabel error(String errorText){
+        JLabel errorLabel = new JLabel(errorText);
+        errorLabel.setForeground(Color.red);
+        return errorLabel;
+    }
+
     protected abstract void invoke();
 
 }

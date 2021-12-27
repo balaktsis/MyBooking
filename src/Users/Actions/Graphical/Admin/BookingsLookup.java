@@ -44,12 +44,7 @@ public class BookingsLookup extends GUIAction {
         topPanel.add(from_month);
         topPanel.add(new JLabel("/"));
         topPanel.add(from_year);
-//        topPanel.add(new JLabel("to:"));
-//        topPanel.add(to_day);
-//        topPanel.add(new JLabel("/"));
-//        topPanel.add(to_month);
-//        topPanel.add(new JLabel("/"));
-//        topPanel.add(to_year);
+
         JButton search = new JButton("Search");
         JButton searchall = new JButton("Show All");
         search.setFocusable(false);

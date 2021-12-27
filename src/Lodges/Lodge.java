@@ -1,5 +1,6 @@
 package Lodges;
 
+import java.awt.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,6 +8,9 @@ import java.util.Collections;
 import java.util.HashSet;
 
 import Users.Landlord;
+
+import javax.swing.*;
+import javax.swing.border.SoftBevelBorder;
 
 import static Misc.UniqueIDGenerator.getUniqueId;
 
@@ -191,6 +195,20 @@ public class Lodge implements Serializable {
             str.append(dateArrayList);
         }
         return str.toString();
+    }
+
+    public JPanel toJPanel(){
+        JPanel lodgePanel = new JPanel();
+        lodgePanel.setBackground(Color.white);
+        lodgePanel.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
+        lodgePanel.setLayout(new FlowLayout());
+        lodgePanel.add(new JLabel("ID:"));
+        lodgePanel.add(new JLabel(getLodgeId()));
+        lodgePanel.add(new JLabel(", Title:"));
+        lodgePanel.add(new JLabel(getDetails().getTitle()));
+        lodgePanel.add(new JLabel(", Landlord:"));
+        lodgePanel.add(new JLabel(getLandlord().getUsername()));
+        return lodgePanel;
     }
 
 }
