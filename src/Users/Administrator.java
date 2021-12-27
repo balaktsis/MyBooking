@@ -2,6 +2,9 @@ package Users;
 import Users.Actions.CommandLine.AdminCommandLineManager;
 import Users.Actions.Graphical.AdminGUIManager;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * This is a child of the User class, which contains functionality unique
  * to the Administrator User Type
@@ -19,6 +22,7 @@ public class Administrator extends User{
      */
     public Administrator(String username, String password) {
         super(username, password);
+        this.typeName = "Administrator";
         this.commandLineManager = new AdminCommandLineManager(this);
         this.guiManager = new AdminGUIManager(this);
     }

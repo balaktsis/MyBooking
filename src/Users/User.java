@@ -29,6 +29,7 @@ public class User implements Serializable {
     protected Message[] messages;
     protected CommandLineManager commandLineManager;
     protected GUIManager guiManager;
+    protected String typeName;
 
     /**
      * Primary constructor of a User object, takes in credentials,
@@ -105,6 +106,15 @@ public class User implements Serializable {
      */
     public boolean getApprovalStatus() {
         return this.approved;
+    }
+
+    /**
+     * Get a string of the type of the user
+     *
+     * @return String
+     */
+    public String getUserType(){
+        return this.typeName;
     }
 
     private void updateMessages() {
@@ -193,11 +203,17 @@ public class User implements Serializable {
     public JPanel toJPanel(){
         JPanel userPanel = new JPanel();
         userPanel.setBackground(Color.white);
-//        userPanel.setBorder(new LineBorder(Color.gray));
         userPanel.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
         userPanel.setLayout(new FlowLayout());
+        userPanel.add(new JLabel("ID:"));
+        userPanel.add(new JLabel(this.getUserId()));
+        userPanel.add(new JLabel("Username:"));
         userPanel.add(new JLabel(this.getUsername()));
+        userPanel.add(new JLabel("Full name:"));
         userPanel.add(new JLabel(this.getFullName()));
+        userPanel.add(new JLabel("Type:"));
+        userPanel.add(new JLabel(this.getUserType()));
+        userPanel.setMaximumSize(new Dimension((int)userPanel.getPreferredSize().getWidth(), 30));
         return userPanel;
     }
 

@@ -26,6 +26,7 @@ public class Landlord extends User{
      */
     public Landlord(String username, String password) {
         super(username, password);
+        this.typeName = "Landlord";
         this.commandLineManager = new CustomerCommandLineManager(this);
         this.guiManager = new LandlordGUIManager(this);
     }

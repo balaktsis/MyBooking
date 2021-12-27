@@ -12,6 +12,7 @@ public class AdminGUIManager extends GUIManager{
                 new ApproveUser(),
                 new BookingsLookup(),
                 new LookupLodges(),
+                new LookupUsers(),
 
         };
     }

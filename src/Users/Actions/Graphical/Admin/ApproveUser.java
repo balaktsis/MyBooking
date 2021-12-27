@@ -23,8 +23,9 @@ public class ApproveUser extends GUIAction {
 
         for (User user : User.getUsersWithApproval(false)){
             JPanel area = new JPanel();
-            area.setLayout(new GridLayout(0, 2));
-            area.setMaximumSize(new Dimension(1000, 50));
+            area.setLayout(new FlowLayout());
+//            area.setLayout(new GridLayout(0, 2));
+            area.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
             area.add(user.toJPanel());
 
             JButton approveButton = new JButton("Approve");

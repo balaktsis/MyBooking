@@ -22,6 +22,7 @@ public class Customer extends User{
      */
     public Customer(String username, String password) {
         super(username, password);
+        this.typeName = "Customer";
         this.commandLineManager = new CustomerCommandLineManager(this);
         this.guiManager = new GUIManager(this);
     }
