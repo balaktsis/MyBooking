@@ -104,6 +104,7 @@ public class AppSystem {
         tempLodge.getDetails().setBeds(5);
         tempLodge.getDetails().setDescription("The best place to live!");
         tempLodge.getDetails().setSize(80);
+        tempLodge.getDetails().setImage(new ImageIcon("src/Misc/images/101-1014243_buildings-building-house-home-cartoon-homes-apartment-clipart.png"));
         Storage.getLodges().add(tempLodge);
 
         BookingEntry tempBooking = new BookingEntry(tempCustomer, tempLodge);

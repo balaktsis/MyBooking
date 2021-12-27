@@ -502,7 +502,7 @@ public class AddLodge extends GUIAction {
                 lodge.getDetails().setTitle(titleField.getText());
                 lodge.getDetails().setDescription(descriptionField.getText());
                 lodge.getDetails().setBeds(Integer.parseInt(bedsField.getText()));
-                Integer size = Integer.parseInt(sizeField.getText());
+                lodge.getDetails().setSize(Integer.parseInt(sizeField.getText()));
                 lodge.getDetails().setPrice(Double.parseDouble(priceField.getText()));
                 lodge.getDetails().setRating(0);
                 lodge.getDetails().setNumOfBookings(0);
@@ -510,7 +510,7 @@ public class AddLodge extends GUIAction {
                 for (Component component : amenitiesPanel.getComponents())
                     if (component instanceof JCheckBox checkBox)
                         if (checkBox.isSelected())
-                            amenities.add(Amenities.valueOf(checkBox.getText().toUpperCase().replace(' ', '_')));
+                            amenities.add(Amenities.valueOfLabel(checkBox.getText()));
                 lodge.setAmenities(amenities);
                 lodge.getDetails().setImage(imageIcon);
                 if(type.equals("ROOM")) {
