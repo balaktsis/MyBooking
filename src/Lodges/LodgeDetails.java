@@ -1,6 +1,7 @@
 package Lodges;
 
 
+import javax.swing.*;
 import java.io.Serializable;
 
 /**
@@ -16,6 +17,7 @@ public class LodgeDetails implements Serializable {
     protected int size;
     protected int numOfBookings;
     protected double price;
+    protected ImageIcon image;
 
     /**
      * Update the title of the current lodge.
@@ -129,5 +131,19 @@ public class LodgeDetails implements Serializable {
         return this.size;
     }
 
+    /**
+     * @return an image of the current lodge.
+     */
+    public ImageIcon getImage() {
+        return this.image;
+    }
+
+    /**
+     * Updates the image of the current lodge.
+     * @param imageIcon an image of a lodge.
+     */
+    public void setImage(ImageIcon imageIcon) {
+        this.image = imageIcon;
+    }
 
 }
