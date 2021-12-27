@@ -213,7 +213,7 @@ public class User implements Serializable {
         userPanel.add(new JLabel(this.getFullName()));
         userPanel.add(new JLabel("Type:"));
         userPanel.add(new JLabel(this.getUserType()));
-        userPanel.setMaximumSize(new Dimension((int)userPanel.getPreferredSize().getWidth(), 30));
+//        userPanel.setMaximumSize(new Dimension((int)userPanel.getPreferredSize().getWidth(), 30));
         return userPanel;
     }
 

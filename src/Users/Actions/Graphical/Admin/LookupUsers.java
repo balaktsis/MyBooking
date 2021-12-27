@@ -63,7 +63,8 @@ public class LookupUsers extends GUIAction {
                 return;
             }
 
-            mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+            mainPanel.setLayout(new FlowLayout());
+//            mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
             for (User user : Storage.getUsers()){
                 mainPanel.add(user.toJPanel());
