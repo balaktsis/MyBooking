@@ -24,14 +24,14 @@ import java.util.HashSet;
 
 public class AppSystem {
 
-    LoginSystem loginSystem;
-    boolean graphical;
+    static LoginSystem loginSystem;
+    static boolean graphical = true;
 
     /**
      * Default constructor for the AppSystem class
      */
     public AppSystem(boolean graphical){
-        this.graphical = graphical;
+        AppSystem.graphical = graphical;
         initializeApp();
     }
 
@@ -46,7 +46,6 @@ public class AppSystem {
         catch (UnsupportedLookAndFeelException | ClassNotFoundException | IllegalAccessException | InstantiationException e) {
             // handle exception
         }
-        loginSystem = new LoginSystem(graphical);
 //        initializeFromFile();
         initializeWithTempFields();
     }
@@ -54,13 +53,14 @@ public class AppSystem {
     /**
      * Begin app execution by running the loginScreen
      */
-    public void run(){
-//        loginSystem.showLoginScreen();
-        for (User user : Storage.getUsers()) {
-            if (user.getUsername().equalsIgnoreCase("landlord")){
-                user.showInterface(true);
-            }
-        }
+    public static void run(){
+        loginSystem = new LoginSystem(graphical);
+        loginSystem.showLoginScreen();
+//        for (User user : Storage.getUsers()) {
+//            if (user.getUsername().equalsIgnoreCase("admin")){
+//                user.showInterface(true);
+//            }
+//        }
     }
 
     /**
@@ -81,8 +81,8 @@ public class AppSystem {
         tempLandlord.setFullName("Rick James");
 
         tempAdmin.setApprovalStatus(true);
-        tempCustomer.setApprovalStatus(true);
-        tempLandlord.setApprovalStatus(true);
+        tempCustomer.setApprovalStatus(false);
+        tempLandlord.setApprovalStatus(false);
 
         tempLandlord.setBase("Thessaloniki, Greece");
 

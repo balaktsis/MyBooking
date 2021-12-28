@@ -1,14 +1,13 @@
 package Users.Actions.Graphical;
 
+import LoginSystem.LoginScreen;
 import Misc.AppSystem;
 import Misc.Storage;
 import Users.User;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.event.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -86,6 +85,13 @@ public class GUIManager implements Serializable {
             action.setActionArea(actionArea, buttonArea);
             buttonArea.add(Box.createRigidArea(new Dimension(0, 5)));
         }
+
+        var logout = new JButton("Log out");
+        topArea.add(logout);
+        logout.addActionListener(e -> {
+            userGUI.dispose();
+            AppSystem.run();
+        });
 
 
         actionArea.add(new JLabel("Welcome " + parentUser.getFullName() + "!"));
