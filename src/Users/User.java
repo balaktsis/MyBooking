@@ -20,15 +20,13 @@ import java.util.List;
  * @author Neron Panagiotopoulos
  */
 
-public class User implements Serializable {
+abstract public class User implements Serializable {
 
     protected final String uid;
     protected boolean approved;
     protected String username, password;
     protected String fullName;
     protected Message[] messages;
-    transient protected CommandLineManager commandLineManager;
-    transient protected GUIManager guiManager;
     protected String typeName;
 
     /**
@@ -80,6 +78,15 @@ public class User implements Serializable {
     }
 
     /**
+     * Get the password string from the user.
+     *
+     * @return String
+     */
+    public String getPassword(){
+        return this.password;
+    }
+
+    /**
      * Set the full name of a user
      *
      * @param fullName Setting the full name of a user
@@ -126,6 +133,9 @@ public class User implements Serializable {
         return messages;
     }
 
+    protected abstract GUIManager getGUIManager();
+    protected abstract CommandLineManager getCMDManager();
+
     /**
      * Get the user interface from the perspective of a user.
      *
@@ -133,9 +143,9 @@ public class User implements Serializable {
      */
     public void showInterface(boolean graphical) {
         if (graphical) {
-            guiManager.showInterface();
+            getGUIManager().showInterface();
         } else {
-            commandLineManager.showInterface();
+            getCMDManager().showInterface();
         }
 
     }

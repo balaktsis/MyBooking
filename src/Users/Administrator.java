@@ -1,6 +1,8 @@
 package Users;
 import Users.Actions.CommandLine.AdminCommandLineManager;
+import Users.Actions.CommandLine.CommandLineManager;
 import Users.Actions.Graphical.AdminGUIManager;
+import Users.Actions.Graphical.GUIManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,8 +25,16 @@ public class Administrator extends User{
     public Administrator(String username, String password) {
         super(username, password);
         this.typeName = "Administrator";
-        this.commandLineManager = new AdminCommandLineManager(this);
-        this.guiManager = new AdminGUIManager(this);
+    }
+
+    @Override
+    protected GUIManager getGUIManager() {
+        return new AdminGUIManager(this);
+    }
+
+    @Override
+    protected CommandLineManager getCMDManager() {
+        return new AdminCommandLineManager(this);
     }
 
 

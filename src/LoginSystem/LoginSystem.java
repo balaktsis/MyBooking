@@ -89,7 +89,7 @@ public class LoginSystem {
             case "ADMINISTRATOR" -> user = new Administrator(username, password);
             case "LANDLORD" -> user = new Landlord(username, password);
             case "CUSTOMER" -> user = new Customer(username, password);
-            default -> user = new User(username, password);
+            default -> user = new Administrator(username, password); //Unreachable statement
         }
 
         user.setFullName(fullName);
@@ -136,9 +136,8 @@ public class LoginSystem {
      * @return if user with username=name and password=pass is already registered.
      */
     protected static User checkUser(String name, String pass) {
-        User tempUser = new User(name, pass);
         for(User user : Storage.getUsers())
-            if(user.equals(tempUser)) return user;
+            if(user.getUsername().equalsIgnoreCase(name) && user.getPassword().equals(pass)) return user;
         return null;
     }
 
