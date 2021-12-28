@@ -140,10 +140,18 @@ public class LodgeDetails implements Serializable {
 
     /**
      * Updates the image of the current lodge.
-     * @param imageIcon an image of a lodge.
+     * @param imageIcon An image of a lodge.
      */
     public void setImage(ImageIcon imageIcon) {
         this.image = imageIcon;
+    }
+
+    /**
+     * Updates the location of the current lodge.
+     * @param location A location field (string) of a lodge.
+     */
+    public void setLocation(String location) {
+        this.location = location;
     }
 
 }

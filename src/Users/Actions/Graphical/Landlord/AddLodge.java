@@ -497,7 +497,7 @@ public class AddLodge extends GUIAction {
                 clearButtonMouseClicked(null);
                 JOptionPane.showMessageDialog(NewLodge, "Lodge successfully added to your properties!", "Addition complete", JOptionPane.INFORMATION_MESSAGE);
                 return;
-            } else if (priceField.getText().length() * bedsField.getText().length() * sizeField.getText().length() * locationField.getText().length() > 0) {
+            } else if (priceField.getText().length() * bedsField.getText().length() * sizeField.getText().length() > 0 && (locationField.getText().length()>0 ||  LodgeType.valueOf(typeBox.getSelectedItem().toString()).equals(LodgeType.ROOM))) {
                 lodge = new Lodge((Landlord) parentUser, locationField.getText(), LodgeType.valueOf(typeBox.getSelectedItem().toString()));
                 lodge.getDetails().setTitle(titleField.getText());
                 lodge.getDetails().setDescription(descriptionField.getText());
@@ -512,12 +512,13 @@ public class AddLodge extends GUIAction {
                         if (checkBox.isSelected())
                             amenities.add(Amenities.valueOfLabel(checkBox.getText()));
                 lodge.setAmenities(amenities);
-                lodge.getDetails().setImage(imageIcon);
+                lodge.getDetails().setImage(imageIcon == null ? new ImageIcon() : imageIcon);
                 if(type.equals("ROOM")) {
                     for(Lodge tmpLodge : Storage.getLodges())
                         if(tmpLodge.getLodgeId().equals(Objects.requireNonNull(hotelBox.getSelectedItem()).toString().split(" - ")[0])) {
                             Hotel hotel = (Hotel) tmpLodge;
                             hotel.addRoom(lodge);
+                            lodge.getDetails().setLocation(hotel.getDetails().getLocation());
                             break;
                         }
                 }
