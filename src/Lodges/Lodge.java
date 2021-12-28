@@ -199,6 +199,10 @@ public class Lodge implements Serializable {
         return str.toString();
     }
 
+    /**
+     * Create a JPanel containing the details of the user, like in toString()
+     * @return JPanel
+     */
     public JPanel toJPanel(){
         JPanel lodgePanel = new JPanel();
         lodgePanel.setBackground(Color.white);
@@ -229,6 +233,10 @@ public class Lodge implements Serializable {
 //        lodgePanel.add(new JLabel(", Landlord:"));
 //        lodgePanel.add(new JLabel(getLandlord().getUsername()));
         return lodgePanel;
+    }
+
+    public void showJFrame(){
+        //TODO
     }
 
 }

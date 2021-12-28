@@ -61,24 +61,28 @@ public class GUIManager implements Serializable {
         // Segmenting the JFrame into usable panels
         userGUI.setLayout(new BorderLayout());
 
+        //TOP AREA: Will contain user details and a logout button
         JPanel topArea = new JPanel();
         userGUI.add(topArea, BorderLayout.BEFORE_FIRST_LINE);
         topArea.setBorder(BorderFactory.createTitledBorder(parentUser.getFullName()));
 
+        //Button Area: Select what action should be invoked
         JPanel buttonArea = new JPanel();
         userGUI.add(buttonArea, BorderLayout.LINE_START);
         buttonArea.setBorder(BorderFactory.createTitledBorder("Actions"));
         buttonArea.setLayout(new BoxLayout(buttonArea, BoxLayout.Y_AXIS));
 
+        //Output of the actions
         JPanel actionArea = new JPanel();
         userGUI.add(actionArea, BorderLayout.CENTER);
         actionArea.setBorder(BorderFactory.createTitledBorder("Welcome"));
 
+        //Messaging exchange panel
         JPanel messageArea = new JPanel();
         userGUI.add(messageArea, BorderLayout.LINE_END);
         messageArea.setBorder(BorderFactory.createTitledBorder("Messages"));
 
-
+        //List the action buttons and initialize them with the correct params
         for (var action : this.guiActions){
             action.setParentUser(parentUser);
             buttonArea.add(action.makeButton());

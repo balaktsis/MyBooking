@@ -34,9 +34,6 @@ public class BookingsLookup extends GUIAction {
         HintedJTextField from_day = new HintedJTextField("DD");
         HintedJTextField from_month = new HintedJTextField("MM");
         HintedJTextField from_year = new HintedJTextField("YYYY");
-        HintedJTextField to_day = new HintedJTextField("DD");
-        HintedJTextField to_month = new HintedJTextField("MM");
-        HintedJTextField to_year = new HintedJTextField("YYYY");
 
         topPanel.add(new JLabel("On Day:"));
         topPanel.add(from_day);

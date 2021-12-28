@@ -22,6 +22,7 @@ public abstract class GUIAction implements Serializable {
         this.parentUser = user;
     }
 
+    //Generate the action button to be placed in the button area
     JButton makeButton(){
         JButton btn = new JButton(this.getName());
         btn.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -42,12 +43,14 @@ public abstract class GUIAction implements Serializable {
         return btn;
     }
 
+    //Preset error label for parameter issues with the actions
     protected JLabel error(String errorText){
         JLabel errorLabel = new JLabel(errorText);
         errorLabel.setForeground(Color.red);
         return errorLabel;
     }
 
+    //Invoke method, gets called whenever the corresponding button is pressed
     protected abstract void invoke();
 
 }

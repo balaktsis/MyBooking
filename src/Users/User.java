@@ -133,7 +133,16 @@ abstract public class User implements Serializable {
         return messages;
     }
 
+    /**
+     * Generate a GUI manager on call
+     * @return GUIManager
+     */
     protected abstract GUIManager getGUIManager();
+
+    /**
+     * Generate a commandline manager on call
+     * @return CommandLineManager
+     */
     protected abstract CommandLineManager getCMDManager();
 
     /**
@@ -191,7 +200,11 @@ abstract public class User implements Serializable {
         return str.toString();
     }
 
-
+    /**
+     * API - Get all users that match an approval status
+     * @param approval_status boolean
+     * @return List of users
+     */
     static public List<User> getUsersWithApproval(boolean approval_status){
         List<User> users = new ArrayList<>();
         for (User user : Storage.getUsers()){
@@ -202,6 +215,11 @@ abstract public class User implements Serializable {
         return users;
     }
 
+    /**
+     * Get a user object from a username string
+     * @param username - String
+     * @return User object
+     */
     static public User getUserFromUsername(String username){
         for (User user : Storage.getUsers()){
             if (user.getUsername().toLowerCase().equals(username)){
@@ -211,6 +229,10 @@ abstract public class User implements Serializable {
         return null;
     }
 
+    /**
+     * Create a JPanel containing the details of the user, like in toString()
+     * @return JPanel
+     */
     public JPanel toJPanel(){
         JPanel userPanel = new JPanel();
         userPanel.setBackground(Color.white);
