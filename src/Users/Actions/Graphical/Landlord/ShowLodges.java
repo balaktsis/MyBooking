@@ -134,7 +134,7 @@ public class ShowLodges extends GUIAction implements Serializable {
                         if(lodge.getLodgeId().equals(data[row][0])) {
                             bedsLabel.setVisible(!lodge.getType().equals(LodgeType.HOTEL));
                             sizeLabel.setVisible(!lodge.getType().equals(LodgeType.HOTEL));
-                            bookedPanel.setVisible(!lodge.getType().equals(LodgeType.HOTEL));
+                            bookedLabel.setVisible(!lodge.getType().equals(LodgeType.HOTEL));
                             amenitiesLabel.setVisible(!lodge.getType().equals(LodgeType.HOTEL));
                             priceLabel.setVisible(!lodge.getType().equals(LodgeType.HOTEL));
                             bookedLabel.setVisible(!lodge.getType().equals(LodgeType.HOTEL));
@@ -174,6 +174,8 @@ public class ShowLodges extends GUIAction implements Serializable {
                                 bookedPanel.add(new JLabel(date.toString() + ", "));
                             if(bookedPanel.getComponents().length!=0 && bookedPanel.getComponent(bookedPanel.getComponents().length-1) instanceof JLabel label)
                                 label.setText(label.getText().substring(0,label.getText().length()-2));
+                            else if(bookedPanel.getComponents().length == 0) bookedPanel.add(new JLabel("No booking entries yet."));
+
                             for(Amenities amenity : lodge.getAmenities())
                                 amenitiesLabel.setText(amenitiesLabel.getText() + amenity.label + ", ");
                             if(!amenitiesLabel.getText().equals("Offered amenities: "))
@@ -199,7 +201,8 @@ public class ShowLodges extends GUIAction implements Serializable {
                 idLabel.setText("#");
                 sizeLabel.setText("Size: ");
                 amenitiesLabel.setText("Offered amenities: ");
-                bookedPanel = new JPanel();
+                for(Component component : bookedPanel.getComponents())
+                    bookedPanel.remove(component);
                 priceLabel.setText("€ ");
                 descriptionLabel.setText("Description: ");
                 ImageIcon imageIcon = new ImageIcon("src/Misc/images/defaultLodgeImage.png");
@@ -284,6 +287,7 @@ public class ShowLodges extends GUIAction implements Serializable {
         currentLodge.setLocationRelativeTo(currentLodge.getOwner());
 
         currentLodge.setVisible(false);
+        currentLodge.setResizable(false);
 
         actionArea.add(ShowLodges);
         actionArea.add(Box.createRigidArea(new Dimension(0, 5)));

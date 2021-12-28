@@ -242,6 +242,8 @@ public class AddLodge extends GUIAction {
         BasicInfo.setVisible(true);
         hotelBox.setVisible(false);
 
+        imageIcon = new ImageIcon("src/Misc/images/defaultLodgeImage.png");
+
         for(LodgeType type : LodgeType.values())
             typeBox.addItem(type.toString());
 
@@ -366,7 +368,7 @@ public class AddLodge extends GUIAction {
                             Files.copy(originalPath, copied, StandardCopyOption.REPLACE_EXISTING);
                             imageIcon = new ImageIcon(chooser.getSelectedFile().getAbsolutePath());
                         } catch (IOException ex) {
-                            imageIcon = new ImageIcon("src/Misc/Images/101-1014243_buildings-building-house-home-cartoon-homes-apartment-clipart.png");
+                            imageIcon = new ImageIcon("src/Misc/images/defaultLodgeImage.png");
                             ex.printStackTrace();
                         }
                     }
@@ -467,7 +469,7 @@ public class AddLodge extends GUIAction {
         enableAmenities(true);
         enablePriceFields(true);
         replaceLocationFields(false);
-        imageIcon = null;
+        imageIcon = new ImageIcon("src/Misc/images/defaultLodgeImage.png");
 
         for (Component component : amenitiesPanel.getComponents())
             if (component instanceof JCheckBox checkBox) checkBox.setSelected(false);
