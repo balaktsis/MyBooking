@@ -46,7 +46,7 @@ public class ShowLodges extends GUIAction implements Serializable {
             if(lodge.getLandlord().equals(parentUser)) {
                 data[k] = new String[]{lodge.getLodgeId(), lodge.getDetails().getTitle(),
                         lodge.getDetails().getLocation(), lodge.getType().toString(),
-                        String.valueOf(lodge.getDetails().getSize()), String.valueOf(lodge.getDetails().getPrice())};
+                        String.valueOf(lodge.getDetails().getSize()), "€ " + lodge.getDetails().getPrice()};
                 if(lodge.getType().equals(LodgeType.ROOM)) {
                     for (Lodge tmpLodge : Storage.getLodges())
                         if (tmpLodge instanceof Hotel hotel)
