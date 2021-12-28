@@ -10,6 +10,8 @@ import java.util.HashSet;
 import Users.Landlord;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import static Misc.UniqueIDGenerator.getUniqueId;
@@ -201,13 +203,31 @@ public class Lodge implements Serializable {
         JPanel lodgePanel = new JPanel();
         lodgePanel.setBackground(Color.white);
         lodgePanel.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
-        lodgePanel.setLayout(new FlowLayout());
-        lodgePanel.add(new JLabel("ID:"));
-        lodgePanel.add(new JLabel(getLodgeId()));
-        lodgePanel.add(new JLabel(", Title:"));
-        lodgePanel.add(new JLabel(getDetails().getTitle()));
-        lodgePanel.add(new JLabel(", Landlord:"));
-        lodgePanel.add(new JLabel(getLandlord().getUsername()));
+
+        ImageIcon scaledImage = new ImageIcon(this.details.getImage().getImage().getScaledInstance(50, 50, Image.SCALE_AREA_AVERAGING));
+        JPanel imagePanel = new JPanel();
+        imagePanel.setBackground(Color.white);
+        imagePanel.add(new JLabel(scaledImage));
+
+        JPanel detailPanel = new JPanel();
+        detailPanel.setLayout(new GridLayout(3, 2));
+        detailPanel.setBackground(Color.white);
+        detailPanel.add(new JLabel(getDetails().getTitle()),0,0);
+        detailPanel.add(new JLabel("# " + getLodgeId(), SwingConstants.TRAILING));
+        detailPanel.add(new JLabel(getDetails().getDescription()));
+        detailPanel.add(new JLabel("Landlord: " + getLandlord().getUsername(), SwingConstants.TRAILING));
+
+
+
+
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, imagePanel, detailPanel);
+        splitPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+        splitPane.setDividerSize(0);
+        lodgePanel.add(splitPane);
+
+//        lodgePanel.add(new JLabel(getDetails().getTitle()));
+//        lodgePanel.add(new JLabel(", Landlord:"));
+//        lodgePanel.add(new JLabel(getLandlord().getUsername()));
         return lodgePanel;
     }
 

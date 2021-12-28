@@ -27,8 +27,8 @@ public class User implements Serializable {
     protected String username, password;
     protected String fullName;
     protected Message[] messages;
-    protected CommandLineManager commandLineManager;
-    protected GUIManager guiManager;
+    transient protected CommandLineManager commandLineManager;
+    transient protected GUIManager guiManager;
     protected String typeName;
 
     /**
@@ -130,7 +130,8 @@ public class User implements Serializable {
      * Get the user interface from the perspective of a user.
      *
      * @param graphical Boolean toggle between graphical interface and command line interface.\n(CLI - False, GUI - True)
-     */    public void showInterface(boolean graphical) {
+     */
+    public void showInterface(boolean graphical) {
         if (graphical) {
             guiManager.showInterface();
         } else {
@@ -204,16 +205,34 @@ public class User implements Serializable {
         JPanel userPanel = new JPanel();
         userPanel.setBackground(Color.white);
         userPanel.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
-        userPanel.setLayout(new FlowLayout());
-        userPanel.add(new JLabel("ID:"));
-        userPanel.add(new JLabel(this.getUserId()));
-        userPanel.add(new JLabel("Username:"));
-        userPanel.add(new JLabel(this.getUsername()));
-        userPanel.add(new JLabel("Full name:"));
-        userPanel.add(new JLabel(this.getFullName()));
-        userPanel.add(new JLabel("Type:"));
-        userPanel.add(new JLabel(this.getUserType()));
-//        userPanel.setMaximumSize(new Dimension((int)userPanel.getPreferredSize().getWidth(), 30));
+        userPanel.setLayout(new GridLayout(1, 3));
+
+        JPanel profile = new JPanel();
+        profile.setLayout(new GridLayout(2, 1));
+
+        profile.add(new JLabel("Username: " + this.getUsername()));
+        profile.add(new JLabel("Full Name: " + this.getFullName()));
+        profile.setBackground(Color.white);
+
+        JPanel details = new JPanel();
+        details.setLayout(new GridLayout(2, 1));
+
+        details.add(new JLabel("# " + this.getUserId(), SwingConstants.RIGHT));
+        details.add(new JLabel(this.getUserType(), SwingConstants.RIGHT));
+        details.setBackground(Color.white);
+
+//        var xtra_width = 0;
+//        if (350 - (profile.getPreferredSize().getWidth() + details.getPreferredSize().getWidth()) > 0){
+//            xtra_width = 350 - (int)(profile.getPreferredSize().getWidth() + details.getPreferredSize().getWidth());
+//        }
+
+        userPanel.add(profile);
+
+//        userPanel.add(Box.createRigidArea(new Dimension(xtra_width, 0)));
+        userPanel.add(Box.createRigidArea(new Dimension(0, 0)));
+        userPanel.add(details);
+
+        userPanel.setMaximumSize(userPanel.getPreferredSize());
         return userPanel;
     }
 
