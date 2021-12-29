@@ -1,6 +1,7 @@
 package Users.Actions.Graphical;
 
 import Users.Actions.Graphical.Landlord.AddLodge;
+import Users.Actions.Graphical.Landlord.BookingLookup;
 import Users.Actions.Graphical.Landlord.ShowBookings;
 import Users.Actions.Graphical.Landlord.ShowLodges;
 import Users.User;
@@ -13,7 +14,8 @@ public class LandlordGUIManager extends GUIManager{
         this.guiActions = new GUIAction[]{
                 new AddLodge(),
                 new ShowLodges(),
-                new ShowBookings()
+                new ShowBookings(),
+                new BookingLookup()
         };
     }
 

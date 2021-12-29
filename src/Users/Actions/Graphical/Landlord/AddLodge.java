@@ -247,10 +247,8 @@ public class AddLodge extends GUIAction {
         for(LodgeType type : LodgeType.values())
             typeBox.addItem(type.toString());
 
-        for (Lodge lodge : Storage.getLodges())
-            if(lodge.getLandlord().equals(this.parentUser) && lodge.getType().equals(LodgeType.HOTEL))
-                hotelBox.addItem(lodge.getLodgeId() + " - " + lodge.getDetails().getTitle());
-        
+        setHotelBox();
+
         for(Amenities amenity : Amenities.values())
             amenitiesPanel.add(new JCheckBox(amenity.label,false));
 
@@ -545,6 +543,7 @@ public class AddLodge extends GUIAction {
         nullPriceLabel.setVisible(false);
         descriptionField.setText("");
         imageIcon = null;
+        setHotelBox();
     }
 
     private void sizeFieldsUpdates() {
@@ -592,6 +591,12 @@ public class AddLodge extends GUIAction {
                 confirmButton.setEnabled(false);
             }
         }
+    }
+
+    private void setHotelBox() {
+        for (Lodge lodge : Storage.getLodges())
+            if(lodge.getLandlord().equals(this.parentUser) && lodge.getType().equals(LodgeType.HOTEL))
+                hotelBox.addItem(lodge.getLodgeId() + " - " + lodge.getDetails().getTitle());
     }
 
 }
