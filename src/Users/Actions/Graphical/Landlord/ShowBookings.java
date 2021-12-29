@@ -53,7 +53,7 @@ public class ShowBookings extends GUIAction implements Serializable {
             }
         }
 
-        bookingList = new JTable(setData(null),setColumns());
+        bookingList = new JTable(data,columnNames);
         ShowBookings = new JScrollPane();
         Panel = new JPanel();
         noteLabel = new JLabel();
@@ -68,101 +68,6 @@ public class ShowBookings extends GUIAction implements Serializable {
         noteLabel.setText("Here is a list of all the bookings applied on your lodges.");
         Panel.add(noteLabel);
         noteLabel.setBounds(20, 5, 300, 40);
-
-
-        //---- lodgeFiled ----
-        lodgeField = new HintedJTextField(" # ");
-        lodgeLabel = new JLabel("Select a specific lodge:");
-        Panel.add(lodgeField);
-        lodgeLabel.setBounds(20,25,150,40);
-        Panel.add(lodgeLabel);
-        lodgeField.setBounds(135,35,20,20);
-        lodgeField.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                if(!lodgeField.getText().isBlank()) {
-                    try {
-                        Integer.parseInt(lodgeField.getText());
-                    } catch (NumberFormatException ex) {
-                        bookingList = new JTable();
-                        bookingTable.repaint();
-                        JOptionPane.showMessageDialog(ShowBookings, "That's not a valid lodgeId.", "Error",JOptionPane.ERROR_MESSAGE);
-                    }
-                    boolean flag = false;
-                    for (Lodge lodge : Storage.getLodges()) {
-                        if (lodge.getLodgeId().equals(lodgeField.getText()) && lodge.getLandlord().equals(parentUser)) {
-                            bookingList = new JTable(setData(lodgeField.getText()), columnNames);
-                            bookingTable.repaint();
-                            flag = true;
-                            break;
-                        }
-                    }
-                    if(flag) JOptionPane.showMessageDialog(ShowBookings,"Showing booking entries applied on lodge #" + lodgeField.getText() + ".", "Filtered search", JOptionPane.INFORMATION_MESSAGE);
-                    else JOptionPane.showMessageDialog(ShowBookings,"There is not any booking entry on the requested lodge.", "Search failed", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else {
-                    bookingList = new JTable(setData(null), setColumns());
-                    bookingTable.repaint();
-                }
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                if(!lodgeField.getText().isBlank()) {
-                    try {
-                        Integer.parseInt(lodgeField.getText());
-                    } catch (NumberFormatException ex) {
-                        bookingList = new JTable();
-                        bookingTable.repaint();
-                        JOptionPane.showMessageDialog(ShowBookings, "That's not a valid lodgeId.", "Error",JOptionPane.ERROR_MESSAGE);
-                    }
-                    boolean flag = false;
-                    for (Lodge lodge : Storage.getLodges()) {
-                        if (lodge.getLodgeId().equals(lodgeField.getText()) && lodge.getLandlord().equals(parentUser)) {
-                            bookingList = new JTable(setData(lodgeField.getText()), columnNames);
-                            bookingTable.repaint();
-                            flag = true;
-                            break;
-                        }
-                    }
-                    if(flag) JOptionPane.showMessageDialog(ShowBookings,"Showing booking entries applied on lodge #" + lodgeField.getText() + ".", "Filtered search", JOptionPane.INFORMATION_MESSAGE);
-                    else JOptionPane.showMessageDialog(ShowBookings,"There is not any booking entry on the requested lodge.", "Search failed", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else {
-                    bookingList = new JTable(setData(null), setColumns());
-                    bookingTable.repaint();
-                }
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                if(!lodgeField.getText().isBlank()) {
-                    try {
-                        Integer.parseInt(lodgeField.getText());
-                    } catch (NumberFormatException ex) {
-                        bookingList = new JTable();
-                        bookingTable.repaint();
-                        JOptionPane.showMessageDialog(ShowBookings, "That's not a valid lodgeId.", "Error",JOptionPane.ERROR_MESSAGE);
-                    }
-                    boolean flag = false;
-                    for (Lodge lodge : Storage.getLodges()) {
-                        if (lodge.getLodgeId().equals(lodgeField.getText()) && lodge.getLandlord().equals(parentUser)) {
-                            bookingList = new JTable(setData(lodgeField.getText()), columnNames);
-                            bookingTable.repaint();
-                            flag = true;
-                            break;
-                        }
-                    }
-                    if(flag) JOptionPane.showMessageDialog(ShowBookings,"Showing booking entries applied on lodge #" + lodgeField.getText() + ".", "Filtered search", JOptionPane.INFORMATION_MESSAGE);
-                    else JOptionPane.showMessageDialog(ShowBookings,"There is not any booking entry on the requested lodge.", "Search failed", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else {
-                    bookingList = new JTable(setData(null), setColumns());
-                    bookingTable.repaint();
-                }
-            }
-        });
-
 
 
         //---- lodgeList ----
@@ -181,7 +86,8 @@ public class ShowBookings extends GUIAction implements Serializable {
         bookingList.getColumnModel().getColumn(5).setMaxWidth(80);
 
         Panel.add(bookingTable);
-        bookingTable.setBounds(20, 60, 800, 600);
+        bookingTable.setBounds(20, 55, 800, 600);
+        bookingTable.setToolTipText("Double click on a booking validation field to reverse it.");
 
         {
             // compute preferred size
@@ -209,24 +115,27 @@ public class ShowBookings extends GUIAction implements Serializable {
                     int column = target.getSelectedColumn();
                     for (BookingEntry bookingEntry : Storage.getBookings())
                         if (bookingEntry.getBookingId().equals(data[row][0])) {
-                            if (JOptionPane.showConfirmDialog(ShowBookings, "Do you want to edit booking entry #" + bookingEntry.getBookingId() + "?",
-                                    "Edit booking details",
+                            if (JOptionPane.showConfirmDialog(ShowBookings, "Do you want to change the validation of booking entry #" + bookingEntry.getBookingId() + "?",
+                                    "Validation of booking entry",
                                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                                if(column != 4) JOptionPane.showMessageDialog(ShowBookings, columnNames[column] + " is an immutable field!", "Unauthorized action",JOptionPane.ERROR_MESSAGE);
-                                else {
-                                    if(Objects.equals(data[row][column], "Valid")) {
-                                        JOptionPane.showMessageDialog(ShowBookings,"Setting entry to invalid.");
-                                        data[row][column] = "Invalid";
-                                        bookingEntry.cancelBooking();
-                                    } else {
-                                        JOptionPane.showMessageDialog(ShowBookings,"Setting entry to valid.");
-                                        data[row][column] = "Valid";
-                                        BookingEntry tmpBooking = new BookingEntry(bookingEntry.getTenant(),bookingEntry.getLodge());
-                                        tmpBooking.bookLodge(bookingEntry.getArrivalDate(),bookingEntry.getDepartureDate());
-                                        Storage.getBookings().add(tmpBooking);
-                                    }
+                                if(Objects.equals(data[row][4], "Valid")) {
+                                    JOptionPane.showMessageDialog(ShowBookings,"Setting entry to invalid.");
+                                    if(bookingEntry.cancelBooking())
+                                        data[row][4] = "Invalid";
+                                    else
+                                        JOptionPane.showMessageDialog(ShowBookings, "Cancellation failed!");
+                                } else {
+                                    JOptionPane.showMessageDialog(ShowBookings,"Setting entry to valid.");
+                                    BookingEntry tmpBooking = new BookingEntry(bookingEntry.getTenant(),bookingEntry.getLodge());
+                                    if(tmpBooking.bookLodge(bookingEntry.getArrivalDate(),bookingEntry.getDepartureDate()))
+                                        data[row][4] = "Valid";
+                                    else
+                                        JOptionPane.showMessageDialog(ShowBookings, "Booking failed!");
                                 }
                             }
+                            bookingList.removeAll();
+                            bookingList.revalidate();
+                            bookingList.repaint();
                             break;
                         }
                 }
@@ -242,32 +151,4 @@ public class ShowBookings extends GUIAction implements Serializable {
     private JLabel noteLabel;
     private JScrollPane bookingTable;
     private JTable bookingList;
-    private HintedJTextField lodgeField;
-    private JLabel lodgeLabel;
-
-    private String[] setColumns() {
-        return new String[]{"ID",
-                "Lodge",
-                "Tenant",
-                "Period",
-                "Validation",
-                "Total Cost"};
-    }
-
-    private String[][] setData(String lodgeId) {
-        String[][] data = new String[Storage.getBookings().size()][];
-        boolean flag = lodgeId == null;
-        int k = 0;
-        for (BookingEntry bookingEntry : Storage.getBookings()) {
-            if (bookingEntry.getLodge().getLandlord().equals(parentUser) && (bookingEntry.getLodge().getLodgeId().equals(lodgeId) || flag)) {
-                data[k] = new String[]{bookingEntry.getBookingId(), bookingEntry.getLodge().getDetails().getTitle(),
-                        bookingEntry.getTenant().getFullName(), bookingEntry.getArrivalDate() + " to " + bookingEntry.getDepartureDate(),
-                        bookingEntry.isValid() ? "Valid" : "Invalid", "€ " + bookingEntry.getTotalCost()};
-                if (!bookingEntry.isValid())
-                    data[k][3] = data[k][5] = "-";
-                k++;
-            }
-        }
-        return data;
-    }
 }
