@@ -2,6 +2,7 @@ package Users;
 
 import Users.Actions.CommandLine.CommandLineManager;
 import Users.Actions.CommandLine.CustomerCommandLineManager;
+import Users.Actions.Graphical.CustomerGUIManager;
 import Users.Actions.Graphical.GUIManager;
 
 
@@ -28,7 +29,7 @@ public class Customer extends User{
 
     @Override
     protected GUIManager getGUIManager() {
-        return new GUIManager(this);
+        return new CustomerGUIManager(this);
     }
 
     @Override

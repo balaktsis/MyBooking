@@ -17,14 +17,14 @@ public class HintedJTextField extends JTextField {
         addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (getText().equals(hint)){
+                if (getRawText().equals(hint)){
                     setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (getText().isBlank()){
+                if (getRawText().isBlank()){
                     setText(hint);
                 }
             }
@@ -32,4 +32,16 @@ public class HintedJTextField extends JTextField {
 
     }
 
+    public String getRawText(){
+        return super.getText();
+    }
+
+    @Override
+    public String getText() {
+        String txt = super.getText();
+        if (txt.equals(hint)){
+            return "";
+        }
+        return txt;
+    }
 }
