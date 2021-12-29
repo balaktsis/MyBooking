@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * This is a Booking Entry class that builds a reservation of a customer to a specific lodge.
@@ -46,6 +47,15 @@ public class BookingEntry implements Serializable {
         this.valid = false;
         this.entryDate = LocalDate.now();
         this.bookingId = getUniqueId();
+    }
+
+    /**
+     * Method that set the period of booking.
+     * @param date1 The first date of the period.
+     * @param date2 The last date of the period.
+     */
+    public void setPeriod(LocalDate date1, LocalDate date2) {
+        getPeriod(date1, date2);
     }
 
     /**
@@ -226,6 +236,8 @@ public class BookingEntry implements Serializable {
         bookingPanel.add(new JLabel(arrivalDate.toString()));
         bookingPanel.add(new JLabel("to:"));
         bookingPanel.add(new JLabel(departureDate.toString()));
+        bookingPanel.add(new JLabel(", Validation state: "));
+        bookingPanel.add(new JLabel(valid ? "Valid" : "Invalid"));
         bookingPanel.add(new JLabel(", by"));
         bookingPanel.add(new JLabel(tenant.getUsername()));
         return bookingPanel;

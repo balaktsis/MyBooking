@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 
@@ -112,30 +113,27 @@ public class ShowBookings extends GUIAction implements Serializable {
                 if (e.getClickCount() == 2) {
                     JTable target = (JTable) e.getSource();
                     int row = target.getSelectedRow();
-                    int column = target.getSelectedColumn();
                     for (BookingEntry bookingEntry : Storage.getBookings())
                         if (bookingEntry.getBookingId().equals(data[row][0])) {
-                            if (JOptionPane.showConfirmDialog(ShowBookings, "Do you want to change the validation of booking entry #" + bookingEntry.getBookingId() + "?",
+                            if (JOptionPane.showConfirmDialog(ShowBookings, "Do you want to cancel booking entry #" + bookingEntry.getBookingId() + "?",
                                     "Validation of booking entry",
                                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                                 if(Objects.equals(data[row][4], "Valid")) {
                                     JOptionPane.showMessageDialog(ShowBookings,"Setting entry to invalid.");
-                                    if(bookingEntry.cancelBooking())
+                                    if(bookingEntry.cancelBooking()) {
                                         data[row][4] = "Invalid";
+                                        data[row][3] = data[row][5] = "-";
+                                    }
                                     else
                                         JOptionPane.showMessageDialog(ShowBookings, "Cancellation failed!");
                                 } else {
-                                    JOptionPane.showMessageDialog(ShowBookings,"Setting entry to valid.");
-                                    BookingEntry tmpBooking = new BookingEntry(bookingEntry.getTenant(),bookingEntry.getLodge());
-                                    if(tmpBooking.bookLodge(bookingEntry.getArrivalDate(),bookingEntry.getDepartureDate()))
-                                        data[row][4] = "Valid";
-                                    else
-                                        JOptionPane.showMessageDialog(ShowBookings, "Booking failed!");
+                                    JOptionPane.showMessageDialog(ShowBookings, "This booking entry is already cancelled!");
                                 }
                             }
-                            bookingList.removeAll();
-                            bookingList.revalidate();
-                            bookingList.repaint();
+                            actionArea.removeAll();
+                            actionArea.revalidate();
+                            actionArea.repaint();
+                            invoke();
                             break;
                         }
                 }

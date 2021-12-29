@@ -1,5 +1,6 @@
 package Users.Actions.CommandLine.Landlord;
 
+import Booking.BookingEntry;
 import Lodges.Hotel;
 import Lodges.Lodge;
 import Lodges.LodgeType;
@@ -71,9 +72,12 @@ public class DeleteLodge implements Command {
                 Hotel hotel = (Hotel) lodge;
                 for (String room : hotel.getRooms().keySet())
                     hotel.removeRoom(room);
-                removed = Storage.getLodges().remove(lodge);
             }
+            removed = Storage.getLodges().remove(lodge);
         }
+        if(removed)
+            for(BookingEntry bookingEntry : Storage.getBookings())
+                if(bookingEntry.getLodge().equals(lodge)) bookingEntry.cancelBooking();
         return removed ? "Lodge has been removed!" : "Unable to remove the requested lodge!";
     }
 }

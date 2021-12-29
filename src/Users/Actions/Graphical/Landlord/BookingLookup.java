@@ -8,8 +8,16 @@ import Users.Actions.Graphical.GUIAction;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ *
+ * @author Christos Balaktsis
+ */
 
 public class BookingLookup extends GUIAction {
     @Override
@@ -66,6 +74,9 @@ public class BookingLookup extends GUIAction {
         topPanelRight.add(searchFromBooking);
         topPanelRight.add(searchFromLodge);
 
+        JButton refresh = new JButton("Refresh");
+        topPanelRight.add(refresh);
+
         searchFromDate.addActionListener(e -> {
             mainPanel.removeAll();
             mainPanel.revalidate();
@@ -83,10 +94,7 @@ public class BookingLookup extends GUIAction {
                 return;
             }
 
-            for (BookingEntry bookingEntry : foundBookings){
-                mainPanel.add(bookingEntry.toJPanel());
-            }
-
+            addBookingsToMainPanel(mainPanel, foundBookings);
         });
 
         searchFromBooking.addActionListener(e -> {
@@ -118,9 +126,7 @@ public class BookingLookup extends GUIAction {
                 return;
             }
 
-            for (BookingEntry bookingEntry : foundBookings){
-                mainPanel.add(bookingEntry.toJPanel());
-            }
+            addBookingsToMainPanel(mainPanel, foundBookings);
 
         });
 
@@ -153,10 +159,43 @@ public class BookingLookup extends GUIAction {
                 return;
             }
 
-            for (BookingEntry bookingEntry : foundBookings){
-                mainPanel.add(bookingEntry.toJPanel());
-            }
+            addBookingsToMainPanel(mainPanel, foundBookings);
 
         });
+
+        refresh.addActionListener(e -> {
+            mainPanel.removeAll();
+            mainPanel.revalidate();
+            mainPanel.repaint();
+        });
+
+    }
+
+    private void addBookingsToMainPanel(JPanel mainPanel, List<BookingEntry> foundBookings) {
+        for (BookingEntry bookingEntry : foundBookings){
+            JPanel tmp = bookingEntry.toJPanel();
+            tmp.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if (JOptionPane.showConfirmDialog(mainPanel, "Do you want to change the validation of booking entry #" + bookingEntry.getBookingId() + "?",
+                            "Validation of booking entry",
+                            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                        if(bookingEntry.isValid()) {
+                            if(bookingEntry.cancelBooking())
+                                JOptionPane.showMessageDialog(mainPanel,"Setting entry to invalid.");
+                            else
+                                JOptionPane.showMessageDialog(mainPanel, "Cancellation failed!");
+                        } else {
+                            JOptionPane.showMessageDialog(mainPanel, "This booking entry is already cancelled!");
+                        }
+                    }
+                    actionArea.removeAll();
+                    actionArea.revalidate();
+                    actionArea.repaint();
+                    invoke();
+                }
+            });
+            mainPanel.add(tmp);
+        }
     }
 }
