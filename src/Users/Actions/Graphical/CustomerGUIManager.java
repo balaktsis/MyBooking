@@ -1,7 +1,7 @@
 package Users.Actions.Graphical;
 
-import Users.Actions.Graphical.Admin.ShowDetails;
 import Users.Actions.Graphical.Customer.LookupLodges;
+import Users.Actions.Graphical.Customer.MyBookings;
 import Users.User;
 
 public class CustomerGUIManager extends GUIManager{
@@ -9,7 +9,8 @@ public class CustomerGUIManager extends GUIManager{
         super(parentUser);
         this.guiActions = new GUIAction[]{
             new LookupLodges(),
-            new ShowDetails()
+            new MyBookings(),
+
         };
     }
 }

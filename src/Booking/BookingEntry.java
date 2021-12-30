@@ -5,6 +5,7 @@ import Misc.Storage;
 import Users.Customer;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import static Misc.UniqueIDGenerator.getUniqueId;
@@ -116,6 +117,9 @@ public class BookingEntry implements Serializable {
      * @return If the booking entry is valid. Else it got canceled.
      */
     public boolean isValid() {
+        if (LocalDate.now().isAfter(arrivalDate)){
+            this.valid = false;
+        }
         return this.valid;
     }
 
@@ -226,20 +230,32 @@ public class BookingEntry implements Serializable {
         JPanel bookingPanel = new JPanel();
         bookingPanel.setBackground(Color.white);
         bookingPanel.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
-        bookingPanel.setLayout(new FlowLayout());
-        bookingPanel.add(new JLabel("ID:"));
-        bookingPanel.add(new JLabel(bookingId));
-        bookingPanel.add(new JLabel(", Lodge:"));
-        bookingPanel.add(new JLabel(lodge.getLodgeId()));
-        bookingPanel.add(new JLabel(lodge.getDetails().getTitle()));
-        bookingPanel.add(new JLabel(", Booked from:"));
-        bookingPanel.add(new JLabel(arrivalDate.toString()));
-        bookingPanel.add(new JLabel("to:"));
-        bookingPanel.add(new JLabel(departureDate.toString()));
-        bookingPanel.add(new JLabel(", Validation state: "));
-        bookingPanel.add(new JLabel(valid ? "Valid" : "Invalid"));
-        bookingPanel.add(new JLabel(", by"));
-        bookingPanel.add(new JLabel(tenant.getUsername()));
+
+        ImageIcon scaledImage = new ImageIcon(this.lodge.getDetails().getImage().getImage().getScaledInstance(50, 50, Image.SCALE_AREA_AVERAGING));
+        JPanel imagePanel = new JPanel();
+        imagePanel.setBackground(Color.white);
+        imagePanel.add(new JLabel(scaledImage));
+
+        JPanel detailPanel = new JPanel();
+        detailPanel.setLayout(new GridLayout(3, 2));
+        detailPanel.setBackground(Color.white);
+        detailPanel.add(new JLabel(lodge.getDetails().getTitle()),0,0);
+        detailPanel.add(new JLabel("# " + getBookingId(), SwingConstants.TRAILING));
+        detailPanel.add(new JLabel("From: " + arrivalDate.toString() + " to: " + departureDate.toString()));
+        detailPanel.add(new JLabel("Tenant: " + getTenant().getUsername(), SwingConstants.TRAILING));
+        detailPanel.add(new JLabel("Price: " + getTotalCost() + "€"));
+        if (valid){
+            detailPanel.add(new JLabel("State: Valid", SwingConstants.TRAILING));
+        } else {
+            detailPanel.add(new JLabel("State: Invalid", SwingConstants.TRAILING));
+        }
+
+
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, imagePanel, detailPanel);
+        splitPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+        splitPane.setDividerSize(0);
+        bookingPanel.add(splitPane);
+
         return bookingPanel;
     }
 

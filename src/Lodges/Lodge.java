@@ -208,7 +208,7 @@ public class Lodge implements Serializable {
         lodgePanel.setBackground(Color.white);
         lodgePanel.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
 
-        ImageIcon scaledImage = new ImageIcon(this.details.getImage().getImage().getScaledInstance(50, 50, Image.SCALE_AREA_AVERAGING));
+        ImageIcon scaledImage = new ImageIcon(this.getDetails().getImage().getImage().getScaledInstance(50, 50, Image.SCALE_AREA_AVERAGING));
         JPanel imagePanel = new JPanel();
         imagePanel.setBackground(Color.white);
         imagePanel.add(new JLabel(scaledImage));
@@ -221,17 +221,11 @@ public class Lodge implements Serializable {
         detailPanel.add(new JLabel(getDetails().getDescription()));
         detailPanel.add(new JLabel("Landlord: " + getLandlord().getUsername(), SwingConstants.TRAILING));
 
-
-
-
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, imagePanel, detailPanel);
         splitPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         splitPane.setDividerSize(0);
         lodgePanel.add(splitPane);
 
-//        lodgePanel.add(new JLabel(getDetails().getTitle()));
-//        lodgePanel.add(new JLabel(", Landlord:"));
-//        lodgePanel.add(new JLabel(getLandlord().getUsername()));
         return lodgePanel;
     }
 
