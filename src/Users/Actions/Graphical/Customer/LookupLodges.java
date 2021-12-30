@@ -19,7 +19,7 @@ import java.util.Hashtable;
 public class LookupLodges extends GUIAction {
     @Override
     protected String getName() {
-        return "Look up Lodges";
+        return "Lodges";
     }
 
     @Override
@@ -39,6 +39,7 @@ public class LookupLodges extends GUIAction {
         JPanel mainPanel = new JPanel();
 //        actionArea.add(mainPanel, BorderLayout.CENTER);
         mainPanel.setLayout(new FlowLayout());
+        display(Storage.getLodges(), mainPanel);
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sidepanel, mainPanel);
 //        sidepanel.setMinimumSize(new Dimension(10, 10));
@@ -60,10 +61,6 @@ public class LookupLodges extends GUIAction {
         sidepanel.add(search, BorderLayout.SOUTH);
 
         search.addActionListener(e -> {
-            mainPanel.removeAll();
-            mainPanel.revalidate();
-            mainPanel.repaint();
-
             HashSet<Amenities> selectedAmenities = new HashSet<>();
             for (JCheckBox checkBox : checkBoxes.keySet()){
                 if (checkBox.isSelected()){
@@ -71,14 +68,29 @@ public class LookupLodges extends GUIAction {
                 }
             }
 
+            HashSet<Lodge> lodges = new HashSet<>();
             for (Lodge lodge : Storage.getLodges()){
                 if (lodge.getAmenities().containsAll(selectedAmenities) && (place.getText().isBlank() ||
                         place.getText().equalsIgnoreCase(lodge.getDetails().getLocation()))){
-                    mainPanel.add(lodge.toJPanel());
+                    lodges.add(lodge);
                 }
             }
+            display(lodges, mainPanel);
         });
 
 
     }
+
+    private void display(HashSet<Lodge> lodges, JPanel panel){
+        panel.removeAll();
+        panel.revalidate();
+        panel.repaint();
+        if (lodges.size() == 0){
+            panel.add(error("No lodges found!"));
+        }
+        for (Lodge lodge : lodges){
+            panel.add(lodge.toJPanel());
+        }
+    }
+
 }
