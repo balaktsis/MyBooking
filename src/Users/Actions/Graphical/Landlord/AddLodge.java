@@ -599,4 +599,8 @@ public class AddLodge extends GUIAction {
                 hotelBox.addItem(lodge.getLodgeId() + " - " + lodge.getDetails().getTitle());
     }
 
+    public void createLodge(String type) {
+
+    }
+
 }
