@@ -117,6 +117,9 @@ public class BookingEntry implements Serializable {
      * @return If the booking entry is valid. Else it got canceled.
      */
     public boolean isValid() {
+        if (LocalDate.now().isAfter(arrivalDate)){
+            this.valid = false;
+        }
         return this.valid;
     }
 
