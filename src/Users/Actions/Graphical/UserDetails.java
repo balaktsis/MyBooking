@@ -99,6 +99,14 @@ public abstract class UserDetails extends GUIAction{
             refresh();
         });
 
+        scrollPane.setViewportView(mainPanel);
+        scrollPane.setVisible(true);
+
+        actionArea.add(scrollPane);
+        actionArea.add(Box.createRigidArea(new Dimension(0, 5)));
+    }
+
+    protected void setPanelSize() {
         Dimension preferredSize = new Dimension();
         for (int i = 0; i < mainPanel.getComponentCount(); i++) {
             Rectangle bounds = mainPanel.getComponent(i).getBounds();
@@ -110,12 +118,6 @@ public abstract class UserDetails extends GUIAction{
         preferredSize.height += insets.bottom;
         mainPanel.setMinimumSize(preferredSize);
         mainPanel.setPreferredSize(preferredSize);
-
-        scrollPane.setViewportView(mainPanel);
-        scrollPane.setVisible(true);
-
-        actionArea.add(scrollPane);
-        actionArea.add(Box.createRigidArea(new Dimension(0, 5)));
     }
 
     protected void changeFullName() {

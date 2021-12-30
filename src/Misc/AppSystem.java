@@ -54,13 +54,13 @@ public class AppSystem {
      * Begin app execution by running the loginScreen
      */
     public static void run(){
-        loginSystem = new LoginSystem(graphical);
-        loginSystem.showLoginScreen();
-//        for (User user : Storage.getUsers()) {
-//            if (user.getUsername().equalsIgnoreCase("landlord")){
-//                user.showInterface(true);
-//            }
-//        }
+//        loginSystem = new LoginSystem(graphical);
+//        loginSystem.showLoginScreen();
+        for (User user : Storage.getUsers()) {
+            if (user.getUsername().equalsIgnoreCase("customer")){
+                user.showInterface(true);
+            }
+        }
     }
 
     /**

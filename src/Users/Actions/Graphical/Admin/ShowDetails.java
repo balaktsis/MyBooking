@@ -7,6 +7,7 @@ public class ShowDetails extends UserDetails {
     @Override
     protected void invoke() {
         super.invoke();
+        setPanelSize();
     }
 
     @Override

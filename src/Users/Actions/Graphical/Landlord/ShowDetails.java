@@ -8,11 +8,12 @@ import javax.swing.*;
 public class ShowDetails extends UserDetails {
 
     private final JTextField baseField = new JTextField();
-    private final Landlord landlord = (Landlord) parentUser;
+    private Landlord landlord;
 
     @Override
     protected void invoke() {
         super.invoke();
+        landlord = (Landlord) parentUser;
         JLabel baseLabel = new JLabel();
         JLabel numberOfCancellationsLabel = new JLabel();
         JLabel numberOfCancellationsField = new JLabel();
@@ -72,10 +73,13 @@ public class ShowDetails extends UserDetails {
         totalCostField.setText(String.valueOf(landlord.getTotalProfit()));
         mainPanel.add(totalCostField);
         totalCostField.setBounds(140, 365, 200, 20);
+
+        setPanelSize();
     }
 
     @Override
     protected void changeOthers() {
+        landlord = (Landlord) parentUser;
         landlord.setBase(baseField.getText().length()!=0 ? baseField.getText() : landlord.getBase());
     }
 }

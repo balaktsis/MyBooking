@@ -8,11 +8,12 @@ import javax.swing.*;
 public class ShowDetails extends UserDetails {
 
     private final JTextField addressField = new JTextField();
-    private final Customer customer = (Customer) parentUser;
+    private Customer customer;
 
     @Override
     protected void invoke() {
         super.invoke();
+        customer = (Customer) parentUser;
         JLabel addressLabel = new JLabel();
 
         //---- addressField ----
@@ -24,10 +25,13 @@ public class ShowDetails extends UserDetails {
         addressField.setText(((Customer) parentUser).getAddress());
         mainPanel.add(addressField);
         addressField.setBounds(140, 225, 200, 20);
+
+        setPanelSize();
     }
 
     @Override
     protected void changeOthers() {
+        customer = (Customer) parentUser;
         customer.setAddress(addressField.getText().length()!=0 ? addressField.getText() : customer.getAddress());
     }
 }
