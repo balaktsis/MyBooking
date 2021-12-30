@@ -126,7 +126,7 @@ public class LoginSystem {
      * @param pass Provided password for formula checking.
      * @return if the password meets specific conditions: must contain at least one digit and has length between 6 and 20 characters.
      */
-    protected static boolean checkPassword(String pass) {
+    public static boolean checkPassword(String pass) {
         return !pass.matches(".*[0-9]+.*") || pass.length() < 6 || pass.length() > 20;
     }
 

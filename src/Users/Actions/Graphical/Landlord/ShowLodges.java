@@ -655,18 +655,11 @@ public class ShowLodges extends GUIAction implements Serializable {
 
                 if(!editImageIcon.toString().equals("src/Misc/images/defaultLodgeImage.png"))
                     lodge.getDetails().setImage(editImageIcon);
+                currentLodge.dispose();
+                editLodge.dispose();
                 refresh();
             }
         }
-    }
-
-    private void refresh() {
-        currentLodge.dispose();
-        editLodge.dispose();
-        actionArea.removeAll();
-        actionArea.revalidate();
-        actionArea.repaint();
-        invoke();
     }
 
     private Image getScaledImage(Image srcImg) {

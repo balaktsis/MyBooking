@@ -57,7 +57,7 @@ public class AppSystem {
         loginSystem = new LoginSystem(graphical);
         loginSystem.showLoginScreen();
 //        for (User user : Storage.getUsers()) {
-//            if (user.getUsername().equalsIgnoreCase("admin")){
+//            if (user.getUsername().equalsIgnoreCase("landlord")){
 //                user.showInterface(true);
 //            }
 //        }
@@ -82,7 +82,7 @@ public class AppSystem {
 
         tempAdmin.setApprovalStatus(true);
         tempCustomer.setApprovalStatus(false);
-        tempLandlord.setApprovalStatus(false);
+        tempLandlord.setApprovalStatus(true);
 
         tempLandlord.setBase("Thessaloniki, Greece");
 

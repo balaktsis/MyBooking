@@ -1,5 +1,6 @@
 package Users.Actions.Graphical;
 
+import Users.Actions.Graphical.Admin.ShowDetails;
 import Users.Actions.Graphical.Customer.LookupLodges;
 import Users.User;
 
@@ -8,7 +9,7 @@ public class CustomerGUIManager extends GUIManager{
         super(parentUser);
         this.guiActions = new GUIAction[]{
             new LookupLodges(),
-
+            new ShowDetails()
         };
     }
 }

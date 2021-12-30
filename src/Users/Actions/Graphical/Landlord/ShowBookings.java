@@ -1,19 +1,14 @@
 package Users.Actions.Graphical.Landlord;
 
 import Booking.BookingEntry;
-import Lodges.Lodge;
-import Misc.HintedJTextField;
 import Misc.Storage;
 import Users.Actions.Graphical.GUIAction;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Objects;
 
 
@@ -130,10 +125,7 @@ public class ShowBookings extends GUIAction implements Serializable {
                                     JOptionPane.showMessageDialog(ShowBookings, "This booking entry is already cancelled!");
                                 }
                             }
-                            actionArea.removeAll();
-                            actionArea.revalidate();
-                            actionArea.repaint();
-                            invoke();
+                            refresh();
                             break;
                         }
                 }

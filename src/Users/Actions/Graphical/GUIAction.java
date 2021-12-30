@@ -13,6 +13,7 @@ public abstract class GUIAction implements Serializable {
     protected JPanel buttonArea;
     protected User parentUser;
 
+
     void setActionArea(JPanel actionArea, JPanel buttonArea){
         this.actionArea = actionArea;
         this.buttonArea = buttonArea;
@@ -53,4 +54,11 @@ public abstract class GUIAction implements Serializable {
     //Invoke method, gets called whenever the corresponding button is pressed
     protected abstract void invoke();
 
+    //Preset actionArea reset method.
+    protected void refresh() {
+        actionArea.removeAll();
+        actionArea.revalidate();
+        actionArea.repaint();
+        invoke();
+    }
 }

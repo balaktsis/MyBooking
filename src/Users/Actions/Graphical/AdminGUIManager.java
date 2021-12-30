@@ -13,7 +13,7 @@ public class AdminGUIManager extends GUIManager{
                 new BookingsLookup(),
                 new LookupLodges(),
                 new LookupUsers(),
-
+                new ShowDetails()
         };
     }
 

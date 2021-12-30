@@ -1,9 +1,6 @@
 package Users.Actions.Graphical;
 
-import Users.Actions.Graphical.Landlord.AddLodge;
-import Users.Actions.Graphical.Landlord.BookingLookup;
-import Users.Actions.Graphical.Landlord.ShowBookings;
-import Users.Actions.Graphical.Landlord.ShowLodges;
+import Users.Actions.Graphical.Landlord.*;
 import Users.User;
 
 
@@ -15,7 +12,8 @@ public class LandlordGUIManager extends GUIManager{
                 new AddLodge(),
                 new ShowLodges(),
                 new ShowBookings(),
-                new BookingLookup()
+                new BookingLookup(),
+                new ShowDetails()
         };
     }
 

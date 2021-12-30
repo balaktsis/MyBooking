@@ -171,7 +171,7 @@ abstract public class User implements Serializable {
     public boolean equals(Object user) {
 
         if (user instanceof User ptr) {
-            return ptr.username.equals(this.username) && ptr.password.equals(this.password);
+            return ptr.username.equals(this.username) && ptr.uid.equals(this.uid);
         }
 
         return false;
@@ -181,7 +181,7 @@ abstract public class User implements Serializable {
     public int hashCode() {
         int hash = 17;
         hash = 31 * hash + (this.username != null ? this.username.hashCode() : 0);
-        hash = 37 * hash + (this.password != null ? this.password.hashCode() : 0);
+        hash = 37 * hash + (this.uid != null ? this.uid.hashCode() : 0);
         return hash;
     }
 

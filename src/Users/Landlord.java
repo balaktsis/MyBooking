@@ -58,7 +58,7 @@ public class Landlord extends User{
     /**
      * @return Total profit of all valid bookings on the current landlord's property.
      */
-    protected double getTotalProfit() {
+    public double getTotalProfit() {
         double profit = 0;
         for(BookingEntry bookingEntry : Storage.getBookings())
             if(bookingEntry.getLodge().getLandlord().equals(this))
@@ -69,7 +69,7 @@ public class Landlord extends User{
     /**
      * @return Number of bookings in lodges that belong to the current landlord.
      */
-    protected int getNumOfBookings() {
+    public int getNumOfBookings() {
         int num = 0;
         for(BookingEntry bookingEntry : Storage.getBookings())
             if(bookingEntry.getLodge().getLandlord().equals(this) && bookingEntry.isValid())
@@ -80,7 +80,7 @@ public class Landlord extends User{
     /**
      * @return Number of lodges in current landlord's property.
      */
-    protected int getNumOfLodges() {
+    public int getNumOfLodges() {
         int num = 0;
         for(Lodge lodge : Storage.getLodges())
             if(lodge.getLandlord().equals(this)) num++;
@@ -90,7 +90,7 @@ public class Landlord extends User{
     /**
      * @return Number of cancellations in current landlord's property.
      */
-    protected int getNumOfCancellations() {
+    public int getNumOfCancellations() {
         int num = 0;
         for(BookingEntry bookingEntry : Storage.getBookings())
             if(bookingEntry.getLodge().getLandlord().equals(this) && !bookingEntry.isValid()) num++;
