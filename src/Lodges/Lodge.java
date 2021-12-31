@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
+import Misc.Storage;
 import Users.Landlord;
 
 import javax.swing.*;
@@ -147,7 +148,7 @@ public class Lodge implements Serializable {
     public boolean bookLodge(HashSet<LocalDate> dates) {
         dates.remove(Collections.max(dates));
         if(this.availability.markDates(dates)) {
-  //TODO          this.rating = ((int) (1.0 * (this.numOfBookings++) / Administrator.getTotalBookings() * 100) % 6); <--Use Storage
+            this.details.rating = (int) ((1.0 * details.numOfBookings / Storage.getLodges().size() * 100) % 6);
             return true;
         }
         return false;
