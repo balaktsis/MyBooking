@@ -10,12 +10,13 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * This class represents a searching interface for a Landlord to get a
+ * filtered list of the booking entries that apply to their property.
+ * Double-clicking on an entry, it can get set to cancelled/invalid.
  * @author Christos Balaktsis
  */
 

@@ -32,7 +32,7 @@ public class LodgeAvailability implements Serializable {
      * @param bookCalendar The HashSet of Dates marked as booked for a lodge.
      */
     public void setBookCalendar(HashSet<LocalDate> bookCalendar) {
-        this.bookCalendar = bookCalendar;
+        this.bookCalendar.addAll(bookCalendar);
     }
 
     /**

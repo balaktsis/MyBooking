@@ -5,6 +5,12 @@ import Users.Landlord;
 
 import javax.swing.*;
 
+/**
+ * This is a child of class UserDetails, adding to the user detail
+ * panel some extra information fields that only apply to Landlords.
+ * @author Christos Balaktsis
+ */
+
 public class ShowDetails extends UserDetails {
 
     private final JTextField baseField = new JTextField();

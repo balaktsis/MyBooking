@@ -1,9 +1,15 @@
 package Users.Actions.Graphical;
 
-import LoginSystem.LoginSystem;
-
 import javax.swing.*;
 import java.awt.*;
+
+/**
+ * This abstract class represents a panel of a user detail fields and
+ * provides the option to update the immutable ones with new values.
+ * UserDetails is an abstract graphical implementation of ShowDetails
+ * Command(-line actions).
+ * @author Christos Balaktsis
+ */
 
 public abstract class UserDetails extends GUIAction{
 
@@ -125,11 +131,11 @@ public abstract class UserDetails extends GUIAction{
     }
 
     protected void changePassword() {
-        if (LoginSystem.checkPassword(new String(passwordField.getPassword())))
+        if (!parentUser.setPassword(new String(passwordField.getPassword())))
             JOptionPane.showMessageDialog(mainPanel, "Password should contain at least one digit and have a length between 6 and 20 characters." +
                     " Please try entering another one.", "Warning", JOptionPane.WARNING_MESSAGE);
         else
-            parentUser.setPassword(new String(passwordField.getPassword()));
+            JOptionPane.showMessageDialog(mainPanel, "Your password has been updated!", "Password Updated", JOptionPane.INFORMATION_MESSAGE);
     }
 
     protected abstract void changeOthers();

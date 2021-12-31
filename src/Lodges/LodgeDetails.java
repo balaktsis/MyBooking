@@ -32,7 +32,7 @@ public class LodgeDetails implements Serializable {
      * @param rating New rating for the lodge.
      */
     public void setRating(int rating) {
-        this.rating = rating;
+        this.rating = Math.max(rating, 0);
     }
 
     /**
@@ -40,7 +40,7 @@ public class LodgeDetails implements Serializable {
      * @param beds New size of the lodge.
      */
     public void setBeds(int beds) {
-        this.beds = beds;
+        this.beds = Math.max(beds, 0);
     }
 
     /**
@@ -48,7 +48,7 @@ public class LodgeDetails implements Serializable {
      * @param price New price of the lodge.
      */
     public void setPrice(double price) {
-        this.price = price;
+        this.price = Math.max(price, 0);
     }
 
     /**
@@ -64,7 +64,7 @@ public class LodgeDetails implements Serializable {
      * @param size New size in m^2
      */
     public void setSize(int size) {
-        this.size = size;
+        this.size = Math.max(size, 0);
     }
 
     /**
@@ -72,7 +72,7 @@ public class LodgeDetails implements Serializable {
      * @param numOfBookings New number of total Bookings of the current lodge.
      */
     public void setNumOfBookings(int numOfBookings) {
-        this.numOfBookings = numOfBookings;
+        this.numOfBookings = Math.max(numOfBookings, 0);
     }
 
     /**
@@ -143,7 +143,7 @@ public class LodgeDetails implements Serializable {
      * @param imageIcon An image of a lodge.
      */
     public void setImage(ImageIcon imageIcon) {
-        this.image = imageIcon;
+        this.image = imageIcon != null ? imageIcon : new ImageIcon("src/Misc/images/defaultLodgeImage.png");
     }
 
     /**

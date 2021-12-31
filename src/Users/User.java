@@ -55,7 +55,7 @@ abstract public class User implements Serializable {
      *
      * @param username New username for the user
      */
-    public void setUsername(String username) {
+    private void setUsername(String username) {
         this.username = username;
     }
 
@@ -73,8 +73,12 @@ abstract public class User implements Serializable {
      *
      * @param password New password for the user
      */
-    public void setPassword(String password) {
+    public boolean setPassword(String password) {
+        if(password == null || !password.matches(".*[0-9]+.*") || password.length() < 6 || password.length() > 20) {
+            return false;
+        }
         this.password = password;
+        return true;
     }
 
     /**
@@ -92,7 +96,7 @@ abstract public class User implements Serializable {
      * @param fullName Setting the full name of a user
      */
     public void setFullName(String fullName) {
-        this.fullName = fullName;
+        this.fullName = (fullName == null || fullName.isBlank()) ? null : fullName;
     }
 
     public String getFullName() { return this.fullName;}

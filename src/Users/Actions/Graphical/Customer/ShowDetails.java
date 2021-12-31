@@ -5,6 +5,12 @@ import Users.Customer;
 
 import javax.swing.*;
 
+/**
+ * This is a child of class UserDetails, adding to the user detail
+ * panel some extra information fields that only apply to Customers.
+ * @author Christos Balaktsis
+ */
+
 public class ShowDetails extends UserDetails {
 
     private final JTextField addressField = new JTextField();

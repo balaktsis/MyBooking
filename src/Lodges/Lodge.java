@@ -64,8 +64,10 @@ public class Lodge implements Serializable {
      * Update the user owner of the current lodge.
      * @param landlord New user landlord of the lodge.
      */
-    public void setLandlord(Landlord landlord) {
+    public boolean setLandlord(Landlord landlord) {
+        if(landlord == null) return false;
         this.landlord = landlord;
+        return true;
     }
 
     /**
@@ -143,6 +145,7 @@ public class Lodge implements Serializable {
      * @return if the current lodge is available for booking for the dates in "dates".
      */
     public boolean bookLodge(HashSet<LocalDate> dates) {
+        dates.remove(Collections.max(dates));
         if(this.availability.markDates(dates)) {
   //TODO          this.rating = ((int) (1.0 * (this.numOfBookings++) / Administrator.getTotalBookings() * 100) % 6); <--Use Storage
             return true;
