@@ -1,6 +1,7 @@
 package Users.Actions.Graphical.Landlord;
 
-import Users.Actions.Graphical.UserDetails;
+import Users.Actions.Graphical.AdjustSize;
+import Users.Actions.Graphical.UserDetailsPanel;
 import Users.Landlord;
 
 import javax.swing.*;
@@ -11,13 +12,13 @@ import javax.swing.*;
  * @author Christos Balaktsis
  */
 
-public class ShowDetails extends UserDetails {
+public class ShowDetailsPanel extends UserDetailsPanel {
 
     private final JTextField baseField = new JTextField();
     private Landlord landlord;
 
     @Override
-    protected void invoke() {
+    public void invoke() {
         super.invoke();
         landlord = (Landlord) parentUser;
         JLabel baseLabel = new JLabel();
@@ -80,7 +81,7 @@ public class ShowDetails extends UserDetails {
         mainPanel.add(totalCostField);
         totalCostField.setBounds(140, 365, 200, 20);
 
-        setPanelSize();
+        AdjustSize.AdjustPanelSize(mainPanel);
     }
 
     @Override

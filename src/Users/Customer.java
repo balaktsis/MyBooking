@@ -5,6 +5,9 @@ import Users.Actions.CommandLine.CustomerCommandLineManager;
 import Users.Actions.Graphical.CustomerGUIManager;
 import Users.Actions.Graphical.GUIManager;
 
+import javax.swing.*;
+import java.awt.*;
+
 
 /**
  * This is a child of the User class, which contains functionality unique
@@ -62,4 +65,20 @@ public class Customer extends User{
         return str.toString();
     }
 
+    @Override
+    protected void addFields(JPanel mainPanel) {
+        JLabel addressLabel = new JLabel();
+        JLabel addressField = new JLabel();
+
+        //---- addressField ----
+        addressLabel.setText("Address");
+        mainPanel.add(addressLabel);
+        addressLabel.setBounds(20, 225, 100, 20);
+
+        //---- addressField ----
+        addressField.setName("Address");
+        addressField.setText(this.getAddress());
+        mainPanel.add(addressField);
+        addressField.setBounds(140, 225, 200, 20);
+    }
 }

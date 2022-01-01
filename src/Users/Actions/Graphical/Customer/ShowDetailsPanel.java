@@ -1,6 +1,7 @@
 package Users.Actions.Graphical.Customer;
 
-import Users.Actions.Graphical.UserDetails;
+import Users.Actions.Graphical.AdjustSize;
+import Users.Actions.Graphical.UserDetailsPanel;
 import Users.Customer;
 
 import javax.swing.*;
@@ -11,7 +12,7 @@ import javax.swing.*;
  * @author Christos Balaktsis
  */
 
-public class ShowDetails extends UserDetails {
+public class ShowDetailsPanel extends UserDetailsPanel {
 
     private final JTextField addressField = new JTextField();
     private Customer customer;
@@ -22,7 +23,6 @@ public class ShowDetails extends UserDetails {
         customer = (Customer) parentUser;
         JLabel addressLabel = new JLabel();
 
-        System.out.println("here");
         //---- addressField ----
         addressLabel.setText("Address");
         mainPanel.add(addressLabel);
@@ -33,7 +33,7 @@ public class ShowDetails extends UserDetails {
         mainPanel.add(addressField);
         addressField.setBounds(140, 225, 200, 20);
 
-        setPanelSize();
+        AdjustSize.AdjustPanelSize(mainPanel);
     }
 
     @Override

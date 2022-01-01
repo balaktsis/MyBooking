@@ -6,6 +6,7 @@ import Lodges.Hotel;
 import Lodges.Lodge;
 import Lodges.LodgeType;
 import Misc.Storage;
+import Users.Actions.Graphical.AdjustSize;
 import Users.Actions.Graphical.GUIAction;
 import Users.Landlord;
 
@@ -113,20 +114,7 @@ public class ShowLodges extends GUIAction implements Serializable {
         Panel.add(lodgeTable);
         lodgeTable.setBounds(20, 55, 1100, 600);
 
-        {
-            // compute preferred size
-            Dimension preferredSize = new Dimension();
-            for(int i = 0; i < Panel.getComponentCount(); i++) {
-                Rectangle bounds = Panel.getComponent(i).getBounds();
-                preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-            }
-            Insets insets = Panel.getInsets();
-            preferredSize.width += insets.right;
-            preferredSize.height += insets.bottom;
-            Panel.setMinimumSize(preferredSize);
-            Panel.setPreferredSize(preferredSize);
-        }
+        AdjustSize.AdjustPanelSize(Panel);
 
         ShowLodges.setViewportView(Panel);
 
@@ -347,20 +335,8 @@ public class ShowLodges extends GUIAction implements Serializable {
 
         });
 
-        {
-            // compute preferred size
-            Dimension preferredSize = new Dimension();
-            for(int i = 0; i < currentLodgeContentPane.getComponentCount(); i++) {
-                Rectangle bounds = currentLodgeContentPane.getComponent(i).getBounds();
-                preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-            }
-            Insets insets = currentLodgeContentPane.getInsets();
-            preferredSize.width += insets.right;
-            preferredSize.height += insets.bottom;
-            currentLodgeContentPane.setMinimumSize(preferredSize);
-            currentLodgeContentPane.setPreferredSize(preferredSize);
-        }
+        AdjustSize.AdjustContainerSize(currentLodgeContentPane);
+
         currentLodge.pack();
         currentLodge.setLocationRelativeTo(currentLodge.getOwner());
 

@@ -4,11 +4,14 @@ import Misc.Message;
 import Misc.Storage;
 import Misc.UniqueIDGenerator;
 import Users.Actions.CommandLine.CommandLineManager;
+import Users.Actions.Graphical.AdjustSize;
 import Users.Actions.Graphical.GUIManager;
 
 import javax.swing.*;
 import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -269,7 +272,96 @@ abstract public class User implements Serializable {
         userPanel.add(details);
 
         userPanel.setMaximumSize(userPanel.getPreferredSize());
+
+        userPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                showDetailsDialog();
+            }
+        });
+
         return userPanel;
     }
+
+    public JPanel toDetailedJPanel() {
+        JScrollPane scrollPane = new JScrollPane();
+        JPanel mainPanel = new JPanel();
+        JLabel noteLabel = new JLabel();
+        JLabel usernameLabel = new JLabel();
+        JLabel usernameField = new JLabel();
+        JLabel fullnameField = new JLabel();
+        JLabel fullnameLabel = new JLabel();
+        JPasswordField passwordField = new JPasswordField();
+        JLabel passwordLabel = new JLabel();
+        JLabel roleLabel = new JLabel();
+        JLabel roleField = new JLabel();
+        scrollPane.add(mainPanel);
+        mainPanel.setLayout(null);
+
+        //---- noteLabel ----
+        noteLabel.setText("Profile Details");
+        noteLabel.setFont(noteLabel.getFont().deriveFont(noteLabel.getFont().getStyle() | Font.BOLD, noteLabel.getFont().getSize() + 5f));
+        mainPanel.add(noteLabel);
+        noteLabel.setBounds(20, 0, 175, 40);
+
+        //---- usernameLabel ----
+        usernameLabel.setText("Username");
+        mainPanel.add(usernameLabel);
+        usernameLabel.setBounds(20, 85, 100, 20);
+        mainPanel.add(usernameField);
+        usernameField.setText(this.getUsername());
+        usernameField.setBounds(140, 85, 205, 20);
+
+        //---- fullnameLabel ----
+        fullnameLabel.setText("Full name");
+        mainPanel.add(fullnameLabel);
+        fullnameLabel.setBounds(20, 120, 100, 20);
+        mainPanel.add(fullnameField);
+        fullnameField.setText(this.getFullName());
+        fullnameField.setBounds(140, 120, 100, 20);
+
+        //---- passwordLabel ----
+        passwordLabel.setText("Password");
+        mainPanel.add(passwordLabel);
+        passwordLabel.setBounds(20, 155, 100, 20);
+        mainPanel.add(passwordField);
+        passwordField.setText(this.getPassword());
+        passwordField.setBounds(140, 155, 100, 20);
+        passwordField.setEnabled(false);
+
+        //---- roleLabel ----
+        roleLabel.setText("Role");
+        mainPanel.add(roleLabel);
+        roleLabel.setBounds(20, 190, 100, 20);
+
+        //---- roleField ----
+        roleField.setText(this.getUserType());
+        mainPanel.add(roleField);
+        roleField.setBounds(145, 190, 100, 20);
+
+        scrollPane.setViewportView(mainPanel);
+        scrollPane.setVisible(true);
+
+        addFields(mainPanel);
+
+        AdjustSize.AdjustPanelSize(mainPanel);
+        return mainPanel;
+    }
+
+    public void showDetailsDialog(){
+        JFrame dialogPanel = new JFrame();
+        JPanel mainPanel = this.toDetailedJPanel();
+
+        dialogPanel.getContentPane().add(mainPanel);
+        dialogPanel.setSize(300,480);
+
+        dialogPanel.setIconImage(new ImageIcon("src/Misc/images/tmpLodgeImage.gif").getImage());
+        dialogPanel.setTitle("User Lookup");
+        dialogPanel.setLocationRelativeTo(null);
+        dialogPanel.setAutoRequestFocus(true);
+        dialogPanel.setVisible(true);
+    }
+
+    protected abstract void addFields(JPanel mainPanel);
 
 }

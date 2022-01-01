@@ -5,6 +5,7 @@ import Lodges.Hotel;
 import Lodges.Lodge;
 import Lodges.LodgeType;
 import Misc.Storage;
+import Users.Actions.Graphical.AdjustSize;
 import Users.Actions.Graphical.GUIAction;
 import Users.Landlord;
 
@@ -207,21 +208,8 @@ public class AddLodge extends GUIAction {
         BasicInfo.add(imageButton);
         imageButton.setBounds(new Rectangle(new Point(20, 460), imageButton.getPreferredSize()));
 
-        {
-            // compute preferred size
-            Dimension preferredSize = new Dimension();
-            for(int i = 0; i < BasicInfo.getComponentCount(); i++) {
-                Rectangle bounds = BasicInfo.getComponent(i).getBounds();
-                preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-            }
-            Insets insets = BasicInfo.getInsets();
-            preferredSize.width += insets.right;
-            preferredSize.height += insets.bottom;
-            BasicInfo.setMinimumSize(preferredSize);
-            BasicInfo.setPreferredSize(preferredSize);
+        AdjustSize.AdjustPanelSize(BasicInfo);
 
-        }
         NewLodge.setViewportView(BasicInfo);
 
         nullTitleLabel.setVisible(false);

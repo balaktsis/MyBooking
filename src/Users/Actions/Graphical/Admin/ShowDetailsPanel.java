@@ -1,18 +1,19 @@
 package Users.Actions.Graphical.Admin;
 
-import Users.Actions.Graphical.UserDetails;
+import Users.Actions.Graphical.AdjustSize;
+import Users.Actions.Graphical.UserDetailsPanel;
 
 /**
  * This is a child of class UserDetails that applies to Administrators.
  * @author Christos Balaktsis
  */
 
-public class ShowDetails extends UserDetails {
+public class ShowDetailsPanel extends UserDetailsPanel {
 
     @Override
     protected void invoke() {
         super.invoke();
-        setPanelSize();
+        AdjustSize.AdjustPanelSize(mainPanel);
     }
 
     @Override

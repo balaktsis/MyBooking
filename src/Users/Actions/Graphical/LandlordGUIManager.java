@@ -13,7 +13,7 @@ public class LandlordGUIManager extends GUIManager{
                 new ShowLodges(),
                 new ShowBookings(),
                 new BookingLookup(),
-                new ShowDetails()
+                new ShowDetailsPanel()
         };
     }
 

@@ -11,7 +11,7 @@ import java.awt.*;
  * @author Christos Balaktsis
  */
 
-public abstract class UserDetails extends GUIAction{
+public abstract class UserDetailsPanel extends GUIAction{
 
     protected JPanel mainPanel;
     protected JLabel noteLabel;
@@ -110,20 +110,6 @@ public abstract class UserDetails extends GUIAction{
 
         actionArea.add(scrollPane);
         actionArea.add(Box.createRigidArea(new Dimension(0, 5)));
-    }
-
-    protected void setPanelSize() {
-        Dimension preferredSize = new Dimension();
-        for (int i = 0; i < mainPanel.getComponentCount(); i++) {
-            Rectangle bounds = mainPanel.getComponent(i).getBounds();
-            preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-            preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-        }
-        Insets insets = mainPanel.getInsets();
-        preferredSize.width += insets.right;
-        preferredSize.height += insets.bottom;
-        mainPanel.setMinimumSize(preferredSize);
-        mainPanel.setPreferredSize(preferredSize);
     }
 
     protected void changeFullName() {

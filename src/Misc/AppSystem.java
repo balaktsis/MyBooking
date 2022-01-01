@@ -38,7 +38,7 @@ public class AppSystem {
     /**
      * Initialize constant and temporary fields
      */
-    private void initializeApp(){
+    private static void initializeApp(){
         try {
             // Set System L&F
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -54,20 +54,21 @@ public class AppSystem {
      * Begin app execution by running the loginScreen
      */
     public static void run(){
-//        loginSystem = new LoginSystem(graphical);
-//        loginSystem.showLoginScreen();
-        for (User user : Storage.getUsers()) {
-            if (user.getUsername().equalsIgnoreCase("customer")){
-                user.showInterface(true);
-            }
-        }
+        initializeApp();
+        loginSystem = new LoginSystem(graphical);
+        loginSystem.showLoginScreen();
+//        for (User user : Storage.getUsers()) {
+//            if (user.getUsername().equalsIgnoreCase("landlord")){
+//                user.showInterface(true);
+//            }
+//        }
     }
 
     /**
      * Initialize some temporary fields (Users of all types, one lodge and a booking)
      * to demonstrate the app's functionality.
      */
-    private void initializeWithTempFields(){
+    private static void initializeWithTempFields(){
         //Setting up the users
         HashSet<User> users = new HashSet<>();
         var tempAdmin = new Administrator("admin", "password0");

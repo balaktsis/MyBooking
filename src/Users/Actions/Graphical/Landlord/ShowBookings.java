@@ -2,6 +2,7 @@ package Users.Actions.Graphical.Landlord;
 
 import Booking.BookingEntry;
 import Misc.Storage;
+import Users.Actions.Graphical.AdjustSize;
 import Users.Actions.Graphical.GUIAction;
 
 import javax.swing.*;
@@ -85,20 +86,7 @@ public class ShowBookings extends GUIAction implements Serializable {
         bookingTable.setBounds(20, 55, 800, 600);
         bookingTable.setToolTipText("Double click on a booking validation field to reverse it.");
 
-        {
-            // compute preferred size
-            Dimension preferredSize = new Dimension();
-            for (int i = 0; i < Panel.getComponentCount(); i++) {
-                Rectangle bounds = Panel.getComponent(i).getBounds();
-                preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-            }
-            Insets insets = Panel.getInsets();
-            preferredSize.width += insets.right;
-            preferredSize.height += insets.bottom;
-            Panel.setMinimumSize(preferredSize);
-            Panel.setPreferredSize(preferredSize);
-        }
+        AdjustSize.AdjustPanelSize(Panel);
 
         ShowBookings.setViewportView(Panel);
 

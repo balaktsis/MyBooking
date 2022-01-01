@@ -46,4 +46,9 @@ public class Administrator extends User{
         return str.toString();
     }
 
+
+    @Override
+    protected void addFields(JPanel mainPanel) {
+    }
+
 }
