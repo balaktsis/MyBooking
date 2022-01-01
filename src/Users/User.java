@@ -283,9 +283,11 @@ abstract public class User implements Serializable {
         return userPanel;
     }
 
-    public JPanel toDetailedJPanel() {
-        JScrollPane scrollPane = new JScrollPane();
+
+    public void showDetailsDialog(){
+        JFrame dialogPanel = new JFrame();
         JPanel mainPanel = new JPanel();
+        JScrollPane scrollPane = new JScrollPane();
         JLabel noteLabel = new JLabel();
         JLabel usernameLabel = new JLabel();
         JLabel usernameField = new JLabel();
@@ -345,12 +347,6 @@ abstract public class User implements Serializable {
         addFields(mainPanel);
 
         AdjustSize.AdjustPanelSize(mainPanel);
-        return mainPanel;
-    }
-
-    public void showDetailsDialog(){
-        JFrame dialogPanel = new JFrame();
-        JPanel mainPanel = this.toDetailedJPanel();
 
         dialogPanel.getContentPane().add(mainPanel);
         dialogPanel.setSize(300,480);
