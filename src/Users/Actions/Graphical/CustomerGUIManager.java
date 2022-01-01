@@ -1,6 +1,6 @@
 package Users.Actions.Graphical;
 
-import Users.Actions.Graphical.Admin.ShowDetails;
+import Users.Actions.Graphical.Customer.ShowDetails;
 import Users.Actions.Graphical.Customer.LookupLodges;
 import Users.Actions.Graphical.Customer.MyBookings;
 import Users.User;

@@ -22,12 +22,13 @@ public class ShowDetails extends UserDetails {
         customer = (Customer) parentUser;
         JLabel addressLabel = new JLabel();
 
+        System.out.println("here");
         //---- addressField ----
         addressLabel.setText("Address");
         mainPanel.add(addressLabel);
         addressLabel.setBounds(20, 225, 100, 20);
 
-        //---- baseField ----
+        //---- addressField ----
         addressField.setText(((Customer) parentUser).getAddress());
         mainPanel.add(addressField);
         addressField.setBounds(140, 225, 200, 20);

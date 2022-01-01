@@ -135,7 +135,7 @@ public abstract class UserDetails extends GUIAction{
             JOptionPane.showMessageDialog(mainPanel, "Password should contain at least one digit and have a length between 6 and 20 characters." +
                     " Please try entering another one.", "Warning", JOptionPane.WARNING_MESSAGE);
         else
-            JOptionPane.showMessageDialog(mainPanel, "Your password has been updated!", "Password Updated", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(mainPanel, "Your details have been updated!", "Details Updated", JOptionPane.INFORMATION_MESSAGE);
     }
 
     protected abstract void changeOthers();
