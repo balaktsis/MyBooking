@@ -224,6 +224,14 @@ public class Lodge implements Serializable {
         detailPanel.add(new JLabel("# " + getLodgeId(), SwingConstants.TRAILING));
         detailPanel.add(new JLabel(getDetails().getDescription()));
         detailPanel.add(new JLabel("Landlord: " + getLandlord().getUsername(), SwingConstants.TRAILING));
+        detailPanel.add(new JLabel("Price/night: " + getDetails().getPrice() + "€"));
+        String cutLocation;
+        if (getDetails().getLocation().length() > 20){
+            cutLocation = getDetails().getLocation().substring(0, 20) + "...";
+        } else {
+            cutLocation = getDetails().getLocation();
+        }
+        detailPanel.add(new JLabel("Location: " + cutLocation, SwingConstants.TRAILING));
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, imagePanel, detailPanel);
         splitPane.setBorder(new EmptyBorder(0, 0, 0, 0));
