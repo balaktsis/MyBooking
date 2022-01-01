@@ -16,7 +16,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * This is a Booking Entry class that builds a reservation of a customer to a specific lodge.

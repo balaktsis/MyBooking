@@ -27,9 +27,12 @@ public class Hotel extends Lodge {
      * Adds a room in the room collection of the hotel.
      * @param room The new room.
      */
-    public void addRoom(Lodge room) {
-        rooms.put(this.getLodgeId(), room);
-        Storage.getLodges().add(room);
+    public boolean addRoom(Lodge room) {
+        if(room.getType().equals(LodgeType.ROOM)) {
+            rooms.put(room.getLodgeId(), room);
+            return Storage.getLodges().add(room);
+        }
+        return false;
     }
 
     /**
@@ -37,7 +40,12 @@ public class Hotel extends Lodge {
      * @param roomId The roomId of the requested room.
      */
     public boolean removeRoom(String roomId) {
-        return Storage.getLodges().remove(this.rooms.remove(this.rooms.get(roomId) != null ? this.rooms.get(roomId) : null));
+        if(this.rooms.get(roomId)!=null) {
+            Lodge tmpLodge = this.rooms.get(roomId);
+            this.rooms.remove(roomId);
+            return Storage.getLodges().remove(tmpLodge);
+        }
+        return false;
     }
 
 

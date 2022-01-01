@@ -3,7 +3,6 @@ import Users.Landlord;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 
@@ -127,5 +126,17 @@ public class LodgeTest {
         dates.add(LocalDate.of(2022,1,11));
         dates.add(LocalDate.of(2022,1,12));
         assertTrue(lodge.bookLodge(dates));
+    }
+
+    @Test
+    public void hotelTest() {
+        Hotel hotel = new Hotel(landlord,lodge.getDetails().getLocation());
+        assertEquals(0,hotel.getRooms().size());
+        Lodge room1 = new Lodge(landlord,"Thessaloniki, Greece",LodgeType.ROOM);
+        assertTrue(hotel.addRoom(room1));
+        Lodge room2 = new Lodge(landlord,"Thessaloniki, Greece",LodgeType.APARTMENT);
+        assertFalse(hotel.addRoom(room2));
+        assertTrue(hotel.removeRoom(room1.getLodgeId()));
+        assertEquals(0,hotel.getRooms().size());
     }
 }

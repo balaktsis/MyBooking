@@ -65,5 +65,4 @@ public class UserTest {
         assertFalse(customer.setPassword("12345"));
         assertFalse(customer.setPassword(null));
     }
-
 }
