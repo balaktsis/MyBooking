@@ -8,6 +8,7 @@ import Users.Actions.Graphical.AdjustSize;
 import Users.Actions.Graphical.GUIManager;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -246,7 +247,15 @@ abstract public class User implements Serializable {
         userPanel.setBackground(Color.white);
         userPanel.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
         userPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        userPanel.setLayout(new GridLayout(1, 3));
+
+        JPanel imagePanel = new JPanel();
+        ImageIcon image = new ImageIcon("src/Misc/images/User_icon.png");
+        ImageIcon scaledInstance = new ImageIcon(image.getImage().getScaledInstance(50, 50, Image.SCALE_AREA_AVERAGING));
+        imagePanel.setBackground(Color.white);
+        imagePanel.add(new JLabel(scaledInstance));
+
+        JPanel infopanel = new JPanel();
+        infopanel.setLayout(new GridLayout(1, 2));
 
         JPanel profile = new JPanel();
         profile.setLayout(new GridLayout(2, 1));
@@ -262,14 +271,17 @@ abstract public class User implements Serializable {
         details.add(new JLabel(this.getUserType(), SwingConstants.RIGHT));
         details.setBackground(Color.white);
 
-        userPanel.add(profile);
+        infopanel.add(profile);
+        infopanel.add(details);
 
-        userPanel.add(Box.createRigidArea(new Dimension(0, 0)));
-        userPanel.add(details);
+        JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, imagePanel, infopanel);
+        jSplitPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+        jSplitPane.setDividerSize(0);
+        userPanel.add(jSplitPane);
 
-        userPanel.setMaximumSize(userPanel.getPreferredSize());
+        userPanel.setMaximumSize(infopanel.getPreferredSize());
 
-        userPanel.addMouseListener(new MouseAdapter() {
+        jSplitPane.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 showDetailsDialog();
