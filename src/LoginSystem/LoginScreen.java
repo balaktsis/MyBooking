@@ -246,7 +246,7 @@ public class LoginScreen {
         else {
             if (user.getApprovalStatus()) {
                 loginForm.dispose();
-                user.showInterface(true);
+                AppSystem.getUserInterface(user);
             }
             else
                 JOptionPane.showMessageDialog(this.loginForm, "Your account has not been activated yet." +

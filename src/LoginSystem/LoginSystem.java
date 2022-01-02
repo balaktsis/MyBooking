@@ -1,6 +1,7 @@
 package LoginSystem;
 
 
+import Misc.AppSystem;
 import Misc.Storage;
 import Users.Administrator;
 import Users.Customer;
@@ -204,7 +205,7 @@ public class LoginSystem {
                         System.out.println("Your account is not approved by the administrators. Please, try again later!");
                         continue;
                     }
-                    user.showInterface(false);
+                    AppSystem.getUserInterface(user);
                 }
             }
         }

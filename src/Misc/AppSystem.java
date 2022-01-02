@@ -28,11 +28,16 @@ public class AppSystem {
     static boolean graphical = true;
 
     /**
-     * Default constructor for the AppSystem class
+     * Begin app execution by initializing temporary fields and showing the loginScreen
      */
-    public AppSystem(boolean graphical){
-        AppSystem.graphical = graphical;
+    public static void run(){
         initializeApp();
+        getLogin();
+//        for (User user : Storage.getUsers()) {
+//            if (user.getUsername().equalsIgnoreCase("admin")){
+//                user.showInterface(true);
+//            }
+//        }
     }
 
     /**
@@ -50,19 +55,7 @@ public class AppSystem {
         initializeWithTempFields();
     }
 
-    /**
-     * Begin app execution by running the loginScreen
-     */
-    public static void run(){
-        initializeApp();
-        loginSystem = new LoginSystem(graphical);
-        loginSystem.showLoginScreen();
-//        for (User user : Storage.getUsers()) {
-//            if (user.getUsername().equalsIgnoreCase("landlord")){
-//                user.showInterface(true);
-//            }
-//        }
-    }
+
 
     /**
      * Initialize some temporary fields (Users of all types, one lodge and a booking)
@@ -83,7 +76,7 @@ public class AppSystem {
 
         tempAdmin.setApprovalStatus(true);
         tempCustomer.setApprovalStatus(false);
-        tempLandlord.setApprovalStatus(true);
+        tempLandlord.setApprovalStatus(false);
 
         tempLandlord.setBase("Thessaloniki, Greece");
 
@@ -120,6 +113,17 @@ public class AppSystem {
     public static void exit(){
         Storage.storeDataToFiles();
         System.exit(0);
+    }
+
+    //Run the login screen
+    public static void getLogin(){
+        loginSystem = new LoginSystem(graphical);
+        loginSystem.showLoginScreen();
+    }
+
+    //Run the user interface of a user
+    public static void getUserInterface(User user){
+        user.showInterface(graphical);
     }
 
 }

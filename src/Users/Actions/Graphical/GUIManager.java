@@ -94,7 +94,7 @@ public class GUIManager implements Serializable {
         topArea.add(logout);
         logout.addActionListener(e -> {
             userGUI.dispose();
-            AppSystem.run();
+            AppSystem.getLogin();
         });
 
 
