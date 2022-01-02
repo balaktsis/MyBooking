@@ -211,6 +211,7 @@ public class Lodge implements Serializable {
         JPanel lodgePanel = new JPanel();
         lodgePanel.setBackground(Color.white);
         lodgePanel.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
+        lodgePanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         ImageIcon scaledImage = new ImageIcon(this.getDetails().getImage().getImage().getScaledInstance(50, 50, Image.SCALE_AREA_AVERAGING));
         JPanel imagePanel = new JPanel();

@@ -12,6 +12,7 @@ import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -244,6 +245,7 @@ abstract public class User implements Serializable {
         JPanel userPanel = new JPanel();
         userPanel.setBackground(Color.white);
         userPanel.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
+        userPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
         userPanel.setLayout(new GridLayout(1, 3));
 
         JPanel profile = new JPanel();
@@ -260,14 +262,8 @@ abstract public class User implements Serializable {
         details.add(new JLabel(this.getUserType(), SwingConstants.RIGHT));
         details.setBackground(Color.white);
 
-//        var xtra_width = 0;
-//        if (350 - (profile.getPreferredSize().getWidth() + details.getPreferredSize().getWidth()) > 0){
-//            xtra_width = 350 - (int)(profile.getPreferredSize().getWidth() + details.getPreferredSize().getWidth());
-//        }
-
         userPanel.add(profile);
 
-//        userPanel.add(Box.createRigidArea(new Dimension(xtra_width, 0)));
         userPanel.add(Box.createRigidArea(new Dimension(0, 0)));
         userPanel.add(details);
 
