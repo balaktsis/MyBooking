@@ -90,12 +90,37 @@ public class GUIManager implements Serializable {
             buttonArea.add(Box.createRigidArea(new Dimension(0, 5)));
         }
 
+        /////////////////////////////////////////////////////////////
+        topArea.setLayout(new BorderLayout());
+
+        ImageIcon image = new ImageIcon("src/Misc/images/User_icon.png");
+        ImageIcon scaledInstance = new ImageIcon(image.getImage().getScaledInstance(50, 50, Image.SCALE_AREA_AVERAGING));
+        JLabel userIcon = new JLabel(scaledInstance, JLabel.LEFT);
+        userIcon.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        userIcon.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                parentUser.showDetailsDialog();
+            }
+        });
+        topArea.add(userIcon, BorderLayout.WEST);
+
+        JPanel logoutSegment = new JPanel();
         var logout = new JButton("Log out");
-        topArea.add(logout);
         logout.addActionListener(e -> {
             userGUI.dispose();
             AppSystem.getLogin();
         });
+        logoutSegment.add(logout);
+        topArea.add(logoutSegment, BorderLayout.EAST);
+
+        JPanel centerSegment = new JPanel();
+        centerSegment.setLayout(new GridLayout(3, 1));
+        centerSegment.add(new JLabel("#" + parentUser.getUserId()));
+        centerSegment.add(new JLabel("Full Name: " + parentUser.getFullName()));
+        centerSegment.add(new JLabel("Username: " + parentUser.getUsername()));
+        topArea.add(centerSegment, BorderLayout.CENTER);
+
 
 
         actionArea.add(new JLabel("Welcome " + parentUser.getFullName() + "!"));
