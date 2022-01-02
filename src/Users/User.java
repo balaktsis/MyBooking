@@ -31,7 +31,7 @@ abstract public class User implements Serializable {
     protected boolean approved;
     protected String username, password;
     protected String fullName;
-    protected Message[] messages;
+  //  protected List<Message> messages;
     protected String typeName;
 
     /**
@@ -133,13 +133,19 @@ abstract public class User implements Serializable {
         return this.typeName;
     }
 
-    private void updateMessages() {
-        //TODO:get list of messages
-    }
+//    private void updateMessages() {
+//        //TODO:get list of messages
+//    }
 
-    public Message[] getMessages() {
-        updateMessages();
-        return messages;
+//    public Message[] getMessages() {
+//        updateMessages();
+//        return messages;
+
+
+    public boolean sendMessageTo(User recipient, String body) {
+        if(Storage.getUsers().contains(recipient) && body != null) {
+                return Storage.getMessages().add(new Message(this, recipient, body));
+        } else return false;
     }
 
     /**
@@ -214,7 +220,7 @@ abstract public class User implements Serializable {
      * @param approval_status boolean
      * @return List of users
      */
-    static public List<User> getUsersWithApproval(boolean approval_status){
+    public static List<User> getUsersWithApproval(boolean approval_status){
         List<User> users = new ArrayList<>();
         for (User user : Storage.getUsers()){
             if (user.getApprovalStatus() == approval_status){
@@ -229,7 +235,7 @@ abstract public class User implements Serializable {
      * @param username - String
      * @return User object
      */
-    static public User getUserFromUsername(String username){
+    public static User getUserFromUsername(String username){
         for (User user : Storage.getUsers()){
             if (user.getUsername().toLowerCase().equals(username)){
                 return user;
@@ -237,6 +243,21 @@ abstract public class User implements Serializable {
         }
         return null;
     }
+
+    /**
+     * Get a user object from a full name string.
+     * @param fullName - String
+     * @return User object
+     */
+    public static User getUserFromFullName(String fullName){
+        for (User user : Storage.getUsers()){
+            if (user.getFullName().equals(fullName)){
+                return user;
+            }
+        }
+        return null;
+    }
+
 
     /**
      * Create a JPanel containing the details of the user, like in toString()

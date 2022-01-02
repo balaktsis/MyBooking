@@ -32,12 +32,12 @@ public class AppSystem {
      */
     public static void run(){
         initializeApp();
-        getLogin();
-//        for (User user : Storage.getUsers()) {
-//            if (user.getUsername().equalsIgnoreCase("admin")){
-//                user.showInterface(true);
-//            }
-//        }
+//        getLogin();
+        for (User user : Storage.getUsers()) {
+            if (user.getUsername().equalsIgnoreCase("admin")){
+                user.showInterface(true);
+            }
+        }
     }
 
     /**
@@ -75,8 +75,8 @@ public class AppSystem {
         tempLandlord.setFullName("Rick James");
 
         tempAdmin.setApprovalStatus(true);
-        tempCustomer.setApprovalStatus(false);
-        tempLandlord.setApprovalStatus(false);
+        tempCustomer.setApprovalStatus(true);
+        tempLandlord.setApprovalStatus(true);
 
         tempLandlord.setBase("Thessaloniki, Greece");
 
@@ -104,6 +104,12 @@ public class AppSystem {
         BookingEntry tempBooking = new BookingEntry(tempCustomer, tempLodge);
         tempBooking.bookLodge(LocalDate.now(), LocalDate.now().plusDays(10));
         Storage.getBookings().add(tempBooking);
+
+        Message tmpMessage1 = new Message(tempAdmin,tempCustomer,"Hello there!");
+        Message tmpMessage2 = new Message(tempCustomer,tempAdmin,"Hi!");
+        Storage.getMessages().add(tmpMessage1);
+        Storage.getMessages().add(tmpMessage2);
+
     }
 
     private void initializeFromFile() {

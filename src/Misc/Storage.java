@@ -21,6 +21,8 @@ public class Storage {
 
     private static HashSet<BookingEntry> bookings = new HashSet<>();
 
+    private static HashSet<Message> messages = new HashSet<>();
+
     /**
      * Connects the HashSet of Users to a .dat file that contains such info.
      * @param usersFile The .dat file where a HashSet of Users is stored.
@@ -46,6 +48,14 @@ public class Storage {
     }
 
     /**
+     * Connects the HashSet of Messages to a .dat file that contains such info.
+     * @param messagesFile The .dat file where a HashSet of Messages is stored.
+     */
+    public static void setMessages(HashSet<Message> messagesFile) {
+        messages = messagesFile;
+    }
+
+    /**
      * @return A HashSet of all the registered users in the system.
      */
     public static HashSet<User> getUsers() {
@@ -64,6 +74,13 @@ public class Storage {
      */
     public static HashSet<BookingEntry> getBookings() {
         return bookings;
+    }
+
+    /**
+     * @return A HashSet of all the registered messages in the system.
+     */
+    public static HashSet<Message> getMessages() {
+        return messages;
     }
 
     /**
@@ -90,6 +107,13 @@ public class Storage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("storedMessages.dat"))) {
+            oos.writeObject(messages);
+            oos.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -102,14 +126,23 @@ public class Storage {
             e.printStackTrace();
             Storage.setUsers(new HashSet<>());
         }
+
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storedLodges.dat"))) {
             Storage.setLodges((HashSet<Lodge>) ois.readObject());
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             Storage.setLodges(new HashSet<>());
         }
+
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storedBookings.dat"))) {
             Storage.setBookings((HashSet<BookingEntry>) ois.readObject());
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            Storage.setBookings(new HashSet<>());
+        }
+
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storedMessages.dat"))) {
+            Storage.setMessages((HashSet<Message>) ois.readObject());
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             Storage.setBookings(new HashSet<>());
