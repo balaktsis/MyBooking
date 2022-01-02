@@ -26,6 +26,7 @@ public class ApproveUser extends GUIAction {
             area.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int) area.getPreferredSize().getHeight()));
 
             JButton approveButton = new JButton("Approve");
+            approveButton.setPreferredSize(new Dimension((int)approveButton.getPreferredSize().getWidth(), (int)area.getPreferredSize().getHeight()-10));
             approveButton.addActionListener(e -> {
                 user.setApprovalStatus(true);
                 actionArea.removeAll();
@@ -37,7 +38,7 @@ public class ApproveUser extends GUIAction {
             area.add(approveButton);
 
             actionArea.add(area);
-            actionArea.add(Box.createRigidArea(new Dimension(0, 5)));
+//            actionArea.add(Box.createRigidArea(new Dimension(0, 5)));
         }
 
     }

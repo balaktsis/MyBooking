@@ -30,6 +30,9 @@ public class HintedJTextField extends JTextField {
             }
         });
 
+        //fix clipping of the characters
+        setPreferredSize(new Dimension((int) getPreferredSize().getWidth() + 2, (int) getPreferredSize().getHeight()));
+
     }
 
     public String getRawText(){

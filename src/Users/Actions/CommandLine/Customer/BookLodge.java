@@ -64,7 +64,7 @@ public class BookLodge implements Command {
 
         if (desiredLodge == null) return "No lodge was found with ID: " + parameters.get(0);
 
-        BookingEntry booking = new BookingEntry((Customer) user, desiredLodge);
+        BookingEntry booking = new BookingEntry(user, desiredLodge);
 
         if (booking.bookLodge(reserveDates.get(0), reserveDates.get(1))){
             return "Lodge booked successfully for the period between " + reserveDates.get(0) + " and " + reserveDates.get(1)

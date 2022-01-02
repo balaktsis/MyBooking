@@ -1,8 +1,11 @@
 package Booking;
 
 import Lodges.Lodge;
+import Misc.HintedJTextField;
 import Misc.Storage;
+import Misc.utils;
 import Users.Customer;
+import Users.User;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -11,6 +14,8 @@ import javax.swing.border.SoftBevelBorder;
 import static Misc.UniqueIDGenerator.getUniqueId;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,7 +32,7 @@ public class BookingEntry implements Serializable {
     private final String bookingId;
     private double totalCost;
     private final Lodge lodge;
-    private final Customer tenant;
+    private final User tenant;
     private final HashSet<LocalDate> period;
     private boolean valid;
     private final LocalDate entryDate;
@@ -39,7 +44,7 @@ public class BookingEntry implements Serializable {
      * @param tenant The customer that applies for reservation.
      * @param lodge The requested lodge for reservation.
      */
-    public BookingEntry(Customer tenant, Lodge lodge) {
+    public BookingEntry(User tenant, Lodge lodge) {
         this.tenant = tenant;
         this.lodge = lodge;
         this.totalCost = 0;
@@ -132,7 +137,7 @@ public class BookingEntry implements Serializable {
     /**
      * @return The user (type Customer) requested to create a booking.
      */
-    public Customer getTenant() {
+    public User getTenant() {
         return this.tenant;
     }
 
@@ -256,6 +261,83 @@ public class BookingEntry implements Serializable {
         bookingPanel.add(splitPane);
 
         return bookingPanel;
+    }
+
+    public static void bookingDialog(Lodge lodge, User user) {
+        JFrame frame = new JFrame("Book " + lodge.getDetails().getTitle());
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        JPanel mainpanel = new JPanel();
+        frame.add(mainpanel);
+
+        mainpanel.setLayout(new GridLayout(3, 1));
+        mainpanel.add(new JLabel("Book " + lodge.getDetails().getTitle(), JLabel.CENTER));
+
+        JPanel datepanel = new JPanel();
+
+        datepanel.add(new JLabel("From:"));
+        HintedJTextField from_day = new HintedJTextField("DD");
+        HintedJTextField from_month = new HintedJTextField("MM");
+        HintedJTextField from_year = new HintedJTextField("YYYY");
+        datepanel.add(from_day);
+        datepanel.add(from_month);
+        datepanel.add(from_year);
+
+        datepanel.add(new JLabel("until:"));
+        HintedJTextField to_day = new HintedJTextField("DD");
+        HintedJTextField to_month = new HintedJTextField("MM");
+        HintedJTextField to_year = new HintedJTextField("YYYY");
+        datepanel.add(to_day);
+        datepanel.add(to_month);
+        datepanel.add(to_year);
+
+        mainpanel.add(datepanel);
+
+        JPanel buttonpanel = new JPanel();
+        JButton book = new JButton("Book");
+        buttonpanel.add(book);
+
+        JButton cancel = new JButton("Cancel");
+        buttonpanel.add(cancel);
+
+        mainpanel.add(buttonpanel);
+
+        frame.pack();
+        frame.setVisible(true);
+
+        cancel.addActionListener(e -> frame.dispose());
+
+        book.addActionListener(e -> {
+
+            utils.dateSanitize(from_day, from_month, from_year);
+            utils.dateSanitize(to_day, to_month, to_year);
+
+            ArrayList<LocalDate> reserveDates = new ArrayList<>();
+            //Validated the datetime format
+            try {
+                reserveDates.add(LocalDate.parse(from_year.getText() + "-" + from_month.getText() + "-" + from_day.getText()));
+                reserveDates.add(LocalDate.parse(to_year.getText() + "-" + to_month.getText() + "-" + to_day.getText()));
+            } catch (java.time.format.DateTimeParseException error) {
+                JOptionPane.showMessageDialog(null, "Incorrect date format!", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (reserveDates.get(0).isAfter(reserveDates.get(1)) || reserveDates.get(0).isBefore(LocalDate.now())){
+                JOptionPane.showMessageDialog(null, "The date range you've entered isn't physically possible!", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            BookingEntry bookingEntry = new BookingEntry(user, lodge);
+            if (bookingEntry.bookLodge(reserveDates.get(0), reserveDates.get(1))){
+                JOptionPane.showMessageDialog(null, "Booked " + lodge.getDetails().getTitle() + "\nFor dates: " + reserveDates.get(0).toString()
+                + " to: " + reserveDates.get(1).toString() + "\nat: " + bookingEntry.getTotalCost() + "€", "Booked successfully!", JOptionPane.PLAIN_MESSAGE);
+                frame.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Unfortunately this lodge has already been booked for that time period!");
+            }
+
+        });
+
     }
 
 }

@@ -1,5 +1,6 @@
 package Users.Actions.Graphical.Customer;
 
+import Booking.BookingEntry;
 import Lodges.Amenities;
 import Lodges.Lodge;
 import Misc.HintedJTextField;
@@ -85,11 +86,23 @@ public class LookupLodges extends GUIAction {
         panel.removeAll();
         panel.revalidate();
         panel.repaint();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         if (lodges.size() == 0){
             panel.add(error("No lodges found!"));
         }
         for (Lodge lodge : lodges){
-            panel.add(lodge.toJPanel());
+            JPanel entry = new JPanel();
+            entry.add(lodge.toJPanel());
+
+            JButton book = new JButton("Book");
+            book.setPreferredSize(new Dimension((int)book.getPreferredSize().getWidth(), (int)entry.getPreferredSize().getHeight()-10));
+
+            entry.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int)entry.getPreferredSize().getHeight()));
+            entry.add(book);
+
+            book.addActionListener(e -> BookingEntry.bookingDialog(lodge, parentUser));
+
+            panel.add(entry);
         }
     }
 
