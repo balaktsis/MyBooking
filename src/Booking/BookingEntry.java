@@ -3,8 +3,7 @@ package Booking;
 import Lodges.Lodge;
 import Misc.HintedJTextField;
 import Misc.Storage;
-import Misc.utils;
-import Users.Customer;
+import Misc.Utils;
 import Users.User;
 
 import javax.swing.*;
@@ -14,8 +13,6 @@ import javax.swing.border.SoftBevelBorder;
 import static Misc.UniqueIDGenerator.getUniqueId;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -309,8 +306,8 @@ public class BookingEntry implements Serializable {
 
         book.addActionListener(e -> {
 
-            utils.dateSanitize(from_day, from_month, from_year);
-            utils.dateSanitize(to_day, to_month, to_year);
+            Utils.dateSanitize(from_day, from_month, from_year);
+            Utils.dateSanitize(to_day, to_month, to_year);
 
             ArrayList<LocalDate> reserveDates = new ArrayList<>();
             //Validated the datetime format

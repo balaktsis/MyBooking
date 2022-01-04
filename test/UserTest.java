@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 
 import Users.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * This is a test class for User subclasses/child-classes functionalities.
@@ -65,4 +68,44 @@ public class UserTest {
         assertFalse(customer.setPassword("12345"));
         assertFalse(customer.setPassword(null));
     }
+
+    @Test
+    public void equalsTest() {
+        Administrator admin2 = new Administrator(admin.getUsername(), admin.getPassword());
+        admin2.setApprovalStatus(true);
+        Administrator admin3 = new Administrator("DifferentUsername", "DifferentPassword");
+        admin3.setApprovalStatus(true);
+
+        admin.setFullName("Jeremy Clarkson");
+        admin2.setFullName("Jeremy Clarkson");
+        admin3.setFullName("James May");
+
+        admin.setPassword("Speed4ndPower!");
+        admin2.setPassword("Speed4ndPower!");
+        admin3.setPassword("0h1GotLost?");
+
+        assertEquals(admin, admin2);
+        assertNotEquals(admin, admin3);
+
+    }
+
+    @Test
+    public void getUsersWithApprovalTest() {
+        List<User> approvedUsers = User.getUsersWithApproval(true);
+        List<User> notApprovedUsers = User.getUsersWithApproval(false);
+
+        assertTrue(approvedUsers.size() == 1 && approvedUsers.contains(admin));
+        assertTrue(notApprovedUsers.size() == 2 && !notApprovedUsers.contains(admin));
+    }
+
+    @Test
+    public void getUserFromUsernameTest(){
+        assertEquals(admin, User.getUserFromUsername(admin.getUsername()));
+        assertEquals(landlord, User.getUserFromUsername(landlord.getUsername()));
+        assertEquals(customer, User.getUserFromUsername(customer.getUsername()));
+
+        assertNull(User.getUserFromUsername("InvalidUsername"));
+
+    }
+
 }

@@ -186,7 +186,9 @@ abstract public class User implements Serializable {
     public boolean equals(Object user) {
 
         if (user instanceof User ptr) {
-            return ptr.username.equals(this.username) && ptr.uid.equals(this.uid);
+            return ptr.username.equals(this.username) &&
+                    ptr.fullName.equals(this.fullName) &&
+                    ptr.password.equals(this.getPassword());
         }
 
         return false;
