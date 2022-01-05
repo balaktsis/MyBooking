@@ -122,23 +122,11 @@ public class LoginScreen {
 
         //---- signInButton ----
         signInButton.setText("Sign-In");
-        signInButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                signInButtonMouseClicked(e);
-            }
-        });
         loginFormContentPane.add(signInButton);
         signInButton.setBounds(new Rectangle(new Point(220, 370), signInButton.getPreferredSize()));
 
         //---- signUpButton ----
         signUpButton.setText("Sign-Up");
-        signUpButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                signUpButtonMouseClicked(e);
-            }
-        });
         loginFormContentPane.add(signUpButton);
         signUpButton.setBounds(new Rectangle(new Point(65, 370), signUpButton.getPreferredSize()));
 
@@ -185,12 +173,6 @@ public class LoginScreen {
 
         //---- signUpFormButton ----
         signUpFormButton.setText("Next");
-        signUpFormButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                signUpFormButtonMouseClicked(e);
-            }
-        });
         accountTypeContentPane.add(signUpFormButton);
         signUpFormButton.setBounds(new Rectangle(new Point(165, 40), signUpFormButton.getPreferredSize()));
 
