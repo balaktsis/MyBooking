@@ -108,7 +108,7 @@ public class GUIManager implements Serializable {
 
             //======== chatArea ========
             chatArea.setLayout(new BoxLayout(chatArea, BoxLayout.Y_AXIS));
-            AdjustSize.AdjustPanelSize(chatArea);
+//            AdjustSize.AdjustPanelSize(chatArea);
             centerPane.setViewportView(chatArea);
             messageArea.add(centerPane, BorderLayout.CENTER);
 
