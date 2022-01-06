@@ -2,7 +2,6 @@ import Lodges.*;
 import Users.Landlord;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.time.LocalDate;
 import java.util.HashSet;
 

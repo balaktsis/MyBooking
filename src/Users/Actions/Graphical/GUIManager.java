@@ -1,6 +1,5 @@
 package Users.Actions.Graphical;
 
-import LoginSystem.LoginScreen;
 import Misc.AppSystem;
 import Misc.Message;
 import Misc.Storage;
@@ -102,8 +101,8 @@ public class GUIManager implements Serializable {
             contactArea.add(noteLabel);
             usersBox.addItem("---");
             for(User user : Storage.getUsers())
-                if(!user.equals(parentUser)) usersBox.addItem(user.getFullName() != null ? user.getFullName() : user.getUsername());
-            usersBox.addItemListener(e -> {updateChat(usersBox, centerPane, chatArea);});
+                if(!user.equals(parentUser)) usersBox.addItem(user.getUsername());
+            usersBox.addItemListener(e -> updateChat(usersBox, centerPane, chatArea));
             contactArea.add(usersBox);
             messageArea.add(contactArea, BorderLayout.NORTH);
 
@@ -122,8 +121,8 @@ public class GUIManager implements Serializable {
             sendButton.addActionListener(e -> {
                 if(textMessage.getText().length() > 0) {
                     User user;
-                    String fullname = Objects.requireNonNull(usersBox.getSelectedItem()).toString();
-                    if((user = User.getUserFromFullName(Objects.requireNonNull(fullname))) != null)
+                    String username = Objects.requireNonNull(usersBox.getSelectedItem()).toString();
+                    if((user = User.getUserFromUsername(Objects.requireNonNull(username))) != null)
                         parentUser.sendMessageTo(user,textMessage.getText());
                     updateChat(usersBox, centerPane, chatArea);
                     textMessage.setText("");
@@ -194,7 +193,7 @@ public class GUIManager implements Serializable {
         ArrayList<Message> messageArrayList = new ArrayList<>();
 
         for(Message message : Storage.getMessages())
-            if(message.getChatters().contains(parentUser) && message.getChatters().contains(User.getUserFromFullName(Objects.requireNonNull(usersBox.getSelectedItem()).toString())))
+            if(message.getChatters().contains(parentUser) && message.getChatters().contains(User.getUserFromUsername(Objects.requireNonNull(usersBox.getSelectedItem()).toString())))
                 messageArrayList.add(message);
 
         messageArrayList.sort((o1, o2) -> {
