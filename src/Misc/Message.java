@@ -121,7 +121,7 @@ public class Message implements Serializable {
         detailPanel.add(messagePane);
         JPanel datePanel = new JPanel();
         datePanel.setLayout(new BorderLayout());
-        datePanel.add(new JLabel("sent by " + recipient.getUsername() + ", at " + LocalDateTime.ofInstant(getTimestamp(), ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"))),BorderLayout.WEST);
+        datePanel.add(new JLabel("sent by " + sender.getUsername() + ", at " + LocalDateTime.ofInstant(getTimestamp(), ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"))),BorderLayout.WEST);
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, detailPanel, datePanel);
         splitPane.setBorder(new EmptyBorder(0, 0, 0, 0));
