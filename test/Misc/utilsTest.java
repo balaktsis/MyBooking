@@ -1,6 +1,6 @@
 package Misc;
 
-import jdk.jshell.execution.Util;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class utilsTest {
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 
     }
 

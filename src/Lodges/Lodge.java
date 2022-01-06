@@ -1,12 +1,15 @@
 package Lodges;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
+import Misc.HLabel;
 import Misc.Storage;
 import Users.Landlord;
 
@@ -239,11 +242,86 @@ public class Lodge implements Serializable {
         splitPane.setDividerSize(0);
         lodgePanel.add(splitPane);
 
+        splitPane.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                showJFrame();
+            }
+        });
+
         return lodgePanel;
     }
 
     public void showJFrame(){
-        //TODO
+        JFrame frame = new JFrame(getDetails().getTitle());
+
+        frame.setLocationRelativeTo(null);
+
+        JPanel mainpanel = new JPanel();
+        frame.add(mainpanel);
+        mainpanel.setLayout(new BoxLayout(mainpanel, BoxLayout.Y_AXIS));
+        mainpanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        ImageIcon scaledImage = new ImageIcon(this.getDetails().getImage().getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING));
+        JPanel imagePanel = new JPanel();
+        imagePanel.add(new JLabel(scaledImage));
+
+        JPanel detailsPanel = new JPanel();
+        detailsPanel.setLayout(new GridLayout(4, 1));
+
+        JPanel head = new JPanel();
+
+        JLabel title = new JLabel(this.getDetails().getTitle());
+        title.setFont(title.getFont().deriveFont(title.getFont().getStyle() | Font.BOLD, title.getFont().getSize() + 4f));
+        detailsPanel.add(title);
+
+        JLabel id = new JLabel("#" + this.getLodgeId(), JLabel.RIGHT);
+
+        head.add(title);
+        head.add(id);
+
+        detailsPanel.add(head);
+
+        detailsPanel.add(new HLabel("<b>Landlord:</b> " + this.getLandlord().getFullName(), JLabel.CENTER));
+
+        detailsPanel.add(new JLabel(this.getDetails().getLocation(), JLabel.CENTER));
+
+        JPanel footer = new JPanel();
+        JLabel size = new HLabel("<b>Size:</b> " + this.getDetails().getSize() + "m²");
+        JLabel beds = new HLabel("<b>Beds:</b> " + this.getDetails().getBeds());
+        JLabel price = new HLabel("<b>Price/night:</b> " + this.getDetails().getPrice() + "€");
+        footer.add(size);
+        footer.add(beds);
+        footer.add(price);
+
+        detailsPanel.add(footer);
+
+
+
+        JSplitPane topPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, imagePanel, detailsPanel);
+        topPanel.setDividerSize(0);
+        topPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
+        topPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int)topPanel.getPreferredSize().getHeight()));
+
+        mainpanel.add(topPanel);
+
+        JLabel description = new HLabel("<B>Description:</B> " + this.getDetails().getDescription());
+        mainpanel.add(description);
+
+        ArrayList<String> amenities = new ArrayList<>();
+
+        for (Amenities amenity : this.getAmenities()){
+            amenities.add(amenity.label);
+        }
+
+        JLabel amenitiesList = new HLabel("<B>Amenities:</B> " + String.join(", ", amenities));
+        mainpanel.add(amenitiesList);
+
+
+
+        frame.pack();
+        frame.setResizable(false);
+        frame.setVisible(true);
     }
 
 }
