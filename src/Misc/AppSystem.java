@@ -112,7 +112,7 @@ public class AppSystem {
 
     }
 
-    private void initializeFromFile() {
+    private static void initializeFromFile() {
         Storage.drawDataFromFiles();
     }
 
