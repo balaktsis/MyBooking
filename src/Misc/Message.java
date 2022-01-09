@@ -128,6 +128,8 @@ public class Message implements Serializable {
         splitPane.setDividerSize(1);
         messagePanel.add(splitPane);
 
+        messagePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE,(int)messagePanel.getPreferredSize().getHeight()));
+
         return messagePanel;
     }
 
@@ -168,6 +170,8 @@ public class Message implements Serializable {
         splitPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         splitPane.setDividerSize(1);
         messagePanel.add(splitPane);
+
+        messagePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE,(int)messagePanel.getPreferredSize().getHeight()));
 
         return messagePanel;
     }
