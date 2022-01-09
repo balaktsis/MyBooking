@@ -32,12 +32,7 @@ public class AppSystem {
      */
     public static void run(){
         initializeApp();
-//        getLogin();
-        for (User user : Storage.getUsers()) {
-            if (user.getUsername().equalsIgnoreCase("admin")){
-                user.showInterface(true);
-            }
-        }
+        getLogin();
     }
 
     /**
@@ -49,10 +44,10 @@ public class AppSystem {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         }
         catch (UnsupportedLookAndFeelException | ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-            // handle exception
+            // Fall back to the default UI
         }
-//        initializeFromFile();
-        initializeWithTempFields();
+        initializeFromFile();
+//        initializeWithTempFields();
     }
 
 
@@ -68,8 +63,6 @@ public class AppSystem {
         var tempCustomer = new Customer("customer", "password0");
         var tempLandlord = new Landlord("landlord", "password0");
 
-        tempAdmin.setApprovalStatus(true);
-
         tempAdmin.setFullName("Admin McAdminFace");
         tempCustomer.setFullName("Karen Managerhunter");
         tempLandlord.setFullName("Rick James");
@@ -83,6 +76,10 @@ public class AppSystem {
         users.add(tempAdmin);
         users.add(tempCustomer);
         users.add(tempLandlord);
+
+        var unapprovedUSR = new Customer("MrUnapproved", "dontuseme");
+        unapprovedUSR.setFullName("Unapproved Person");
+        users.add(unapprovedUSR);
 
         for(User user : users) {
             Storage.getUsers().add(user);
