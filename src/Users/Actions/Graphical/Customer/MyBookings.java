@@ -5,6 +5,7 @@ import Misc.Storage;
 import Users.Actions.Graphical.GUIAction;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +22,15 @@ public class MyBookings extends GUIAction {
         actionArea.removeAll();
         actionArea.revalidate();
         actionArea.repaint();
-        actionArea.setLayout(new BoxLayout(actionArea, BoxLayout.Y_AXIS));
+        actionArea.setLayout(new GridLayout(1, 1));
+
+        JPanel viewport = new JPanel();
+        viewport.setLayout(new BoxLayout(viewport, BoxLayout.Y_AXIS));
+        JScrollPane scrollPane = new JScrollPane(viewport);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+
+        actionArea.add(scrollPane);
 
         ArrayList<BookingEntry> myBookings = new ArrayList<>();
         for (BookingEntry bookingEntry : Storage.getBookings()) {
@@ -31,7 +40,7 @@ public class MyBookings extends GUIAction {
         }
 
         if (myBookings.isEmpty()){
-            actionArea.add(error("No valid bookings were found!"));
+            viewport.add(error("No valid bookings were found!"));
             return;
         }
 
@@ -49,7 +58,7 @@ public class MyBookings extends GUIAction {
                 });
 
                 entry.add(cancel);
-                actionArea.add(entry);
+                viewport.add(entry);
 
         }
     }

@@ -257,6 +257,8 @@ public class BookingEntry implements Serializable {
         splitPane.setDividerSize(0);
         bookingPanel.add(splitPane);
 
+        bookingPanel.setMaximumSize(bookingPanel.getPreferredSize());
+
         return bookingPanel;
     }
 

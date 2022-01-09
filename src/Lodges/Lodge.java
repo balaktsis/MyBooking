@@ -249,6 +249,8 @@ public class Lodge implements Serializable {
             }
         });
 
+        lodgePanel.setMaximumSize(lodgePanel.getPreferredSize());
+
         return lodgePanel;
     }
 

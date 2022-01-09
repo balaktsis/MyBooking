@@ -9,6 +9,7 @@ import Users.Actions.Graphical.GUIAction;
 import Users.User;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,11 +39,14 @@ public class LookupLodges extends GUIAction {
         sidepanel.add(optionsArea, BorderLayout.CENTER);
 
         JPanel mainPanel = new JPanel();
-//        actionArea.add(mainPanel, BorderLayout.CENTER);
-        mainPanel.setLayout(new FlowLayout());
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        JScrollPane scrollPane = new JScrollPane(mainPanel);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+
         display(Storage.getLodges(), mainPanel);
 
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sidepanel, mainPanel);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sidepanel, scrollPane);
 //        sidepanel.setMinimumSize(new Dimension(10, 10));
         actionArea.add(splitPane);
 

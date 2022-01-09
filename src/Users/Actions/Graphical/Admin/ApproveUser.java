@@ -4,6 +4,7 @@ import Users.Actions.Graphical.GUIAction;
 import Users.User;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 
@@ -16,7 +17,15 @@ public class ApproveUser extends GUIAction {
     @Override
     protected void invoke() {
 
-        actionArea.setLayout(new BoxLayout(actionArea, BoxLayout.Y_AXIS));
+
+//        actionArea.setLayout(new BoxLayout(actionArea, BoxLayout.Y_AXIS));
+        actionArea.setLayout(new GridLayout(1, 1));
+        JPanel viewport = new JPanel();
+        viewport.setLayout(new BoxLayout(viewport, BoxLayout.Y_AXIS));
+
+        JScrollPane scrollPane = new JScrollPane(viewport);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 
         for (User user : User.getUsersWithApproval(false)){
             JPanel area = new JPanel();
@@ -37,9 +46,11 @@ public class ApproveUser extends GUIAction {
             });
             area.add(approveButton);
 
-            actionArea.add(area);
+            viewport.add(area);
 //            actionArea.add(Box.createRigidArea(new Dimension(0, 5)));
         }
+
+        actionArea.add(scrollPane);
 
     }
 }

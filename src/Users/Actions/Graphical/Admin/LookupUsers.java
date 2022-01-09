@@ -7,6 +7,7 @@ import Users.Actions.Graphical.GUIAction;
 import Users.User;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -25,7 +26,12 @@ public class LookupUsers extends GUIAction {
         actionArea.add(topPanel, BorderLayout.NORTH);
 
         JPanel mainPanel = new JPanel();
-        actionArea.add(mainPanel, BorderLayout.CENTER);
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        JScrollPane scrollPane = new JScrollPane(mainPanel);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+
+        actionArea.add(scrollPane, BorderLayout.CENTER);
 
         topPanel.setLayout(new FlowLayout());
 
@@ -44,12 +50,14 @@ public class LookupUsers extends GUIAction {
             mainPanel.revalidate();
             mainPanel.repaint();
 
-            if (User.getUserFromUsername(lrdUsername.getText()) == null){
+            User usr = User.getUserFromUsername(lrdUsername.getText());
+
+            if (usr == null){
                 mainPanel.add(error("No user found under that username!"));
-                return;
+            } else {
+                mainPanel.add(usr.toJPanel());
             }
 
-            mainPanel.add(User.getUserFromUsername(lrdUsername.getText()).toJPanel());
 
         });
 
@@ -63,7 +71,7 @@ public class LookupUsers extends GUIAction {
                 return;
             }
 
-            mainPanel.setLayout(new FlowLayout());
+
 //            mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
             for (User user : Storage.getUsers()){

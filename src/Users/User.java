@@ -302,7 +302,8 @@ abstract public class User implements Serializable {
         jSplitPane.setDividerSize(0);
         userPanel.add(jSplitPane);
 
-        userPanel.setMaximumSize(infopanel.getPreferredSize());
+        userPanel.setMaximumSize(new Dimension((int)userPanel.getPreferredSize().getWidth(), (int)userPanel.getPreferredSize().getHeight()));
+//        userPanel.setMaximumSize(infopanel.getPreferredSize());
 
         jSplitPane.addMouseListener(new MouseAdapter() {
             @Override
