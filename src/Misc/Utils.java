@@ -10,7 +10,7 @@ public class Utils {
         if (month.getText().length()==1){
             month.setText("0" + month.getText());
         }
-        if (year.getText().length()==1){
+        if (year.getText().length()<=2){
             year.setText("20" + year.getText());
         }
     }

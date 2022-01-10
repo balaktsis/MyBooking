@@ -1,6 +1,8 @@
+import Misc.Storage;
 import Users.*;
 import Users.User;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.List;
@@ -91,11 +93,19 @@ public class UserTest {
 
     @Test
     public void getUsersWithApprovalTest() {
+        admin.setApprovalStatus(true);
+        landlord.setApprovalStatus(false);
+        customer.setApprovalStatus(false);
+
         List<User> approvedUsers = User.getUsersWithApproval(true);
         List<User> notApprovedUsers = User.getUsersWithApproval(false);
 
-        assertTrue(approvedUsers.size() == 1 && approvedUsers.contains(admin));
-        assertTrue(notApprovedUsers.size() == 2 && !notApprovedUsers.contains(admin));
+        assertEquals(1, approvedUsers.size());
+        assertTrue(approvedUsers.contains(admin));
+
+        assertEquals(2, notApprovedUsers.size());
+        assertFalse(notApprovedUsers.contains(admin));
+
     }
 
     @Test

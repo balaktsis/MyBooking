@@ -34,9 +34,9 @@ public class utilsTest {
         year = new JTextField("11");
 
         Utils.dateSanitize(day, month, year);
-        assertEquals(day.getText(), "01");
-        assertEquals(month.getText(), "01");
-        assertEquals(year.getText(), "2011");
+        assertEquals("01", day.getText());
+        assertEquals("01", month.getText());
+        assertEquals("2011", year.getText());
 
     }
 }

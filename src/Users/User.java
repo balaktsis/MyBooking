@@ -42,6 +42,7 @@ abstract public class User implements Serializable {
      * @param password Login password of the new user
      */
     public User(String username, String password) {
+        Storage.getUsers().add(this);
         this.uid = UniqueIDGenerator.getUniqueId();
         this.username = username;
         this.password = password;
@@ -187,7 +188,6 @@ abstract public class User implements Serializable {
 
         if (user instanceof User ptr) {
             return ptr.username.equals(this.username) &&
-                    ptr.fullName.equals(this.fullName) &&
                     ptr.password.equals(this.getPassword());
         }
 
@@ -240,20 +240,6 @@ abstract public class User implements Serializable {
     public static User getUserFromUsername(String username){
         for (User user : Storage.getUsers()){
             if (user.getUsername().toLowerCase().equals(username)){
-                return user;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Get a user object from a full name string.
-     * @param fullName - String
-     * @return User object
-     */
-    public static User getUserFromFullName(String fullName){
-        for (User user : Storage.getUsers()){
-            if (user.getFullName().equals(fullName)){
                 return user;
             }
         }
