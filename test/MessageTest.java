@@ -5,9 +5,6 @@ import org.junit.Test;
 
 import Users.*;
 
-import java.time.Instant;
-import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 
 
@@ -41,7 +38,7 @@ public class MessageTest {
         assertEquals(landlord,message2.getSender());
         assertEquals(customer,message2.getRecipient());
 
-        assertEquals("This is a message test 1",message1.getBody());
+        assertEquals("This is message test 1",message1.getBody());
         message1.setBody("Testing in progress");
         assertEquals("Testing in progress", message1.getBody());
 

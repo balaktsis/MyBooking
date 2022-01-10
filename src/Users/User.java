@@ -13,7 +13,6 @@ import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +30,7 @@ abstract public class User implements Serializable {
     protected boolean approved;
     protected String username, password;
     protected String fullName;
-  //  protected List<Message> messages;
+    //  protected List<Message> messages;
     protected String typeName;
 
     /**
@@ -42,11 +41,12 @@ abstract public class User implements Serializable {
      * @param password Login password of the new user
      */
     public User(String username, String password) {
-        Storage.getUsers().add(this);
         this.uid = UniqueIDGenerator.getUniqueId();
         this.username = username;
         this.password = password;
         this.approved = false;
+        this.fullName = "";
+        Storage.getUsers().add(this);
     }
 
     /**
@@ -145,7 +145,7 @@ abstract public class User implements Serializable {
 
     public boolean sendMessageTo(User recipient, String body) {
         if(Storage.getUsers().contains(recipient) && body != null && this!=recipient) {
-                return Storage.getMessages().add(new Message(this, recipient, body));
+            return Storage.getMessages().add(new Message(this, recipient, body));
         } else return false;
     }
 
