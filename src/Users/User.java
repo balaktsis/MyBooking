@@ -13,6 +13,7 @@ import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,8 @@ import java.util.List;
  */
 
 abstract public class User implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -927248241604356907L;
 
     protected final String uid;
     protected boolean approved;
