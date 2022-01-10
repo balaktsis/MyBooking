@@ -143,7 +143,7 @@ abstract public class User implements Serializable {
 
 
     public boolean sendMessageTo(User recipient, String body) {
-        if(Storage.getUsers().contains(recipient) && body != null) {
+        if(Storage.getUsers().contains(recipient) && body != null && this!=recipient) {
                 return Storage.getMessages().add(new Message(this, recipient, body));
         } else return false;
     }

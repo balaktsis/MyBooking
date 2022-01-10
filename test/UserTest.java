@@ -1,16 +1,17 @@
+import Users.*;
+import Users.User;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-import Users.*;
-
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 
 /**
  * This is a test class for User subclasses/child-classes functionalities.
  * @author Christos Balaktsis
+ * @author Neron Panagiotopolos
  */
 
 public class UserTest {
@@ -98,7 +99,7 @@ public class UserTest {
     }
 
     @Test
-    public void getUserFromUsernameTest(){
+    public void getUserFromUsernameTest() {
         assertEquals(admin, User.getUserFromUsername(admin.getUsername()));
         assertEquals(landlord, User.getUserFromUsername(landlord.getUsername()));
         assertEquals(customer, User.getUserFromUsername(customer.getUsername()));
@@ -107,4 +108,12 @@ public class UserTest {
 
     }
 
+    @Test
+    public void sendMessageTest() {
+        assertTrue(admin.sendMessageTo(customer,"Howdy!"));
+        assertTrue(landlord.sendMessageTo(admin,"Hello!"));
+        assertTrue(customer.sendMessageTo(landlord,""));
+        assertFalse(landlord.sendMessageTo(customer,null));
+        assertFalse(customer.sendMessageTo(customer,""));
+    }
 }
