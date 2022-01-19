@@ -59,14 +59,6 @@ abstract public class User implements Serializable {
         return this.uid;
     }
 
-    /**
-     * Update the username of the current user.
-     *
-     * @param username New username for the user
-     */
-    private void setUsername(String username) {
-        this.username = username;
-    }
 
     /**
      * Get the username string from the User object

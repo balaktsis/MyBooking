@@ -23,6 +23,7 @@ public class UserTest {
 
     @Before
     public void initializeObjects() {
+        Storage.getUsers().removeAll(Storage.getUsers());
         admin = new Administrator("administrator","123456");
         landlord = new Landlord("landlord","123456");
         customer = new Customer("customer","123456");
@@ -30,7 +31,13 @@ public class UserTest {
     }
 
     @Test
+    public void getUserIdTest(){
+        assertNotNull(admin.getUserId());
+    }
+
+    @Test
     public void setUserInfoTest() {
+
         assertEquals("123456",admin.getPassword());
         assertEquals("123456",landlord.getPassword());
         assertEquals("123456",customer.getPassword());
@@ -38,6 +45,10 @@ public class UserTest {
         assertEquals("administrator",admin.getUsername());
         assertEquals("landlord",landlord.getUsername());
         assertEquals("customer",customer.getUsername());
+
+        assertEquals("Administrator", admin.getUserType());
+        assertEquals("Landlord", landlord.getUserType());
+        assertEquals("Customer", customer.getUserType());
 
         admin.setFullName("Peter Parker");
         landlord.setFullName("Stan Lee");
@@ -69,6 +80,8 @@ public class UserTest {
         assertFalse(landlord.setPassword("thisIsATest"));
         assertFalse(customer.setPassword("12345"));
         assertFalse(customer.setPassword(null));
+
+
     }
 
     @Test
@@ -88,6 +101,8 @@ public class UserTest {
 
         assertEquals(admin, admin2);
         assertNotEquals(admin, admin3);
+
+        assertFalse(admin2.equals("String"));
 
     }
 
@@ -126,4 +141,25 @@ public class UserTest {
         assertFalse(landlord.sendMessageTo(customer,null));
         assertFalse(customer.sendMessageTo(customer,""));
     }
+
+    @Test
+    public void getTotalProfitTest(){
+        assertEquals(landlord.getTotalProfit(), 0, 0.00000d);
+    }
+
+    @Test
+    public void getNumOfBookingsTest(){
+        assertEquals(landlord.getNumOfBookings(), 0, 0.00000d);
+    }
+
+    @Test
+    public void getTotalCancelationsTest(){
+        assertEquals(landlord.getNumOfCancellations(), 0);
+    }
+
+    @Test
+    public void getNumOfLodgesTest(){
+        assertEquals(landlord.getNumOfLodges(), 0);
+    }
+
 }
