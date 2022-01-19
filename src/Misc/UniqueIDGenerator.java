@@ -5,7 +5,7 @@ package Misc;
  * @author Neron Panagiotopoulos
  */
 public class UniqueIDGenerator {
-    private static long sequentialId = 6;
+    private static long sequentialId = 0;
 
     /**
      * Generates a new unique ID and returns it.

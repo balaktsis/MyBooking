@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e16ae03-8dbc-4789-8a8c-97bbcda819ac" name="Changes" comment="Changed data files path">
-      <change afterPath="$PROJECT_DIR$/storedId.dat" afterDir="false" />
+    <list default="true" id="6e16ae03-8dbc-4789-8a8c-97bbcda819ac" name="Changes" comment="ID bug fixed, image replication case fixed.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBooking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MyBooking.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Misc/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Misc/Storage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Misc/UniqueIDGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Misc/UniqueIDGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,9 +67,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Admin\OneDrive\Έγγραφα\Τμήμα Πληροφορικής ΑΠΘ\NCO-03-04 Αντικειμενοστρεφής Προγραμματισμός\mybooking-christos-neron" />
+      <recent name="storedBookings.dat storedId.dat storedLodges.dat storedMessages.dat storedUsers.dat" />
+      <recent name="C:\Users\Admin\OneDrive\Έγγραφα\Τμήμα Πληροφορικής ΑΠΘ\NCO-03-04 Αντικειμενοστρεφής Προγραμματισμός\mybooking-christos-neron\src\Misc" />
       <recent name="C:\Users\Admin\OneDrive\Έγγραφα\Τμήμα Πληροφορικής ΑΠΘ\NCO-03-04 Αντικειμενοστρεφής Προγραμματισμός\mybooking-christos-neron\src" />
       <recent name="C:\Users\Admin\OneDrive\Έγγραφα\Τμήμα Πληροφορικής ΑΠΘ\NCO-03-04 Αντικειμενοστρεφής Προγραμματισμός\mybooking-christos-neron\src\Misc\images" />
-      <recent name="C:\Users\Admin\OneDrive\Έγγραφα\Τμήμα Πληροφορικής ΑΠΘ\NCO-03-04 Αντικειμενοστρεφής Προγραμματισμός\mybooking-christos-neron\src\LoginSystem" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Admin\OneDrive\Έγγραφα\Τμήμα Πληροφορικής ΑΠΘ\NCO-03-04 Αντικειμενοστρεφής Προγραμματισμός\mybooking-christos-neron" />
@@ -125,7 +122,8 @@
       <workItem from="1640123829705" duration="700000" />
       <workItem from="1640191009034" duration="538000" />
       <workItem from="1640201833623" duration="3870000" />
-      <workItem from="1642602245900" duration="1329000" />
+      <workItem from="1642602245900" duration="1591000" />
+      <workItem from="1642605284735" duration="181000" />
     </task>
     <task id="LOCAL-00001" summary="Creation of Lodge class and formation of its fields. Includes enum-type fields, implemented in separate java files.">
       <created>1636894804982</created>
@@ -442,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642602290683</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="ID bug fixed, image replication case fixed.">
+      <created>1642605175585</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1642605175585</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -473,7 +478,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Completed the core functionality for the Landlord class." />
     <MESSAGE value="Optimized duplicates operations in Landlord class." />
     <MESSAGE value="Customer class optimized refactoring." />
     <MESSAGE value="Lowered Lodge class lack of cohesion." />
@@ -498,6 +502,7 @@
     <MESSAGE value="Storage bug with new accounts fixed." />
     <MESSAGE value="GUI Landlord optimization." />
     <MESSAGE value="Changed data files path" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed data files path" />
+    <MESSAGE value="ID bug fixed, image replication case fixed." />
+    <option name="LAST_COMMIT_MESSAGE" value="ID bug fixed, image replication case fixed." />
   </component>
 </project>
