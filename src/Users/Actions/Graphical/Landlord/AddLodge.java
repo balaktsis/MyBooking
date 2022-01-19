@@ -5,6 +5,7 @@ import Lodges.Hotel;
 import Lodges.Lodge;
 import Lodges.LodgeType;
 import Misc.Storage;
+import Misc.UniqueIDGenerator;
 import Users.Actions.Graphical.AdjustSize;
 import Users.Actions.Graphical.GUIAction;
 import Users.Landlord;
@@ -322,6 +323,7 @@ public class AddLodge extends GUIAction {
             @Override
             public void mouseClicked(MouseEvent e) {
                 String[] extensions = {"png", "jpg", "svg", "gif"};
+                final String[] ext = new String[1];
                 JFileChooser chooser = new JFileChooser();
                 chooser.setFileFilter(new FileFilter() {
                     public boolean accept(File file) {
@@ -332,6 +334,7 @@ public class AddLodge extends GUIAction {
                             for (String extension : extensions) {
                                 if ((path.endsWith(extension) && (path.charAt(path.length()
                                         - extension.length() - 1)) == '.')) {
+                                    ext[0] = extension;
                                     return true;
                                 }
                             }
@@ -351,7 +354,7 @@ public class AddLodge extends GUIAction {
                         Path copied = Paths.get("src/Misc/Images/" + chooser.getSelectedFile().getName());
                         Path originalPath = Paths.get(chooser.getSelectedFile().getAbsolutePath());
                         try {
-                            Files.copy(originalPath, copied, StandardCopyOption.REPLACE_EXISTING);
+                            Files.copy(originalPath, copied.resolveSibling("image-"+ UniqueIDGenerator.getUniqueId()+"."+ext[0])/*, StandardCopyOption.REPLACE_EXISTING*/);
                             imageIcon = new ImageIcon(chooser.getSelectedFile().getAbsolutePath());
                         } catch (IOException ex) {
                             imageIcon = new ImageIcon("src/Misc/images/defaultLodgeImage.png");
@@ -494,16 +497,18 @@ public class AddLodge extends GUIAction {
                             amenities.add(Amenities.valueOfLabel(checkBox.getText()));
                 lodge.setAmenities(amenities);
                 lodge.getDetails().setImage(imageIcon == null ? new ImageIcon() : imageIcon);
+                boolean put = false;
                 if(type.equals("ROOM")) {
                     for(Lodge tmpLodge : Storage.getLodges())
                         if(tmpLodge.getLodgeId().equals(Objects.requireNonNull(hotelBox.getSelectedItem()).toString().split(" - ")[0])) {
+                            lodge.getDetails().setTitle(lodge.getDetails().getTitle() + " - " + tmpLodge.getDetails().getTitle());
                             Hotel hotel = (Hotel) tmpLodge;
-                            hotel.addRoom(lodge);
+                            put = hotel.addRoom(lodge);
                             lodge.getDetails().setLocation(hotel.getDetails().getLocation());
                             break;
                         }
                 }
-                Storage.getLodges().add(lodge);
+                if(!put) Storage.getLodges().add(lodge);
                 JOptionPane.showMessageDialog(NewLodge, "Lodge successfully added to your properties!", "Addition complete", JOptionPane.INFORMATION_MESSAGE);
                 clearButtonMouseClicked(null);
                 return;

@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e16ae03-8dbc-4789-8a8c-97bbcda819ac" name="Changes" comment="GUI Landlord optimization.">
+    <list default="true" id="6e16ae03-8dbc-4789-8a8c-97bbcda819ac" name="Changes" comment="Changed data files path">
+      <change afterPath="$PROJECT_DIR$/storedId.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBooking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MyBooking.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Misc/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Misc/Storage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Misc/UniqueIDGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Misc/UniqueIDGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +58,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -67,9 +70,13 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\OneDrive\Έγγραφα\Τμήμα Πληροφορικής ΑΠΘ\NCO-03-04 Αντικειμενοστρεφής Προγραμματισμός\mybooking-christos-neron" />
       <recent name="C:\Users\Admin\OneDrive\Έγγραφα\Τμήμα Πληροφορικής ΑΠΘ\NCO-03-04 Αντικειμενοστρεφής Προγραμματισμός\mybooking-christos-neron\src" />
       <recent name="C:\Users\Admin\OneDrive\Έγγραφα\Τμήμα Πληροφορικής ΑΠΘ\NCO-03-04 Αντικειμενοστρεφής Προγραμματισμός\mybooking-christos-neron\src\Misc\images" />
       <recent name="C:\Users\Admin\OneDrive\Έγγραφα\Τμήμα Πληροφορικής ΑΠΘ\NCO-03-04 Αντικειμενοστρεφής Προγραμματισμός\mybooking-christos-neron\src\LoginSystem" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\OneDrive\Έγγραφα\Τμήμα Πληροφορικής ΑΠΘ\NCO-03-04 Αντικειμενοστρεφής Προγραμματισμός\mybooking-christos-neron" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="LoginSystem" />
@@ -118,6 +125,7 @@
       <workItem from="1640123829705" duration="700000" />
       <workItem from="1640191009034" duration="538000" />
       <workItem from="1640201833623" duration="3870000" />
+      <workItem from="1642602245900" duration="1329000" />
     </task>
     <task id="LOCAL-00001" summary="Creation of Lodge class and formation of its fields. Includes enum-type fields, implemented in separate java files.">
       <created>1636894804982</created>
@@ -427,7 +435,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642602024177</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Changed data files path">
+      <created>1642602290683</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1642602290683</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -458,7 +473,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Implemented addLodge() in Landlord CLI operations." />
     <MESSAGE value="Completed the core functionality for the Landlord class." />
     <MESSAGE value="Optimized duplicates operations in Landlord class." />
     <MESSAGE value="Customer class optimized refactoring." />
@@ -483,6 +497,7 @@
     <MESSAGE value="Connected storage to .dat files." />
     <MESSAGE value="Storage bug with new accounts fixed." />
     <MESSAGE value="GUI Landlord optimization." />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI Landlord optimization." />
+    <MESSAGE value="Changed data files path" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed data files path" />
   </component>
 </project>

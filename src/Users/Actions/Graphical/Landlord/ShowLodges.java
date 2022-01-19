@@ -6,6 +6,7 @@ import Lodges.Hotel;
 import Lodges.Lodge;
 import Lodges.LodgeType;
 import Misc.Storage;
+import Misc.UniqueIDGenerator;
 import Users.Actions.Graphical.AdjustSize;
 import Users.Actions.Graphical.GUIAction;
 import Users.Landlord;
@@ -431,6 +432,7 @@ public class ShowLodges extends GUIAction implements Serializable {
             @Override
             public void mouseClicked(MouseEvent e) {
                 String[] extensions = {"png", "jpg", "svg", "gif"};
+                final String[] ext = new String[1];
                 JFileChooser chooser = new JFileChooser();
                 chooser.setFileFilter(new FileFilter() {
                     public boolean accept(File file) {
@@ -441,6 +443,7 @@ public class ShowLodges extends GUIAction implements Serializable {
                             for (String extension : extensions) {
                                 if ((path.endsWith(extension) && (path.charAt(path.length()
                                         - extension.length() - 1)) == '.')) {
+                                    ext[0] = extension;
                                     return true;
                                 }
                             }
@@ -460,7 +463,7 @@ public class ShowLodges extends GUIAction implements Serializable {
                         Path copied = Paths.get("src/Misc/Images/" + chooser.getSelectedFile().getName());
                         Path originalPath = Paths.get(chooser.getSelectedFile().getAbsolutePath());
                         try {
-                            Files.copy(originalPath, copied.resolveSibling("image-"+lodge.getLodgeId()) /*, StandardCopyOption.REPLACE_EXISTING*/);
+                            Files.copy(originalPath, copied.resolveSibling("image-"+ UniqueIDGenerator.getUniqueId()+"."+ext[0])/*, StandardCopyOption.REPLACE_EXISTING*/);
                             editImageIcon = new ImageIcon(chooser.getSelectedFile().getAbsolutePath());
                         } catch (IOException ex) {
                             editImageIcon = new ImageIcon("src/Misc/images/defaultLodgeImage.png");

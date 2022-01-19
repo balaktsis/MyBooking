@@ -114,6 +114,13 @@ public class Storage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("storedId.dat"))) {
+            oos.writeObject(UniqueIDGenerator.getSequentialId());
+            oos.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -143,6 +150,13 @@ public class Storage {
 
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storedMessages.dat"))) {
             Storage.setMessages((HashSet<Message>) ois.readObject());
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            Storage.setBookings(new HashSet<>());
+        }
+
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storedId.dat"))) {
+            UniqueIDGenerator.setSequentialId(Long.parseLong(ois.readObject().toString()));
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             Storage.setBookings(new HashSet<>());
