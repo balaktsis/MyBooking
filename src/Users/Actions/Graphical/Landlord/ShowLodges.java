@@ -413,7 +413,7 @@ public class ShowLodges extends GUIAction implements Serializable {
             editAmenitiesPanel.setLayout(new FlowLayout());
         }
         EditLodgeContentPane.add(editAmenitiesPanel);
-        editAmenitiesPanel.setBounds(120, 360, 200, 75);
+        editAmenitiesPanel.setBounds(120, 360, 200, 110);
 
         for(Amenities amenity : Amenities.values())
             editAmenitiesPanel.add(new JCheckBox(amenity.label,false));
@@ -460,7 +460,7 @@ public class ShowLodges extends GUIAction implements Serializable {
                         Path copied = Paths.get("src/Misc/Images/" + chooser.getSelectedFile().getName());
                         Path originalPath = Paths.get(chooser.getSelectedFile().getAbsolutePath());
                         try {
-                            Files.copy(originalPath, copied, StandardCopyOption.REPLACE_EXISTING);
+                            Files.copy(originalPath, copied.resolveSibling("image-"+lodge.getLodgeId()) /*, StandardCopyOption.REPLACE_EXISTING*/);
                             editImageIcon = new ImageIcon(chooser.getSelectedFile().getAbsolutePath());
                         } catch (IOException ex) {
                             editImageIcon = new ImageIcon("src/Misc/images/defaultLodgeImage.png");
@@ -475,15 +475,15 @@ public class ShowLodges extends GUIAction implements Serializable {
         //---- confirmButton ----
         editConfirmButton.setText("Confirm");
         EditLodgeContentPane.add(editConfirmButton);
-        editConfirmButton.setBounds(245, 460, 75, 30);
+        editConfirmButton.setBounds(245, 460+40, 75, 30);
         editConfirmButton.addActionListener(e -> editConfirmButton());
 
         //---- cancelButton ----
         editCancelButton.setText("Cancel");
         EditLodgeContentPane.add(editCancelButton);
-        editCancelButton.setBounds(155, 460, 75, 30);
+        editCancelButton.setBounds(155, 460+40, 75, 30);
 
-        EditLodgeContentPane.setPreferredSize(new Dimension(355, 500));
+        EditLodgeContentPane.setPreferredSize(new Dimension(355, 550));
         editLodge.pack();
         editLodge.setLocationRelativeTo(editLodge.getOwner());
         editLodge.addWindowListener(new WindowAdapter() {

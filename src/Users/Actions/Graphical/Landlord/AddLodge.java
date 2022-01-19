@@ -44,15 +44,15 @@ public class AddLodge extends GUIAction {
 
         NewLodge = new JScrollPane();
         BasicInfo = new JPanel();
-        noteLabel = new JLabel();
-        typeLabel = new JLabel();
+        JLabel noteLabel = new JLabel();
+        JLabel typeLabel = new JLabel();
         typeBox = new JComboBox<>();
-        titleLabel = new JLabel();
+        JLabel titleLabel = new JLabel();
         titleField = new JTextField();
         locationLabel = new JLabel();
         locationField = new JTextField();
-        descriptionLabel = new JLabel();
-        descriptionPane = new JScrollPane();
+        JLabel descriptionLabel = new JLabel();
+        JScrollPane descriptionPane = new JScrollPane();
         descriptionField = new JTextArea();
         priceLabel = new JLabel();
         priceField = new JTextField();
@@ -62,7 +62,7 @@ public class AddLodge extends GUIAction {
         bedsField = new JTextField();
         amenitiesLabel = new JLabel();
         confirmButton = new JButton();
-        clearButton = new JButton();
+        JButton clearButton = new JButton();
         hotelBox = new JComboBox<>();
         nullTitleLabel = new JLabel();
         nullHotelLabel = new JLabel();
@@ -70,7 +70,7 @@ public class AddLodge extends GUIAction {
         nullPriceLabel = new JLabel();
         nullSizeLabel = new JLabel();
         nullBedsLabel = new JLabel();
-        imageButton = new JButton();
+        JButton imageButton = new JButton();
 
         //======== BasicInfo ========
         BasicInfo.setLayout(null);
@@ -114,33 +114,33 @@ public class AddLodge extends GUIAction {
             descriptionPane.setViewportView(descriptionField);
         }
         BasicInfo.add(descriptionPane);
-        descriptionPane.setBounds(170, 205, 251, 31);
+        descriptionPane.setBounds(170, 205, 251, 100);
 
         //---- priceLabel ----
         priceLabel.setText("Price per night");
         BasicInfo.add(priceLabel);
-        priceLabel.setBounds(20, 260, 125, 31);
+        priceLabel.setBounds(20, 260+69, 125, 31);
         BasicInfo.add(priceField);
-        priceField.setBounds(170, 255, 251, 31);
+        priceField.setBounds(170, 255+69, 251, 31);
 
         //---- sizeLabel ----
         sizeLabel.setText("Size (m2)");
         BasicInfo.add(sizeLabel);
-        sizeLabel.setBounds(20, 310, 125, 31);
+        sizeLabel.setBounds(20, 310+69, 125, 31);
         BasicInfo.add(sizeField);
-        sizeField.setBounds(170, 310, 251, 31);
+        sizeField.setBounds(170, 310+69, 251, 31);
 
         //---- bedsLabel ----
         bedsLabel.setText("Beds ");
         BasicInfo.add(bedsLabel);
-        bedsLabel.setBounds(20, 360, 125, 31);
+        bedsLabel.setBounds(20, 360+69, 125, 31);
         BasicInfo.add(bedsField);
-        bedsField.setBounds(170, 360, 251, 31);
+        bedsField.setBounds(170, 360+69, 251, 31);
 
         //---- amenitiesLabel ----
         amenitiesLabel.setText("Amenities");
         BasicInfo.add(amenitiesLabel);
-        amenitiesLabel.setBounds(20, 410, 125, 31);
+        amenitiesLabel.setBounds(20, 410+69, 125, 31);
 
         //---- confirmButton ----
         confirmButton.setText("Confirm");
@@ -151,7 +151,7 @@ public class AddLodge extends GUIAction {
             }
         });
         BasicInfo.add(confirmButton);
-        confirmButton.setBounds(290, 540, 80, 35);
+        confirmButton.setBounds(290, 540+69, 80, 35);
 
         //---- clearButton ----
         clearButton.setText("Clear");
@@ -162,7 +162,7 @@ public class AddLodge extends GUIAction {
             }
         });
         BasicInfo.add(clearButton);
-        clearButton.setBounds(205, 540, 80, 35);
+        clearButton.setBounds(205, 540+69, 80, 35);
         BasicInfo.add(hotelBox);
         hotelBox.setBounds(175, 155, 240, hotelBox.getPreferredSize().height);
 
@@ -183,30 +183,30 @@ public class AddLodge extends GUIAction {
             amenitiesPanel.setLayout(new FlowLayout());
         }
         BasicInfo.add(amenitiesPanel);
-        amenitiesPanel.setBounds(170, 420, 250, 110);
+        amenitiesPanel.setBounds(170, 420+60, 250, 110);
 
         //---- nullPriceLabel ----
         nullPriceLabel.setText("Provide a valid cost per night.");
         nullPriceLabel.setForeground(Color.red);
         BasicInfo.add(nullPriceLabel);
-        nullPriceLabel.setBounds(175, 285, 245, 16);
+        nullPriceLabel.setBounds(175, 285+69, 245, 16);
 
         //---- nullSizeLabel ----
         nullSizeLabel.setText("Provide a valid size in square-meters.");
         nullSizeLabel.setForeground(Color.red);
         BasicInfo.add(nullSizeLabel);
-        nullSizeLabel.setBounds(175, 340, 245, 16);
+        nullSizeLabel.setBounds(175, 340+69, 245, 16);
 
         //---- nullBedsLabel ----
         nullBedsLabel.setText("Provide a valid number of beds.");
         nullBedsLabel.setForeground(Color.red);
         BasicInfo.add(nullBedsLabel);
-        nullBedsLabel.setBounds(175, 390, 245, 16);
+        nullBedsLabel.setBounds(175, 390+69, 245, 16);
 
         //---- imageButton ----
         imageButton.setText("Image");
         BasicInfo.add(imageButton);
-        imageButton.setBounds(new Rectangle(new Point(20, 460), imageButton.getPreferredSize()));
+        imageButton.setBounds(new Rectangle(new Point(20, 460+69), imageButton.getPreferredSize()));
 
         AdjustSize.AdjustPanelSize(BasicInfo);
 
@@ -367,15 +367,10 @@ public class AddLodge extends GUIAction {
 
     private JScrollPane NewLodge;
     private JPanel BasicInfo;
-    private JLabel noteLabel;
-    private JLabel typeLabel;
     private JComboBox<String> typeBox;
-    private JLabel titleLabel;
     private JTextField titleField;
     private JLabel locationLabel;
     private JTextField locationField;
-    private JLabel descriptionLabel;
-    private JScrollPane descriptionPane;
     private JTextArea descriptionField;
     private JLabel priceLabel;
     private JTextField priceField;
@@ -385,7 +380,6 @@ public class AddLodge extends GUIAction {
     private JTextField bedsField;
     private JLabel amenitiesLabel;
     private JButton confirmButton;
-    private JButton clearButton;
     private JComboBox<String> hotelBox;
     private JLabel nullTitleLabel;
     private JLabel nullHotelLabel;
@@ -393,7 +387,6 @@ public class AddLodge extends GUIAction {
     private JLabel nullPriceLabel;
     private JLabel nullSizeLabel;
     private JLabel nullBedsLabel;
-    private JButton imageButton;
     private ImageIcon imageIcon;
 
     private void replaceLocationFields(boolean show) {
@@ -586,9 +579,4 @@ public class AddLodge extends GUIAction {
             if(lodge.getLandlord().equals(this.parentUser) && lodge.getType().equals(LodgeType.HOTEL))
                 hotelBox.addItem(lodge.getLodgeId() + " - " + lodge.getDetails().getTitle());
     }
-
-    public void createLodge(String type) {
-
-    }
-
 }

@@ -52,21 +52,12 @@ public class BookingEntry implements Serializable {
     }
 
     /**
-     * Method that set the period of booking.
-     * @param date1 The first date of the period.
-     * @param date2 The last date of the period.
-     */
-    public void setPeriod(LocalDate date1, LocalDate date2) {
-        getPeriod(date1, date2);
-    }
-
-    /**
      * Method that creates a period of dates (from date1 to date2) and adds each date in a HashSet.
      * @param date1 The first date of the period.
      * @param date2 The last date of the period (not included in the HashSet).
      * @return A HashSet of Dates, the period between date1 and date2.
      */
-    private HashSet<LocalDate> getPeriod(LocalDate date1, LocalDate date2) {
+    public HashSet<LocalDate> getPeriod(LocalDate date1, LocalDate date2) {
         while(date1.isBefore(date2)) {
             this.period.add(date1);
             date1 = date1.plusDays(1);
@@ -146,13 +137,6 @@ public class BookingEntry implements Serializable {
     }
 
     /**
-     * @return The requested period of accommodation (booking).
-     */
-    public HashSet<LocalDate> getPeriod() {
-        return this.valid ? this.period : null;
-    }
-
-    /**
      * @return The booked lodge.
      */
     public Lodge getLodge() {
@@ -192,22 +176,21 @@ public class BookingEntry implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder();
-        str.append("Booking Entry #");
-        str.append(this.bookingId);
-        str.append("\t\t");
-        str.append("Booked lodge: ");
-        str.append(this.lodge.getDetails().getTitle());
-        str.append("\nTenant: ");
-        str.append(this.tenant.getFullName());
-        str.append("\nPeriod of reservation: ");
-        str.append(this.arrivalDate.toString());
-        str.append(" to ");
-        str.append(this.departureDate.toString());
-        str.append("\nTotal Cost for accommodation: ");
-        str.append(this.totalCost);
-        str.append("\n");
-        return valid ? str.toString() : "Invalid Booking Entry\n";
+        String str = "Booking Entry #" +
+                this.bookingId +
+                "\t\t" +
+                "Booked lodge: " +
+                this.lodge.getDetails().getTitle() +
+                "\nTenant: " +
+                this.tenant.getFullName() +
+                "\nPeriod of reservation: " +
+                this.arrivalDate.toString() +
+                " to " +
+                this.departureDate.toString() +
+                "\nTotal Cost for accommodation: " +
+                this.totalCost +
+                "\n";
+        return valid ? str : "Invalid Booking Entry\n";
     }
 
     static public List<BookingEntry> getBookingsOnDate(String date){
@@ -266,40 +249,40 @@ public class BookingEntry implements Serializable {
         JFrame frame = new JFrame("Book " + lodge.getDetails().getTitle());
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
-        JPanel mainpanel = new JPanel();
-        frame.add(mainpanel);
+        JPanel mainPanel = new JPanel();
+        frame.add(mainPanel);
 
-        mainpanel.setLayout(new GridLayout(3, 1));
-        mainpanel.add(new JLabel("Book " + lodge.getDetails().getTitle(), JLabel.CENTER));
+        mainPanel.setLayout(new GridLayout(3, 1));
+        mainPanel.add(new JLabel("Book " + lodge.getDetails().getTitle(), JLabel.CENTER));
 
-        JPanel datepanel = new JPanel();
+        JPanel datePanel = new JPanel();
 
-        datepanel.add(new JLabel("From:"));
+        datePanel.add(new JLabel("From:"));
         HintedJTextField from_day = new HintedJTextField("DD");
         HintedJTextField from_month = new HintedJTextField("MM");
         HintedJTextField from_year = new HintedJTextField("YYYY");
-        datepanel.add(from_day);
-        datepanel.add(from_month);
-        datepanel.add(from_year);
+        datePanel.add(from_day);
+        datePanel.add(from_month);
+        datePanel.add(from_year);
 
-        datepanel.add(new JLabel("until:"));
+        datePanel.add(new JLabel("until:"));
         HintedJTextField to_day = new HintedJTextField("DD");
         HintedJTextField to_month = new HintedJTextField("MM");
         HintedJTextField to_year = new HintedJTextField("YYYY");
-        datepanel.add(to_day);
-        datepanel.add(to_month);
-        datepanel.add(to_year);
+        datePanel.add(to_day);
+        datePanel.add(to_month);
+        datePanel.add(to_year);
 
-        mainpanel.add(datepanel);
+        mainPanel.add(datePanel);
 
-        JPanel buttonpanel = new JPanel();
+        JPanel buttonPanel = new JPanel();
         JButton book = new JButton("Book");
-        buttonpanel.add(book);
+        buttonPanel.add(book);
 
         JButton cancel = new JButton("Cancel");
-        buttonpanel.add(cancel);
+        buttonPanel.add(cancel);
 
-        mainpanel.add(buttonpanel);
+        mainPanel.add(buttonPanel);
 
         frame.pack();
         frame.setVisible(true);

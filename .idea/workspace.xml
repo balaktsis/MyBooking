@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e16ae03-8dbc-4789-8a8c-97bbcda819ac" name="Changes" comment="Storage bug with new accounts fixed.">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_6_11_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_6_11_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginSystem/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginSystem/LoginScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/Actions/Graphical/GUIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Actions/Graphical/GUIManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storedMessages.dat" beforeDir="false" afterPath="$PROJECT_DIR$/storedMessages.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBooking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MyBooking.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Booking/BookingEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Booking/BookingEntry.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,8 +117,6 @@
       <workItem from="1640123829705" duration="700000" />
       <workItem from="1640191009034" duration="538000" />
       <workItem from="1640201833623" duration="3870000" />
-      <workItem from="1642490523393" duration="262000" />
-      <workItem from="1642490827999" duration="291000" />
     </task>
     <task id="LOCAL-00001" summary="Creation of Lodge class and formation of its fields. Includes enum-type fields, implemented in separate java files.">
       <created>1636894804982</created>
@@ -451,7 +447,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
