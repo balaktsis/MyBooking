@@ -4,35 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e16ae03-8dbc-4789-8a8c-97bbcda819ac" name="Changes" comment="ID bug fixed, image replication case fixed.">
+    <list default="true" id="6e16ae03-8dbc-4789-8a8c-97bbcda819ac" name="Changes" comment="Removed most remaining warnings">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBooking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MyBooking.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lodges/LodgeAvailability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lodges/LodgeAvailability.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginSystem/AdminForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginSystem/AdminForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginSystem/CustomerForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginSystem/CustomerForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginSystem/LandlordForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginSystem/LandlordForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginSystem/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginSystem/LoginScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginSystem/UserForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginSystem/UserForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Misc/AppSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Misc/AppSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Misc/HintedJTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Misc/HintedJTextField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Misc/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Misc/Storage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/Actions/ActionManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/Actions/CommandLine/CommandLineManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Actions/CommandLine/CommandLineManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/Actions/CommandLine/Customer/BookLodge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Actions/CommandLine/Customer/BookLodge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/Actions/CommandLine/Landlord/AddLodge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Actions/CommandLine/Landlord/AddLodge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/Actions/CommandLine/Landlord/BookingLookup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Actions/CommandLine/Landlord/BookingLookup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/Actions/Graphical/GUIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Actions/Graphical/GUIManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/Actions/Graphical/Landlord/AddLodge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Actions/Graphical/Landlord/AddLodge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/Actions/Graphical/Landlord/ShowBookings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Actions/Graphical/Landlord/ShowBookings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/Actions/Graphical/Landlord/ShowLodges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Actions/Graphical/Landlord/ShowLodges.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storedBookings.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storedLodges.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storedMessages.dat" beforeDir="false" afterPath="$PROJECT_DIR$/storedMessages.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storedUsers.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Booking/BookingEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Booking/BookingEntry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/BookingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/BookingTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/LodgeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/LodgeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Misc/utilsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Misc/utilsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,6 +23,7 @@
       <list>
         <option value="Enum" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -85,6 +64,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -108,25 +89,88 @@
       <recent name="C:\Users\neron\IdeaProjects\mybooking-christos-neron" />
       <recent name="C:\Users\Admin\OneDrive\Έγγραφα\Τμήμα Πληροφορικής ΑΠΘ\NCO-03-04 Αντικειμενοστρεφής Προγραμματισμός\mybooking-christos-neron" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="Booking" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="LoginSystem" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+  <component name="RunManager" selected="JUnit.All in MyBooking">
+    <configuration name="All in MyBooking" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MyBooking" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookingTest.getBookingsOnDateTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MyBooking" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BookingTest" />
+      <option name="METHOD_NAME" value="getBookingsOnDateTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestUniqueIDGenerator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MyBooking" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Misc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Misc" />
+      <option name="MAIN_CLASS_NAME" value="Misc.TestUniqueIDGenerator" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="utilsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MyBooking" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Misc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Misc" />
+      <option name="MAIN_CLASS_NAME" value="Misc.utilsTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="utilsTest.UniqueIDGeneratorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MyBooking" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Misc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Misc" />
+      <option name="MAIN_CLASS_NAME" value="Misc.utilsTest" />
+      <option name="METHOD_NAME" value="UniqueIDGeneratorTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.All in MyBooking" />
+        <item itemvalue="JUnit.utilsTest" />
+        <item itemvalue="JUnit.TestUniqueIDGenerator" />
+        <item itemvalue="JUnit.utilsTest.UniqueIDGeneratorTest" />
+        <item itemvalue="JUnit.BookingTest.getBookingsOnDateTest" />
       </list>
     </recent_temporary>
   </component>
@@ -480,7 +524,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642605175585</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Removed most remaining warnings">
+      <created>1642669826932</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1642669826932</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,7 +563,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Optimized duplicates operations in Landlord class." />
     <MESSAGE value="Customer class optimized refactoring." />
     <MESSAGE value="Lowered Lodge class lack of cohesion." />
     <MESSAGE value="Enabled hotel handling" />
@@ -537,7 +587,8 @@
     <MESSAGE value="GUI Landlord optimization." />
     <MESSAGE value="Changed data files path" />
     <MESSAGE value="ID bug fixed, image replication case fixed." />
-    <option name="LAST_COMMIT_MESSAGE" value="ID bug fixed, image replication case fixed." />
+    <MESSAGE value="Removed most remaining warnings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed most remaining warnings" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/mybooking_christos_neron$All_in_MyBooking.ic" NAME="All in MyBooking Coverage Results" MODIFIED="1642581040250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

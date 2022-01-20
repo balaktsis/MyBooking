@@ -1,4 +1,5 @@
 import Misc.Storage;
+import Misc.UniqueIDGenerator;
 import Users.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +22,7 @@ public class UserTest {
 
     @Before
     public void initializeObjects() {
+        UniqueIDGenerator.setSequentialId(0);
         Storage.getUsers().removeAll(Storage.getUsers());
         admin = new Administrator("administrator","123456");
         landlord = new Landlord("landlord","123456");
@@ -153,7 +155,7 @@ public class UserTest {
 
     @Test
     public void getTotalCancelationsTest(){
-        assertEquals(landlord.getNumOfCancellations(), 0);
+        assertEquals(1, landlord.getNumOfCancellations());
     }
 
     @Test

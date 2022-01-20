@@ -10,10 +10,6 @@ import static org.junit.Assert.*;
 
 public class utilsTest {
 
-    @Before
-    public void setUp() {
-
-    }
 
     @Test
     public void testSanitizeDates(){
@@ -37,6 +33,5 @@ public class utilsTest {
         assertEquals("01", day.getText());
         assertEquals("01", month.getText());
         assertEquals("2011", year.getText());
-
     }
 }

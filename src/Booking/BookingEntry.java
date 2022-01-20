@@ -60,7 +60,7 @@ public class BookingEntry implements Serializable {
      * @param date2 The last date of the period (not included in the HashSet).
      * @return A HashSet of Dates, the period between date1 and date2.
      */
-    public HashSet<LocalDate> getPeriod(LocalDate date1, LocalDate date2) {
+    private HashSet<LocalDate> getPeriod(LocalDate date1, LocalDate date2) {
         while(date1.isBefore(date2)) {
             this.period.add(date1);
             date1 = date1.plusDays(1);

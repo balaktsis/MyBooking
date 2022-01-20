@@ -1,4 +1,5 @@
 import Lodges.*;
+import Misc.UniqueIDGenerator;
 import Users.Landlord;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,6 +21,7 @@ public class LodgeTest {
 
     @Before
     public void initializeObjects() {
+        UniqueIDGenerator.setSequentialId(0);
         landlord = new Landlord("landlord","123456");
         lodge = new Lodge(landlord,"Thessaloniki, Greece", LodgeType.APARTMENT);
         dates = new HashSet<>();
