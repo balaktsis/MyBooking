@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.HashSet;
 import java.util.Objects;
 
@@ -148,7 +147,7 @@ public class AddLodge extends GUIAction {
         confirmButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                confirmButtonMouseClicked(e);
+                confirmButtonMouseClicked();
             }
         });
         BasicInfo.add(confirmButton);
@@ -159,7 +158,7 @@ public class AddLodge extends GUIAction {
         clearButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                clearButtonMouseClicked(e);
+                clearButtonMouseClicked();
             }
         });
         BasicInfo.add(clearButton);
@@ -309,15 +308,15 @@ public class AddLodge extends GUIAction {
             }
         });
 
-        confirmButton.addActionListener(e -> confirmButtonMouseClicked(null));
+        confirmButton.addActionListener(e -> confirmButtonMouseClicked());
 
-        clearButton.addActionListener(e -> clearButtonMouseClicked(null));
+        clearButton.addActionListener(e -> clearButtonMouseClicked());
 
-        titleField.addActionListener(e -> confirmButtonMouseClicked(null));
-        locationField.addActionListener(e -> confirmButtonMouseClicked(null));
-        sizeField.addActionListener(e -> confirmButtonMouseClicked(null));
-        bedsField.addActionListener(e -> confirmButtonMouseClicked(null));
-        priceField.addActionListener(e -> confirmButtonMouseClicked(null));
+        titleField.addActionListener(e -> confirmButtonMouseClicked());
+        locationField.addActionListener(e -> confirmButtonMouseClicked());
+        sizeField.addActionListener(e -> confirmButtonMouseClicked());
+        bedsField.addActionListener(e -> confirmButtonMouseClicked());
+        priceField.addActionListener(e -> confirmButtonMouseClicked());
 
         imageButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -466,7 +465,7 @@ public class AddLodge extends GUIAction {
         }
     }
 
-    private void confirmButtonMouseClicked(MouseEvent e) {
+    private void confirmButtonMouseClicked() {
         if (confirmButton.isEnabled() && titleField.getDocument().getLength() > 0) {
             String type = Objects.requireNonNull(typeBox.getSelectedItem()).toString();
             Lodge lodge;
@@ -478,7 +477,7 @@ public class AddLodge extends GUIAction {
                 lodge.getDetails().setNumOfBookings(0);
                 lodge.getDetails().setImage(imageIcon);
                 Storage.getLodges().add(lodge);
-                clearButtonMouseClicked(null);
+                clearButtonMouseClicked();
                 JOptionPane.showMessageDialog(NewLodge, "Lodge successfully added to your properties!", "Addition complete", JOptionPane.INFORMATION_MESSAGE);
                 return;
             } else if (priceField.getText().length() * bedsField.getText().length() * sizeField.getText().length() > 0 && (locationField.getText().length()>0 ||  LodgeType.valueOf(typeBox.getSelectedItem().toString()).equals(LodgeType.ROOM))) {
@@ -510,14 +509,14 @@ public class AddLodge extends GUIAction {
                 }
                 if(!put) Storage.getLodges().add(lodge);
                 JOptionPane.showMessageDialog(NewLodge, "Lodge successfully added to your properties!", "Addition complete", JOptionPane.INFORMATION_MESSAGE);
-                clearButtonMouseClicked(null);
+                clearButtonMouseClicked();
                 return;
             }
         }
         JOptionPane.showMessageDialog(NewLodge, "Invalid lodge details! Please check again!", "Invalid details", JOptionPane.ERROR_MESSAGE);
     }
 
-    private void clearButtonMouseClicked(MouseEvent e) {
+    private void clearButtonMouseClicked() {
         for (Component component : BasicInfo.getComponents()) {
             if (component instanceof JTextField textField) textField.setText("");
             else if (component instanceof JCheckBox checkBox) checkBox.setSelected(false);

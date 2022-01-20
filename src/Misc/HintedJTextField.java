@@ -7,7 +7,7 @@ import java.awt.event.FocusListener;
 
 public class HintedJTextField extends JTextField {
 
-    String hint;
+    final String hint;
 
     public HintedJTextField(String inputHint){
         hint = inputHint;

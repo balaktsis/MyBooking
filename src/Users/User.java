@@ -31,7 +31,8 @@ abstract public class User implements Serializable {
 
     protected final String uid;
     protected boolean approved;
-    protected String username, password;
+    protected final String username;
+    protected String password;
     protected String fullName;
     //  protected List<Message> messages;
     protected String typeName;

@@ -15,7 +15,7 @@ import java.util.Objects;
 
 public class GUIManager implements Serializable {
 
-    protected User parentUser;
+    protected final User parentUser;
     protected GUIAction[] guiActions;
     JFrame userGUI;
 

@@ -18,24 +18,24 @@ import java.util.Objects;
  * @author Christos Balaktsis
  */
 public abstract class UserForm implements MouseListener, ActionListener {
-    protected JFrame formFrame;
-    protected JLabel logo;
-    protected JTextField usernameField;
-    protected JLabel usernameLabel;
-    protected JPasswordField passwordField;
-    protected JLabel passwordLabel;
-    protected JLabel repPasswordLabel;
-    protected JPasswordField repPasswordField;
-    protected JTextField fullnameField;
-    protected JLabel fullnameLabel;
-    protected JLabel noteLabel;
-    protected JButton createButton;
-    protected JButton cancelButton;
-    protected JLabel wrongPasswordLabel;
-    protected JLabel title;
-    protected JLabel invalidPasswordLabel;
-    protected JLabel invalidUsernameLabel;
-    protected Container frame2ContentPane;
+    protected final JFrame formFrame;
+    protected final JLabel logo;
+    protected final JTextField usernameField;
+    protected final JLabel usernameLabel;
+    protected final JPasswordField passwordField;
+    protected final JLabel passwordLabel;
+    protected final JLabel repPasswordLabel;
+    protected final JPasswordField repPasswordField;
+    protected final JTextField fullnameField;
+    protected final JLabel fullnameLabel;
+    protected final JLabel noteLabel;
+    protected final JButton createButton;
+    protected final JButton cancelButton;
+    protected final JLabel wrongPasswordLabel;
+    protected final JLabel title;
+    protected final JLabel invalidPasswordLabel;
+    protected final JLabel invalidUsernameLabel;
+    protected final Container frame2ContentPane;
 
     public UserForm() {
         formFrame = new JFrame();
@@ -221,7 +221,7 @@ public abstract class UserForm implements MouseListener, ActionListener {
         cancelButton.addActionListener(e -> cancelButtonMouseClicked());
     }
 
-    abstract void createButtonMouseClicked(MouseEvent e);
+    abstract void createButtonMouseClicked();
 
     private void activateWrongPasswordLabel() {
         wrongPasswordLabel.setVisible(!Arrays.equals(repPasswordField.getPassword(), passwordField.getPassword()));
@@ -250,7 +250,7 @@ public abstract class UserForm implements MouseListener, ActionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getSource().equals(createButton)) createButtonMouseClicked(e);
+        if(e.getSource().equals(createButton)) createButtonMouseClicked();
         else if(e.getSource().equals(cancelButton)) cancelButtonMouseClicked();
     }
 
@@ -264,7 +264,7 @@ public abstract class UserForm implements MouseListener, ActionListener {
     public void mouseEntered(MouseEvent e){}
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(!e.getSource().equals(cancelButton) && !e.getSource().equals(createButton)) createButtonMouseClicked(null);
+        if(!e.getSource().equals(cancelButton) && !e.getSource().equals(createButton)) createButtonMouseClicked();
     }
 
 }

@@ -13,6 +13,7 @@ import java.util.HashSet;
  * @author Neron Panagiotopoulos
  */
 
+@SuppressWarnings("unchecked")
 public class Storage {
 
     private static HashSet<User> users = new HashSet<>();
@@ -159,7 +160,7 @@ public class Storage {
             UniqueIDGenerator.setSequentialId(Long.parseLong(ois.readObject().toString()));
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-            Storage.setBookings(new HashSet<>());
+            UniqueIDGenerator.setSequentialId(0);
         }
     }
 

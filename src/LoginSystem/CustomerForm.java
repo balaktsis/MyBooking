@@ -3,7 +3,6 @@ package LoginSystem;
 import Users.Customer;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
 /**
@@ -12,8 +11,8 @@ import javax.swing.*;
  * @author Christos Balaktsis
  */
 public class CustomerForm extends UserForm {
-    protected JLabel addressLabel;
-    protected JTextField addressField;
+    protected final JLabel addressLabel;
+    protected final JTextField addressField;
 
     public CustomerForm() {
         super();
@@ -32,7 +31,7 @@ public class CustomerForm extends UserForm {
         this.createButton.setBounds(210, 335, 115, 35);
     }
 
-    protected void createButtonMouseClicked(MouseEvent e) {
+    protected void createButtonMouseClicked() {
         if(areValidFields() && addressField.getText().length()>0) {
             Customer user = new Customer(usernameField.getText(), new String(passwordField.getPassword()));
             user.setFullName(fullnameField.getText());

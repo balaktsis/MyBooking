@@ -23,7 +23,7 @@ import java.util.HashSet;
 public class AppSystem {
 
     static LoginSystem loginSystem;
-    static boolean graphical = true;
+    static final boolean graphical = true;
 
     /**
      * Begin app execution by initializing temporary fields and showing the loginScreen
@@ -54,6 +54,7 @@ public class AppSystem {
      * Initialize some temporary fields (Users of all types, one lodge and a booking)
      * to demonstrate the app's functionality.
      */
+    @SuppressWarnings("unused")
     private static void initializeWithTempFields(){
         //Setting up the users
         HashSet<User> users = new HashSet<>();

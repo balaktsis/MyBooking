@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
+@SuppressWarnings({"ALL", "unused"})
 public class AddLodge implements Command {
     @Override
     public String getCommandName() {

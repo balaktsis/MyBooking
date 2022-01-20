@@ -11,6 +11,7 @@ import java.util.HashSet;
  */
 
 public class LodgeAvailability implements Serializable {
+    @SuppressWarnings("CanBeFinal")
     HashSet<LocalDate> bookCalendar;
 
     /**

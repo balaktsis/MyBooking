@@ -4,7 +4,6 @@ import Booking.BookingEntry;
 import Lodges.Lodge;
 import Misc.Storage;
 import Users.Actions.CommandLine.Command;
-import Users.Customer;
 import Users.User;
 
 import java.time.LocalDate;

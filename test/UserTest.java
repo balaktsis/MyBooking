@@ -1,6 +1,5 @@
 import Misc.Storage;
 import Users.*;
-import Users.User;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -83,6 +82,7 @@ public class UserTest {
 
     }
 
+    @SuppressWarnings("AssertBetweenInconvertibleTypes") //Intended
     @Test
     public void equalsTest() {
         Administrator admin2 = new Administrator(admin.getUsername(), admin.getPassword());
@@ -101,7 +101,7 @@ public class UserTest {
         assertEquals(admin, admin2);
         assertNotEquals(admin, admin3);
 
-        assertFalse(admin2.equals("String"));
+        assertNotEquals("String", admin2);
 
     }
 

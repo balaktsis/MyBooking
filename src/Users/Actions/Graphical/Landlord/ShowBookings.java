@@ -50,20 +50,20 @@ public class ShowBookings extends GUIAction implements Serializable {
             }
         }
 
-        bookingList = new JTable(data,columnNames);
+        JTable bookingList = new JTable(data, columnNames);
         ShowBookings = new JScrollPane();
-        Panel = new JPanel();
-        noteLabel = new JLabel();
-        bookingTable = new JScrollPane();
+        JPanel panel = new JPanel();
+        JLabel noteLabel = new JLabel();
+        JScrollPane bookingTable = new JScrollPane();
 
         ShowBookings.setVisible(true);
 
         //======== Panel ========
-        Panel.setLayout(null);
+        panel.setLayout(null);
 
         //---- noteLabel ----
         noteLabel.setText("Here is a list of all the bookings applied on your lodges.");
-        Panel.add(noteLabel);
+        panel.add(noteLabel);
         noteLabel.setBounds(20, 5, 300, 40);
 
 
@@ -82,13 +82,13 @@ public class ShowBookings extends GUIAction implements Serializable {
         bookingList.getColumnModel().getColumn(4).setMaxWidth(80);
         bookingList.getColumnModel().getColumn(5).setMaxWidth(80);
 
-        Panel.add(bookingTable);
+        panel.add(bookingTable);
         bookingTable.setBounds(20, 55, 800, 600);
         bookingTable.setToolTipText("Double click on a booking validation field to reverse it.");
 
-        AdjustSize.AdjustPanelSize(Panel);
+        AdjustSize.AdjustPanelSize(panel);
 
-        ShowBookings.setViewportView(Panel);
+        ShowBookings.setViewportView(panel);
 
         bookingList.addMouseListener(new MouseAdapter() {
             @Override
@@ -125,8 +125,4 @@ public class ShowBookings extends GUIAction implements Serializable {
     }
 
     private JScrollPane ShowBookings;
-    private JPanel Panel;
-    private JLabel noteLabel;
-    private JScrollPane bookingTable;
-    private JTable bookingList;
 }

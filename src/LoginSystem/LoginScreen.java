@@ -221,8 +221,8 @@ public class LoginScreen {
             else
                 JOptionPane.showMessageDialog(this.loginForm, "Your account has not been activated yet." +
                         "\nTry again later!","Unapproved Account", JOptionPane.INFORMATION_MESSAGE);
-            resetLoginWindow();
         }
+        resetLoginWindow();
     }
 
     private void usernameFieldFocusGained() {

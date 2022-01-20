@@ -4,7 +4,6 @@ import Users.Administrator;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 
 /**
  * This a new Administrator-type user registration form, extending on UserForm abstract class.
@@ -20,7 +19,7 @@ public class AdminForm extends UserForm {
         this.title.setBounds(new Rectangle(new Point(15, 25), title.getPreferredSize()));
     }
 
-    protected void createButtonMouseClicked(MouseEvent e) {
+    protected void createButtonMouseClicked() {
         if(areValidFields()) {
             Administrator user = new Administrator(usernameField.getText(), new String(passwordField.getPassword()));
             user.setFullName(fullnameField.getText());

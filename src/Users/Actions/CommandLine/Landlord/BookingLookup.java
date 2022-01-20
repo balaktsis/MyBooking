@@ -7,6 +7,7 @@ import Users.User;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class BookingLookup implements Command {
     @Override
     public String getCommandName() {

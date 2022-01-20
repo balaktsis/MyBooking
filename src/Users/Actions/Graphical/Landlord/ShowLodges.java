@@ -24,7 +24,6 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -49,10 +48,10 @@ public class ShowLodges extends GUIAction implements Serializable {
 
         TableModel lodgeTableModel = new lodgeTableModel((Landlord) parentUser);
         lodgeList = new JTable(lodgeTableModel);
-        ShowLodges = new JScrollPane();
-        Panel = new JPanel();
-        noteLabel = new JLabel();
-        lodgeTable = new JScrollPane();
+        JScrollPane showLodges = new JScrollPane();
+        JPanel panel = new JPanel();
+        JLabel noteLabel = new JLabel();
+        JScrollPane lodgeTable = new JScrollPane();
         currentLodge = new JFrame();
         image = new JButton();
         titleLabel = new JLabel();
@@ -67,34 +66,34 @@ public class ShowLodges extends GUIAction implements Serializable {
         priceLabel = new JLabel();
         priceLabel = new JLabel();
         descriptionLabel = new JLabel();
-        deleteButton = new JButton();
-        editButton = new JButton();
+        JButton deleteButton = new JButton();
+        JButton editButton = new JButton();
         editLodge = new JFrame();
-        editTitleLabel = new JLabel();
+        JLabel editTitleLabel = new JLabel();
         editTitleField = new JTextField();
         editSizeLabel = new JLabel();
         editSizeField = new JTextField();
-        editNoteLabel = new JLabel();
+        JLabel editNoteLabel = new JLabel();
         editIdLabel = new JLabel();
         editBedsField = new JTextField();
         editBedsLabel = new JLabel();
-        editDescriptionPanel = new JScrollPane();
+        JScrollPane editDescriptionPanel = new JScrollPane();
         editDescriptionField = new JTextPane();
-        editDescriptionLabel = new JLabel();
+        JLabel editDescriptionLabel = new JLabel();
         editPriceLabel = new JLabel();
         editPriceField = new JTextField();
         editAmenitiesLabel = new JLabel();
         editConfirmButton = new JButton();
-        editCancelButton = new JButton();
+        JButton editCancelButton = new JButton();
         editAmenitiesPanel = new JPanel();
-        editImageButton = new JButton();
+        JButton editImageButton = new JButton();
 
         //======== Panel ========
-        Panel.setLayout(null);
+        panel.setLayout(null);
 
         //---- noteLabel ----
         noteLabel.setText("Here is a list of all your lodges.");
-        Panel.add(noteLabel);
+        panel.add(noteLabel);
         noteLabel.setBounds(20, 5, 190, 40);
 
         //---- lodgeList ----
@@ -112,12 +111,12 @@ public class ShowLodges extends GUIAction implements Serializable {
         lodgeList.getColumnModel().getColumn(4).setMaxWidth(60);
         lodgeList.getColumnModel().getColumn(5).setMaxWidth(70);
 
-        Panel.add(lodgeTable);
+        panel.add(lodgeTable);
         lodgeTable.setBounds(20, 55, 1100, 600);
 
-        AdjustSize.AdjustPanelSize(Panel);
+        AdjustSize.AdjustPanelSize(panel);
 
-        ShowLodges.setViewportView(Panel);
+        showLodges.setViewportView(panel);
 
         lodgeList.addMouseListener(new MouseAdapter() {
             @Override
@@ -498,15 +497,11 @@ public class ShowLodges extends GUIAction implements Serializable {
         editLodge.setVisible(false);
         editLodge.setResizable(false);
 
-        actionArea.add(ShowLodges);
+        actionArea.add(showLodges);
         actionArea.add(Box.createRigidArea(new Dimension(0, 5)));
 
     }
 
-    private JScrollPane ShowLodges;
-    private JPanel Panel;
-    private JLabel noteLabel;
-    private JScrollPane lodgeTable;
     private JTable lodgeList;
     private JFrame currentLodge;
     private JButton image;
@@ -521,32 +516,25 @@ public class ShowLodges extends GUIAction implements Serializable {
     private JPanel bookedPanel;
     private JLabel priceLabel;
     private JLabel descriptionLabel;
-    private JButton deleteButton;
-    private JButton editButton;
-    private JLabel editTitleLabel;
     private JTextField editTitleField;
     private JLabel editSizeLabel;
     private JTextField editSizeField;
-    private JLabel editNoteLabel;
     private JLabel editIdLabel;
     private JTextField editBedsField;
     private JLabel editBedsLabel;
-    private JScrollPane editDescriptionPanel;
     private JTextPane editDescriptionField;
-    private JLabel editDescriptionLabel;
     private JLabel editPriceLabel;
     private JTextField editPriceField;
     private JLabel editAmenitiesLabel;
     private JButton editConfirmButton;
-    private JButton editCancelButton;
     private JFrame editLodge;
     private JPanel editAmenitiesPanel;
     private Lodge lodge;
-    private JButton editImageButton;
     private ImageIcon editImageIcon;
 
+    @SuppressWarnings("CanBeFinal")
     static class lodgeTableModel extends AbstractTableModel {
-        String[] columnNames = {"ID",
+        final String[] columnNames = {"ID",
                 "Title",
                 "Location",
                 "Type",

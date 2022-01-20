@@ -28,6 +28,7 @@ public class BookingTest {
         booking = new BookingEntry(customer, lodge);
     }
 
+    @SuppressWarnings("EmptyMethod")
     @Test
     public void setPeriodTest(){
 

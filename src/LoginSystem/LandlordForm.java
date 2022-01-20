@@ -3,7 +3,6 @@ package LoginSystem;
 import Users.Landlord;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
 /**
@@ -12,8 +11,8 @@ import javax.swing.*;
  * @author Christos Balaktsis
  */
 public class LandlordForm extends UserForm {
-    protected JLabel baseLabel;
-    protected JTextField baseField;
+    protected final JLabel baseLabel;
+    protected final JTextField baseField;
 
     public LandlordForm() {
         super();
@@ -32,7 +31,7 @@ public class LandlordForm extends UserForm {
         this.createButton.setBounds(210, 335, 115, 35);
     }
 
-    protected void createButtonMouseClicked(MouseEvent e) {
+    protected void createButtonMouseClicked() {
         if(areValidFields() && baseField.getText().length()>0) {
             Landlord user = new Landlord(usernameField.getText(), new String(passwordField.getPassword()));
             user.setFullName(fullnameField.getText());

@@ -13,7 +13,7 @@ import java.util.*;
 public abstract class CommandLineManager implements Serializable {
 
     protected Command[] commandsList;
-    protected User parentUser;
+    protected final User parentUser;
 
     public CommandLineManager(User parentUser){
         this.parentUser = parentUser;
