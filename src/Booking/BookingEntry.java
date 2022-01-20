@@ -13,6 +13,7 @@ import javax.swing.border.SoftBevelBorder;
 import static Misc.UniqueIDGenerator.getUniqueId;
 
 import java.awt.*;
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ import java.util.List;
  */
 
 public class BookingEntry implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1768249623478924556L;
 
     private final String bookingId;
     private double totalCost;
