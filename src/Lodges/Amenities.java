@@ -16,14 +16,6 @@ public enum Amenities implements Serializable {
 
     Amenities(String label) { this.label = label; }
 
-    public static String getAmenities() {
-        StringBuilder str = new StringBuilder();
-        for (Amenities amenity : Amenities.values())
-            str.append(amenity.toString()).append(" ");
-        str.deleteCharAt(str.length() - 1);
-        return str.toString();
-    }
-
     public static Amenities valueOfLabel(String label) {
         for (Amenities e : values()) {
             if (e.label.equals(label)) {

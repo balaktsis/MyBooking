@@ -84,13 +84,12 @@ public class LoginSystem {
         do {
             System.out.print("Role (Administrator | Customer | Landlord): ");
             reqRole = input.nextLine().toUpperCase(Locale.ROOT);
-            if (!Roles.isRole(reqRole)) invalidInput();
-        } while (!Roles.isRole(reqRole));
+            if (Roles.isRole(reqRole)) invalidInput();
+        } while (Roles.isRole(reqRole));
         switch (reqRole) {
-            case "ADMINISTRATOR" -> user = new Administrator(username, password);
             case "LANDLORD" -> user = new Landlord(username, password);
             case "CUSTOMER" -> user = new Customer(username, password);
-            default -> user = new Administrator(username, password); //Unreachable statement
+            default -> user = new Administrator(username, password);
         }
 
         user.setFullName(fullName);
@@ -149,7 +148,7 @@ public class LoginSystem {
      */
     private User signInUserConsole() {
         Scanner input = new Scanner(System.in);
-        String username, password, reqRole;
+        String username, password;
         User user;
         int checks = 0;
         System.out.println("\nPlease log-in with your account credentials.");

@@ -6,11 +6,9 @@ import Misc.Storage;
 import Users.Actions.CommandLine.CommandLineManager;
 import Users.Actions.CommandLine.CustomerCommandLineManager;
 import Users.Actions.Graphical.GUIManager;
-import Users.Actions.Graphical.Landlord.ShowDetailsPanel;
 import Users.Actions.Graphical.LandlordGUIManager;
 
 import javax.swing.*;
-import java.awt.*;
 
 
 /**
@@ -102,20 +100,18 @@ public class Landlord extends User{
 
     @Override
     public String toString(){
-        StringBuilder returnStr = new StringBuilder();
-        returnStr.append("Landlord\n");
-        returnStr.append(super.toString()).append("\n");
-        returnStr.append("Base: ");
-        returnStr.append(this.getBase());
-        returnStr.append("\nNumber of lodges: ");
-        returnStr.append(this.getNumOfLodges());
-        returnStr.append("\nNumber of Bookings: ");
-        returnStr.append(this.getNumOfBookings());
-        returnStr.append("\nNumber of Cancellations: ");
-        returnStr.append(this.getNumOfCancellations());
-        returnStr.append("\nTotal Profit: € ");
-        returnStr.append(this.getTotalProfit());
-        return returnStr.toString();
+        return "Landlord\n" +
+                super.toString() + "\n" +
+                "Base: " +
+                this.getBase() +
+                "\nNumber of lodges: " +
+                this.getNumOfLodges() +
+                "\nNumber of Bookings: " +
+                this.getNumOfBookings() +
+                "\nNumber of Cancellations: " +
+                this.getNumOfCancellations() +
+                "\nTotal Profit: € " +
+                this.getTotalProfit();
     }
 
     @Override

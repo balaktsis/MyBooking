@@ -258,8 +258,8 @@ abstract public class User implements Serializable {
         imagePanel.setBackground(Color.white);
         imagePanel.add(new JLabel(scaledInstance));
 
-        JPanel infopanel = new JPanel();
-        infopanel.setLayout(new GridLayout(1, 2));
+        JPanel infoPanel = new JPanel();
+        infoPanel.setLayout(new GridLayout(1, 2));
 
         JPanel profile = new JPanel();
         profile.setLayout(new GridLayout(2, 1));
@@ -275,16 +275,16 @@ abstract public class User implements Serializable {
         details.add(new JLabel(this.getUserType(), SwingConstants.RIGHT));
         details.setBackground(Color.white);
 
-        infopanel.add(profile);
-        infopanel.add(details);
+        infoPanel.add(profile);
+        infoPanel.add(details);
 
-        JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, imagePanel, infopanel);
+        JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, imagePanel, infoPanel);
         jSplitPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         jSplitPane.setDividerSize(0);
         userPanel.add(jSplitPane);
 
         userPanel.setMaximumSize(new Dimension((int)userPanel.getPreferredSize().getWidth(), (int)userPanel.getPreferredSize().getHeight()));
-//        userPanel.setMaximumSize(infopanel.getPreferredSize());
+//        userPanel.setMaximumSize(infoPanel.getPreferredSize());
 
         jSplitPane.addMouseListener(new MouseAdapter() {
             @Override

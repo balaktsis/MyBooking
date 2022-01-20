@@ -28,6 +28,7 @@ public class Hotel extends Lodge {
      * @param room The new room.
      */
     public boolean addRoom(Lodge room) {
+        if(room == null) return false;
         if(room.getType().equals(LodgeType.ROOM)) {
             rooms.put(room.getLodgeId(), room);
             return Storage.getLodges().add(room);

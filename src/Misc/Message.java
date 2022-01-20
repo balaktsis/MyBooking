@@ -9,7 +9,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.Serializable;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -26,7 +25,7 @@ public class Message implements Serializable {
     private String body;
     private User sender;
     private User recipient;
-    private ArrayList<User> chatters;
+    private final ArrayList<User> chatters;
     private final Instant timestamp;
 
     public Message(User sender, User recipient, String body) {
@@ -95,11 +94,6 @@ public class Message implements Serializable {
         JPanel messagePanel = new JPanel();
         messagePanel.setBackground(Color.white);
 
-//        ImageIcon image = new ImageIcon("src/Misc/images/User_icon.png");
-//        ImageIcon scaledImage = new ImageIcon(image.getImage().getScaledInstance(10, 10, Image.SCALE_AREA_AVERAGING));
-//        JPanel imagePanel = new JPanel();
-//        imagePanel.add(new JLabel(scaledImage));
-
         JPanel detailPanel = new JPanel();
         detailPanel.setLayout(new FlowLayout());
         JTextArea messagePane = new JTextArea();
@@ -136,11 +130,6 @@ public class Message implements Serializable {
     public JPanel sendToPanel() {
         JPanel messagePanel = new JPanel();
         messagePanel.setBackground(Color.white);
-
-//        ImageIcon image = new ImageIcon("src/Misc/images/User_icon.png");
-//        ImageIcon scaledImage = new ImageIcon(image.getImage().getScaledInstance(10, 10, Image.SCALE_AREA_AVERAGING));
-//        JPanel imagePanel = new JPanel();
-//        imagePanel.add(new JLabel(scaledImage));
 
         JPanel detailPanel = new JPanel();
         detailPanel.setLayout(new FlowLayout());

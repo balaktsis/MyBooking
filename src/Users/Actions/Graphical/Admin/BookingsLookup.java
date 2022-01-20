@@ -8,9 +8,7 @@ import Users.Actions.Graphical.GUIAction;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Date;
+
 import java.util.List;
 
 public class BookingsLookup extends GUIAction {
@@ -49,11 +47,11 @@ public class BookingsLookup extends GUIAction {
         topPanel.add(from_year);
 
         JButton search = new JButton("Search");
-        JButton searchall = new JButton("Show All");
+        JButton searchAll = new JButton("Show All");
         search.setFocusable(false);
-        searchall.setFocusable(false);
+        searchAll.setFocusable(false);
         topPanel.add(search);
-        topPanel.add(searchall);
+        topPanel.add(searchAll);
 
         search.addActionListener(e -> {
             mainPanel.removeAll();
@@ -78,7 +76,7 @@ public class BookingsLookup extends GUIAction {
 
         });
 
-        searchall.addActionListener(e -> {
+        searchAll.addActionListener(e -> {
 
             mainPanel.removeAll();
             mainPanel.revalidate();

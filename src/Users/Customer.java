@@ -6,7 +6,6 @@ import Users.Actions.Graphical.CustomerGUIManager;
 import Users.Actions.Graphical.GUIManager;
 
 import javax.swing.*;
-import java.awt.*;
 
 
 /**
@@ -57,12 +56,10 @@ public class Customer extends User{
 
     @Override
     public String toString(){
-        StringBuilder str = new StringBuilder();
-        str.append("Customer\n");
-        str.append(super.toString());
-        str.append("\nAddress: ");
-        str.append(this.address);
-        return str.toString();
+        return "Customer\n" +
+                super.toString() +
+                "\nAddress: " +
+                this.address;
     }
 
     @Override

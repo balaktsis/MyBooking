@@ -2,7 +2,6 @@ import Booking.BookingEntry;
 import Lodges.Lodge;
 import Lodges.LodgeType;
 import Misc.Storage;
-import Users.Administrator;
 import Users.Customer;
 import Users.Landlord;
 import org.junit.Before;

@@ -23,8 +23,8 @@ public enum LodgeType implements Serializable {
         for(LodgeType type : LodgeType.values())
             lodgeTypes.add(type.toString());
         for (String tempType : lodgeTypes)
-            if(tempType.equals(value)) return true;
-        return false;
+            if(tempType.equals(value)) return false;
+        return true;
     }
 
 }

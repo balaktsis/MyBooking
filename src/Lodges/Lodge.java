@@ -14,7 +14,6 @@ import Misc.Storage;
 import Users.Landlord;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 
@@ -259,10 +258,10 @@ public class Lodge implements Serializable {
 
         frame.setLocationRelativeTo(null);
 
-        JPanel mainpanel = new JPanel();
-        frame.add(mainpanel);
-        mainpanel.setLayout(new BoxLayout(mainpanel, BoxLayout.Y_AXIS));
-        mainpanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        JPanel mainPanel = new JPanel();
+        frame.add(mainPanel);
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        mainPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         ImageIcon scaledImage = new ImageIcon(this.getDetails().getImage().getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING));
         JPanel imagePanel = new JPanel();
@@ -305,10 +304,10 @@ public class Lodge implements Serializable {
         topPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
         topPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int)topPanel.getPreferredSize().getHeight()));
 
-        mainpanel.add(topPanel);
+        mainPanel.add(topPanel);
 
         JLabel description = new HLabel("<B>Description:</B> " + this.getDetails().getDescription());
-        mainpanel.add(description);
+        mainPanel.add(description);
 
         ArrayList<String> amenities = new ArrayList<>();
 
@@ -317,7 +316,7 @@ public class Lodge implements Serializable {
         }
 
         JLabel amenitiesList = new HLabel("<B>Amenities:</B> " + String.join(", ", amenities));
-        mainpanel.add(amenitiesList);
+        mainPanel.add(amenitiesList);
 
 
 

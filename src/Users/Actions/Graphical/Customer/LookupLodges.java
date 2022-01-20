@@ -6,17 +6,13 @@ import Lodges.Lodge;
 import Misc.HintedJTextField;
 import Misc.Storage;
 import Users.Actions.Graphical.GUIAction;
-import Users.User;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Hashtable;
 
 public class LookupLodges extends GUIAction {
     @Override
@@ -31,12 +27,12 @@ public class LookupLodges extends GUIAction {
 
 
 
-        JPanel sidepanel = new JPanel();
-        sidepanel.setLayout(new BorderLayout());
-//        actionArea.add(sidepanel, BorderLayout.WEST);
+        JPanel sidePanel = new JPanel();
+        sidePanel.setLayout(new BorderLayout());
+//        actionArea.add(sidePanel, BorderLayout.WEST);
         JPanel optionsArea = new JPanel();
         optionsArea.setLayout(new BoxLayout(optionsArea, BoxLayout.Y_AXIS));
-        sidepanel.add(optionsArea, BorderLayout.CENTER);
+        sidePanel.add(optionsArea, BorderLayout.CENTER);
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -46,8 +42,8 @@ public class LookupLodges extends GUIAction {
 
         display(Storage.getLodges(), mainPanel);
 
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sidepanel, scrollPane);
-//        sidepanel.setMinimumSize(new Dimension(10, 10));
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sidePanel, scrollPane);
+//        sidePanel.setMinimumSize(new Dimension(10, 10));
         actionArea.add(splitPane);
 
         HashMap<JCheckBox, Amenities> checkBoxes = new HashMap<>();
@@ -63,7 +59,7 @@ public class LookupLodges extends GUIAction {
         optionsArea.add(place);
 
         JButton search = new JButton("Search");
-        sidepanel.add(search, BorderLayout.SOUTH);
+        sidePanel.add(search, BorderLayout.SOUTH);
 
         search.addActionListener(e -> {
             HashSet<Amenities> selectedAmenities = new HashSet<>();

@@ -1,7 +1,6 @@
 package LoginSystem;
 
 import Misc.AppSystem;
-import Misc.Storage;
 import Users.User;
 
 import javax.swing.*;
@@ -16,37 +15,26 @@ import java.util.Objects;
  */
 public class LoginScreen {
     private final JFrame loginForm;
-    private final JLabel logo;
     private final JTextField usernameField;
-    private final JLabel usernameLabel;
     private final JPasswordField passwordField;
-    private final JLabel passwordLabel;
-    private final JLabel forgotPassLabel;
-    private final JLabel welcomeLabel;
-    private final JButton signInButton;
-    private final JButton signUpButton;
     private final JDialog accountType;
     private final JComboBox<String> reqRole;
-    private final JLabel chooseRoleLabel;
-    private final JButton signUpFormButton;
-    private final Container loginFormContentPane;
-    private final Container accountTypeContentPane;
 
     public LoginScreen() {
         loginForm = new JFrame();
-        logo = new JLabel();
+        JLabel logo = new JLabel();
         usernameField = new JTextField();
-        usernameLabel = new JLabel();
+        JLabel usernameLabel = new JLabel();
         passwordField = new JPasswordField();
-        passwordLabel = new JLabel();
-        forgotPassLabel = new JLabel();
-        welcomeLabel = new JLabel();
-        signInButton = new JButton();
-        signUpButton = new JButton();
+        JLabel passwordLabel = new JLabel();
+        JLabel forgotPassLabel = new JLabel();
+        JLabel welcomeLabel = new JLabel();
+        JButton signInButton = new JButton();
+        JButton signUpButton = new JButton();
         accountType = new JDialog();
-        reqRole = new JComboBox<String>();
-        chooseRoleLabel = new JLabel();
-        signUpFormButton = new JButton();
+        reqRole = new JComboBox<>();
+        JLabel chooseRoleLabel = new JLabel();
+        JButton signUpFormButton = new JButton();
 
         //======== loginForm ========
 
@@ -67,7 +55,7 @@ public class LoginScreen {
                 }
             }
         });
-        loginFormContentPane = loginForm.getContentPane();
+        Container loginFormContentPane = loginForm.getContentPane();
         loginFormContentPane.setLayout(null);
 
         //---- logo ----
@@ -80,7 +68,7 @@ public class LoginScreen {
         usernameField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                usernameFieldFocusGained(e);
+                usernameFieldFocusGained();
             }
         });
         loginFormContentPane.add(usernameField);
@@ -106,7 +94,7 @@ public class LoginScreen {
         forgotPassLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                forgotPassLabelMouseClicked(e);
+                forgotPassLabelMouseClicked();
             }
         });
         loginFormContentPane.add(forgotPassLabel);
@@ -154,7 +142,7 @@ public class LoginScreen {
         accountType.setName("accountType");
         accountType.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         accountType.setAlwaysOnTop(true);
-        accountTypeContentPane = accountType.getContentPane();
+        Container accountTypeContentPane = accountType.getContentPane();
         accountTypeContentPane.setLayout(null);
         accountTypeContentPane.add(reqRole);
         accountType.addWindowListener(new WindowAdapter() {
@@ -196,11 +184,11 @@ public class LoginScreen {
         loginForm.setVisible(true);
         loginForm.setTitle("MyBooking");
         usernameField.requestFocusInWindow();
-        usernameField.addActionListener(e -> signInButtonMouseClicked(null));
-        passwordField.addActionListener(e -> signInButtonMouseClicked(null));
-        signInButton.addActionListener(e -> signInButtonMouseClicked(null));
-        signUpButton.addActionListener(e -> signUpButtonMouseClicked(null));
-        signUpFormButton.addActionListener(e -> signUpFormButtonMouseClicked(null));
+        usernameField.addActionListener(e -> signInButtonMouseClicked());
+        passwordField.addActionListener(e -> signInButtonMouseClicked());
+        signInButton.addActionListener(e -> signInButtonMouseClicked());
+        signUpButton.addActionListener(e -> signUpButtonMouseClicked());
+        signUpFormButton.addActionListener(e -> signUpFormButtonMouseClicked());
 
         for(Roles role : Roles.values())
             reqRole.addItem(role.toString());
@@ -208,7 +196,7 @@ public class LoginScreen {
         accountType.setVisible(false);
     }
 
-    private void forgotPassLabelMouseClicked(MouseEvent e) {
+    private void forgotPassLabelMouseClicked() {
         JOptionPane.showMessageDialog(this.loginForm,"Relax. Focus and try to remember it!","Forgot password",JOptionPane.INFORMATION_MESSAGE );
     }
 
@@ -218,7 +206,7 @@ public class LoginScreen {
         usernameField.requestFocusInWindow();
     }
 
-    private void signInButtonMouseClicked(MouseEvent e) {
+    private void signInButtonMouseClicked() {
         User user = LoginSystem.checkUser(usernameField.getText(), new String(passwordField.getPassword()));
         if(user == null) {
             JOptionPane.showMessageDialog(this.loginForm, "Username or password does not match to any" +
@@ -237,16 +225,16 @@ public class LoginScreen {
         }
     }
 
-    private void usernameFieldFocusGained(FocusEvent e) {
+    private void usernameFieldFocusGained() {
         passwordField.setText("");
     }
 
-    private void signUpButtonMouseClicked(MouseEvent e) {
+    private void signUpButtonMouseClicked() {
         accountType.setVisible(true);
         loginForm.setVisible(false);
     }
 
-    private void signUpFormButtonMouseClicked(MouseEvent e) {
+    private void signUpFormButtonMouseClicked() {
         String role = Objects.requireNonNull(reqRole.getSelectedItem()).toString();
         accountType.setVisible(false);
         switch (role) {

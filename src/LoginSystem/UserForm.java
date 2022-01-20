@@ -218,7 +218,7 @@ public abstract class UserForm implements MouseListener, ActionListener {
         passwordField.addActionListener(this);
         repPasswordField.addActionListener(this);
         fullnameField.addActionListener(this);
-        cancelButton.addActionListener(e -> cancelButtonMouseClicked(null));
+        cancelButton.addActionListener(e -> cancelButtonMouseClicked());
     }
 
     abstract void createButtonMouseClicked(MouseEvent e);
@@ -227,16 +227,17 @@ public abstract class UserForm implements MouseListener, ActionListener {
         wrongPasswordLabel.setVisible(!Arrays.equals(repPasswordField.getPassword(), passwordField.getPassword()));
     }
 
-    private void cancelButtonMouseClicked(MouseEvent e) {
+    private void cancelButtonMouseClicked() {
         this.formFrame.dispose();
         new LoginScreen();
     }
 
     protected void completeSignUp(User user) {
         Storage.getUsers().add(user);
-        JOptionPane.showMessageDialog(this.formFrame,"Thank you for registering in MyBooking!" +
-                "\nYour account will be activated by our administration team as soon as possible." +
-                "\nPlease come back later!", "Account created - Pending approval", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this.formFrame, """
+                Thank you for registering in MyBooking!
+                Your account will be activated by our administration team as soon as possible.
+                Please come back later!""", "Account created - Pending approval", JOptionPane.INFORMATION_MESSAGE);
         this.formFrame.dispose();
         new LoginScreen();
     }
@@ -250,7 +251,7 @@ public abstract class UserForm implements MouseListener, ActionListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if(e.getSource().equals(createButton)) createButtonMouseClicked(e);
-        else if(e.getSource().equals(cancelButton)) cancelButtonMouseClicked(e);
+        else if(e.getSource().equals(cancelButton)) cancelButtonMouseClicked();
     }
 
     @Override

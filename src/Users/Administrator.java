@@ -5,7 +5,6 @@ import Users.Actions.Graphical.AdminGUIManager;
 import Users.Actions.Graphical.GUIManager;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * This is a child of the User class, which contains functionality unique
@@ -13,7 +12,6 @@ import java.awt.*;
  * @author Neron Panagiotopoulos
  */
 public class Administrator extends User{
-
 
     /**
      * Primary constructor of an Administrator User object, takes in credentials,
@@ -40,10 +38,8 @@ public class Administrator extends User{
 
     @Override
     public String toString(){
-        StringBuilder str = new StringBuilder();
-        str.append("Administrator\n");
-        str.append(super.toString());
-        return str.toString();
+        return "Administrator\n" +
+                super.toString();
     }
 
 

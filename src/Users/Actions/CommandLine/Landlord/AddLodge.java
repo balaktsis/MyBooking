@@ -53,8 +53,8 @@ public class AddLodge implements Command {
         do {
             System.out.print("Type (" + LodgeType.getLodgeTypes() + "): ");
             type = input.nextLine().toUpperCase(Locale.ROOT);
-            if (!LodgeType.isLodgeType(type)) System.out.println("Unknown type of Lodge. Try something else.");
-        } while (!LodgeType.isLodgeType(type));
+            if (LodgeType.isLodgeType(type)) System.out.println("Unknown type of Lodge. Try something else.");
+        } while (LodgeType.isLodgeType(type));
         lodgeType = LodgeType.valueOf(type);
 
         //If the new lodge is a room, it has to be part of an existing hotel.
@@ -130,6 +130,7 @@ public class AddLodge implements Command {
                 if(newLodge.getType().equals(LodgeType.ROOM)) {
                     System.out.println("* Do not forget to add rooms to your hotel!");
                     Hotel hotel = (Hotel) requestedHotel;
+                    assert hotel != null;
                     hotel.addRoom(newLodge);
                 } else Storage.getLodges().add(newLodge);
                 return "Lodge #" + newLodge.getLodgeId() + " is added to your lodges!";

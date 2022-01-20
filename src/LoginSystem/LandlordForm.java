@@ -1,7 +1,5 @@
 package LoginSystem;
 
-import Misc.Storage;
-import Users.Customer;
 import Users.Landlord;
 
 import java.awt.*;

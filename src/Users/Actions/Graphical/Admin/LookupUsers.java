@@ -1,6 +1,5 @@
 package Users.Actions.Graphical.Admin;
 
-import Lodges.Lodge;
 import Misc.HintedJTextField;
 import Misc.Storage;
 import Users.Actions.Graphical.GUIAction;
@@ -9,7 +8,6 @@ import Users.User;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class LookupUsers extends GUIAction {
     @Override
@@ -39,11 +37,11 @@ public class LookupUsers extends GUIAction {
         HintedJTextField lrdUsername = new HintedJTextField("Username");
         topPanel.add(lrdUsername);
         JButton search = new JButton("Search");
-        JButton searchall = new JButton("Show All");
+        JButton searchAll = new JButton("Show All");
         search.setFocusable(false);
-        searchall.setFocusable(false);
+        searchAll.setFocusable(false);
         topPanel.add(search);
-        topPanel.add(searchall);
+        topPanel.add(searchAll);
 
         search.addActionListener(e -> {
             mainPanel.removeAll();
@@ -61,7 +59,7 @@ public class LookupUsers extends GUIAction {
 
         });
 
-        searchall.addActionListener(e -> {
+        searchAll.addActionListener(e -> {
             mainPanel.removeAll();
             mainPanel.revalidate();
             mainPanel.repaint();

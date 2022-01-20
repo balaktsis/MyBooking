@@ -19,7 +19,7 @@ public enum Roles {
         for(Roles role : Roles.values())
             roles.add(role.toString());
         for (String role : roles)
-            if(role.equals(value)) return true;
-        return false;
+            if(role.equals(value)) return false;
+        return true;
     }
 }

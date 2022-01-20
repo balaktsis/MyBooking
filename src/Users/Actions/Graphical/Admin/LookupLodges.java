@@ -9,8 +9,7 @@ import Users.User;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.util.ArrayList;
 
 public class LookupLodges extends GUIAction {
@@ -40,11 +39,11 @@ public class LookupLodges extends GUIAction {
         HintedJTextField lrdUsername = new HintedJTextField("Username");
         topPanel.add(lrdUsername);
         JButton search = new JButton("Search");
-        JButton searchall = new JButton("Show All");
+        JButton searchAll = new JButton("Show All");
         search.setFocusable(false);
-        searchall.setFocusable(false);
+        searchAll.setFocusable(false);
         topPanel.add(search);
-        topPanel.add(searchall);
+        topPanel.add(searchAll);
 
         search.addActionListener(e -> {
             mainPanel.removeAll();
@@ -74,7 +73,7 @@ public class LookupLodges extends GUIAction {
 
         });
 
-        searchall.addActionListener(e -> {
+        searchAll.addActionListener(e -> {
             mainPanel.removeAll();
             mainPanel.revalidate();
             mainPanel.repaint();

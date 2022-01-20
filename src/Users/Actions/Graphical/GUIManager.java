@@ -50,12 +50,12 @@ public class GUIManager implements Serializable {
 
 
         // Set appropriate size
-        Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int sizeFactor = 2;
-        userGUI.setSize((int)screensize.getWidth()/sizeFactor, (int)screensize.getHeight()/sizeFactor);
+        userGUI.setSize((int)screenSize.getWidth()/sizeFactor, (int)screenSize.getHeight()/sizeFactor);
         userGUI.setResizable(true);
         userGUI.setLocationRelativeTo(null);
-        Dimension minSize = new Dimension((int)screensize.getWidth()/3, (int)screensize.getHeight()/3);
+        Dimension minSize = new Dimension((int)screenSize.getWidth()/3, (int)screenSize.getHeight()/3);
         userGUI.setMinimumSize(minSize);
 
 
