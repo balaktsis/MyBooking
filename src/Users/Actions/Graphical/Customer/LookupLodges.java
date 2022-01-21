@@ -3,6 +3,7 @@ package Users.Actions.Graphical.Customer;
 import Booking.BookingEntry;
 import Lodges.Amenities;
 import Lodges.Lodge;
+import Lodges.LodgeType;
 import Misc.HintedJTextField;
 import Misc.Storage;
 import Users.Actions.Graphical.GUIAction;
@@ -96,6 +97,10 @@ public class LookupLodges extends GUIAction {
 
             JButton book = new JButton("Book");
             book.setPreferredSize(new Dimension((int)book.getPreferredSize().getWidth(), (int)entry.getPreferredSize().getHeight()-10));
+
+            if (lodge.getType() == LodgeType.HOTEL){
+                book.setEnabled(false);
+            }
 
             entry.setMaximumSize(new Dimension(Integer.MAX_VALUE, (int)entry.getPreferredSize().getHeight()));
             entry.add(book);

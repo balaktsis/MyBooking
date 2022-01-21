@@ -227,7 +227,11 @@ public class Lodge implements Serializable {
         detailPanel.add(new JLabel("# " + getLodgeId(), SwingConstants.TRAILING));
         detailPanel.add(new JLabel(getDetails().getDescription()));
         detailPanel.add(new JLabel("Landlord: " + getLandlord().getUsername(), SwingConstants.TRAILING));
-        detailPanel.add(new JLabel("Price/night: " + getDetails().getPrice() + "€"));
+        if (getType() == LodgeType.HOTEL){
+            detailPanel.add(new HLabel("<b>Hotel</b>"));
+        } else {
+            detailPanel.add(new JLabel("Price/night: " + getDetails().getPrice() + "€"));
+        }
         String cutLocation;
         if (getDetails().getLocation().length() > 20){
             cutLocation = getDetails().getLocation().substring(0, 20) + "...";
@@ -288,12 +292,17 @@ public class Lodge implements Serializable {
         detailsPanel.add(new JLabel(this.getDetails().getLocation(), JLabel.CENTER));
 
         JPanel footer = new JPanel();
-        JLabel size = new HLabel("<b>Size:</b> " + this.getDetails().getSize() + "m²");
-        JLabel beds = new HLabel("<b>Beds:</b> " + this.getDetails().getBeds());
-        JLabel price = new HLabel("<b>Price/night:</b> " + this.getDetails().getPrice() + "€");
-        footer.add(size);
-        footer.add(beds);
-        footer.add(price);
+
+        if (getType() != LodgeType.HOTEL){
+            JLabel size = new HLabel("<b>Size:</b> " + this.getDetails().getSize() + "m²");
+            JLabel beds = new HLabel("<b>Beds:</b> " + this.getDetails().getBeds());
+            JLabel price = new HLabel("<b>Price/night:</b> " + this.getDetails().getPrice() + "€");
+            footer.add(size);
+            footer.add(beds);
+            footer.add(price);
+        }
+
+
 
         detailsPanel.add(footer);
 
@@ -315,7 +324,12 @@ public class Lodge implements Serializable {
             amenities.add(amenity.label);
         }
 
-        JLabel amenitiesList = new HLabel("<B>Amenities:</B> " + String.join(", ", amenities));
+        JLabel amenitiesList;
+        if (getType() != LodgeType.HOTEL) {
+            amenitiesList = new HLabel("<B>Amenities:</B> " + String.join(", ", amenities));
+        } else {
+            amenitiesList = new JLabel("");
+        }
         mainPanel.add(amenitiesList);
 
 
