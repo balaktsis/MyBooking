@@ -45,67 +45,6 @@ public class AppSystem {
             // Fall back to the default UI
         }
         initializeFromFile();
-    //    initializeWithTempFields();
-    }
-
-
-
-    /**
-     * Initialize some temporary fields (Users of all types, one lodge and a booking)
-     * to demonstrate the app's functionality.
-     */
-    @SuppressWarnings("unused")
-    private static void initializeWithTempFields(){
-        //Setting up the users
-        HashSet<User> users = new HashSet<>();
-        var tempAdmin = new Administrator("admin", "password0");
-        var tempCustomer = new Customer("customer", "password0");
-        var tempLandlord = new Landlord("landlord", "password0");
-
-        tempAdmin.setFullName("Admin McAdminFace");
-        tempCustomer.setFullName("Karen Managerhunter");
-        tempLandlord.setFullName("Rick James");
-
-        tempAdmin.setApprovalStatus(true);
-        tempCustomer.setApprovalStatus(true);
-        tempLandlord.setApprovalStatus(true);
-
-        tempLandlord.setBase("Thessaloniki, Greece");
-
-        users.add(tempAdmin);
-        users.add(tempCustomer);
-        users.add(tempLandlord);
-
-        var unapprovedUSR = new Customer("MrUnapproved", "dontuseme");
-        unapprovedUSR.setFullName("Unapproved Person");
-        users.add(unapprovedUSR);
-
-        for(User user : users) {
-            Storage.getUsers().add(user);
-        }
-
-        //Setting up a preset lodge
-        Lodge tempLodge = new Lodge(tempLandlord, "Ethnikis Aminis 41, Thessaloniki 546 35, Greece", LodgeType.APARTMENT);
-        tempLodge.getDetails().setTitle("Feels-like-home");
-        HashSet<Amenities> amenities = new HashSet<>();
-        amenities.add(Amenities.WIFI); amenities.add(Amenities.PARKING);
-        tempLodge.setAmenities(amenities);
-        tempLodge.getDetails().setPrice(20.0);
-        tempLodge.getDetails().setBeds(5);
-        tempLodge.getDetails().setDescription("The best place to live!");
-        tempLodge.getDetails().setSize(80);
-        tempLodge.getDetails().setImage(new ImageIcon("src/Misc/images/tmpLodgeImage.gif"));
-        Storage.getLodges().add(tempLodge);
-
-        BookingEntry tempBooking = new BookingEntry(tempCustomer, tempLodge);
-        tempBooking.bookLodge(LocalDate.now(), LocalDate.now().plusDays(10));
-        Storage.getBookings().add(tempBooking);
-
-        Message tmpMessage1 = new Message(tempAdmin,tempCustomer,"Hello there!");
-        Message tmpMessage2 = new Message(tempCustomer,tempAdmin,"Hi!");
-        Storage.getMessages().add(tmpMessage1);
-        Storage.getMessages().add(tmpMessage2);
-
     }
 
     private static void initializeFromFile() {
